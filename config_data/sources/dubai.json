@@ -1,0 +1,170 @@
+[
+  {
+    "source_key": "dubai_lovin_news_en",
+    "name": "Lovin Dubai News",
+    "type": "rss",
+    "url": "https://lovin.co/dubai/en/news/feed/",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_emirates247_uae",
+    "name": "Emirates247 UAE",
+    "type": "rss",
+    "url": "https://www.emirates247.com/cmlink/rss-feed-1.4268?localLinksEnabled=false",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_whatson_feed",
+    "name": "What's On UAE",
+    "type": "rss",
+    "url": "https://whatson.ae/feed/",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_whatson_uae_laws",
+    "name": "What's On UAE Laws",
+    "type": "rss",
+    "url": "https://whatson.ae/section/news/uae-laws/feed/",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_cityguide_govpress",
+    "name": "Dubai City Guide Government Press",
+    "type": "rss",
+    "url": "https://www.dubaicityguide.com/uploads/rss/govpress.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_alkhaleej_1110",
+    "name": "Al Khaleej Section 1110",
+    "type": "rss",
+    "url": "https://www.alkhaleej.ae/section/1110/rss.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_alkhaleej_1112",
+    "name": "Al Khaleej Section 1112",
+    "type": "rss",
+    "url": "https://www.alkhaleej.ae/section/1112/rss.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_alkhaleej_1113",
+    "name": "Al Khaleej Section 1113",
+    "type": "rss",
+    "url": "https://www.alkhaleej.ae/section/1113/rss.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_alkhaleej_1114",
+    "name": "Al Khaleej Section 1114",
+    "type": "rss",
+    "url": "https://www.alkhaleej.ae/section/1114/rss.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_roads_today",
+    "name": "Dubai Roads Today",
+    "type": "rss",
+    "url": "https://dubairoadstoday.com/rss.xml",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_gulf_today",
+    "name": "Gulf Today",
+    "type": "rss",
+    "url": "https://www.gulftoday.ae/rssFeed/0/",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_arabian_business_life",
+    "name": "Arabian Business Life",
+    "type": "rss",
+    "url": "https://www.arabianbusiness.com/life/feed",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_arabian_business_banking",
+    "name": "Arabian Business Banking",
+    "type": "rss",
+    "url": "https://www.arabianbusiness.com/finance/banking/feed",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_arabian_business_magazine",
+    "name": "Arabian Business Magazine",
+    "type": "rss",
+    "url": "https://www.arabianbusiness.com/magazine/feed/",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_arabian_business_search",
+    "name": "Arabian Business Search",
+    "type": "rss",
+    "url": "https://www.arabianbusiness.com/search/index.php/feed/rss2/",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_the_arabian_post",
+    "name": "The Arabian Post",
+    "type": "rss",
+    "url": "https://thearabianpost.com/feed",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_uae24x7",
+    "name": "UAE24x7",
+    "type": "rss",
+    "url": "https://uae24x7.com/feed",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_dubayblog",
+    "name": "Dubay Blog",
+    "type": "rss",
+    "url": "https://dubayblog.com/feed",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_mediaoffice_news",
+    "name": "Dubai Media Office News",
+    "type": "rss",
+    "url": "http://mediaoffice.ae/rss/news.ashx",
+    "enabled": false,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_us_embassy_alerts",
+    "name": "U.S. Embassy UAE Alerts",
+    "type": "rss",
+    "url": "https://ae.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "dubai"
+  },
+  {
+    "source_key": "dubai_us_state_dept_uae_page",
+    "name": "U.S. State Department UAE Country Information",
+    "type": "rss",
+    "url": "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/UnitedArabEmirates.html",
+    "enabled": false,
+    "city_key": "dubai"
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "source_key": "moscow_m24_news",
+    "name": "M24 Moscow News",
+    "type": "rss",
+    "url": "https://www.m24.ru/yandex.xml",
+    "fallback_url": "http://www.m24.ru/yandex.xml",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "local",
+      "news",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_mskagency_incidents",
+    "name": "Moscow Agency Incidents",
+    "type": "rss",
+    "url": "https://www.mskagency.ru/rss/incident.rss",
+    "fallback_url": "http://www.mskagency.ru/rss/incident.rss",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "local",
+      "incidents",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_moslenta_news",
+    "name": "Moslenta",
+    "type": "rss",
+    "url": "https://moslenta.ru/exports/rss.xml",
+    "fallback_url": "http://moslenta.ru/exports/rss.xml",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "local",
+      "news",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_channel_one_news",
+    "name": "Channel One News",
+    "type": "rss",
+    "url": "https://www.1tv.ru/news/index_for_ya.rss",
+    "fallback_url": "http://www.1tv.ru/news/index_for_ya.rss",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "news",
+      "national",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_mk_news",
+    "name": "MK.ru News",
+    "type": "rss",
+    "url": "https://www.mk.ru/rss/news/index.xml",
+    "fallback_url": "http://www.mk.ru/rss/news/index.xml",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "news",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_ria_news",
+    "name": "RIA Novosti",
+    "type": "rss",
+    "url": "https://ria.ru/export/rss2/index.xml",
+    "fallback_url": "http://ria.ru/export/rss2/index.xml",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "news",
+      "ru",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "moscow_moscowtimes_news",
+    "name": "The Moscow Times",
+    "type": "rss",
+    "url": "https://www.themoscowtimes.com/rss/news",
+    "fallback_url": "http://www.themoscowtimes.com/rss/news",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "news",
+      "en",
+      "RU"
+    ]
+  },
+  {
+    "source_key": "us_embassy_russia_alerts",
+    "name": "U.S. Embassy Russia Alerts",
+    "type": "rss",
+    "url": "https://ru.usembassy.gov/category/alert/feed/",
+    "city_key": "moscow",
+    "enabled": true,
+    "tags": [
+      "embassy",
+      "alert",
+      "en",
+      "RU"
+    ]
+  }
+]

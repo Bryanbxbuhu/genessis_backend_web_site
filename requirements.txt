@@ -1,0 +1,19 @@
+openai
+requests
+feedparser
+jinja2
+playwright
+matplotlib
+pydantic
+ddgs
+tldextract
+pypdf
+PyMuPDF
+supabase
+python-dotenv
+unidecode
+
+# Semantic relevance mode dependencies (optional, only needed for TRAVEL_RELEVANCE_MODE=semantic_multilingual)
+beautifulsoup4
+lxml
+sentence-transformers

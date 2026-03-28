@@ -1,0 +1,116 @@
+[
+  {
+    "source_key": "agrnews_roma",
+    "name": "AGR News Roma",
+    "type": "rss",
+    "url": "https://www.agrnews.it/agr-roma.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "agrnews_locali",
+    "name": "AGR News Locali",
+    "type": "rss",
+    "url": "https://www.agrnews.it/locali.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "abitarearoma_main",
+    "name": "Abitare a Roma",
+    "type": "rss",
+    "url": "https://abitarearoma.it/feed/",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "abitarearoma_cronaca",
+    "name": "Abitare a Roma Cronaca",
+    "type": "rss",
+    "url": "https://abitarearoma.it/argomenti/cronaca/feed/",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "repubblica_roma",
+    "name": "la Repubblica Roma",
+    "type": "rss",
+    "url": "https://roma.repubblica.it/rss/rss2.0.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "musei_roma_news",
+    "name": "Musei in Comune Roma News",
+    "type": "rss",
+    "url": "https://www.museiincomuneroma.it/rss_news.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "musei_roma_avvisi",
+    "name": "Musei in Comune Roma Avvisi",
+    "type": "rss",
+    "url": "https://www.museiincomuneroma.it/rss_avvisi.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "us_embassy_italy_alerts",
+    "name": "U.S. Embassy Italy Alerts",
+    "type": "rss",
+    "url": "https://it.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "ilmessaggero_roma",
+    "name": "Il Messaggero Roma",
+    "type": "rss",
+    "url": "https://www.ilmessaggero.it/rss/roma.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "iltempo",
+    "name": "Il Tempo",
+    "type": "rss",
+    "url": "https://www.iltempo.it/rss.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "repubblica_homepage",
+    "name": "la Repubblica Homepage",
+    "type": "rss",
+    "url": "https://www.repubblica.it/rss/homepage/rss2.0.xml",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "rainews_lazio",
+    "name": "RAI News Lazio",
+    "type": "rss",
+    "url": "https://www.rainews.it/tgr/lazio/rss/tutti",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "radioroma",
+    "name": "Radio Roma",
+    "type": "rss",
+    "url": "https://www.radioroma.it/feed/",
+    "enabled": true,
+    "city_key": "rome"
+  },
+  {
+    "source_key": "bing_news_rome_travel",
+    "name": "Bing News Search Rome Travel and Safety",
+    "type": "rss",
+    "url": "https://www.bing.com/news/search?format=RSS&q=%28%22Roma%22%20OR%20%22Rome%22%29%20%28sciopero%20OR%20strike%20OR%20metro%20OR%20ATAC%20OR%20aeroporto%20OR%20Fiumicino%20OR%20Ciampino%20OR%20Trenitalia%20OR%20chiusura%20OR%20manifestazione%20OR%20protesta%20OR%20evacuazione%20OR%20incendio%20OR%20rapina%20OR%20aggressione%20OR%20alluvione%20OR%20terremoto%20OR%20blackout%29&qft=sortbydate%3d%221%22",
+    "fallback_url": "https://www.bing.com/news/search?q=%28%22Roma%22%20OR%20%22Rome%22%29%20%28sciopero%20OR%20strike%20OR%20metro%20OR%20ATAC%20OR%20aeroporto%20OR%20Fiumicino%20OR%20Ciampino%20OR%20Trenitalia%20OR%20chiusura%20OR%20manifestazione%20OR%20protesta%20OR%20evacuazione%20OR%20incendio%20OR%20rapina%20OR%20aggressione%20OR%20alluvione%20OR%20terremoto%20OR%20blackout%29&qft=sortbydate%3d%221%22&format=RSS",
+    "enabled": true,
+    "city_key": "rome",
+    "tags": ["bing", "news_search", "language:it", "country:IT"]
+  }
+]

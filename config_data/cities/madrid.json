@@ -1,0 +1,78 @@
+{
+  "name": "Madrid, Spain",
+  "country_code": "ES",
+  "timezone": "Europe/Madrid",
+  "language": "es",
+  "latitude": 40.4168,
+  "longitude": -3.7038,
+  "population": 3223334,
+  "aliases": [
+    "madrid",
+    "madrid spain",
+    "madrid espana",
+    "comunidad de madrid"
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "091",
+    "fire": "080",
+    "ambulance": "061",
+    "other": []
+  },
+  "transit_systems": [
+    {
+      "name": "Metro de Madrid",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://www.metromadrid.es/en"
+    },
+    {
+      "name": "EMT Madrid",
+      "modes": [
+        "Bus"
+      ],
+      "website": "https://www.emtmadrid.es/"
+    },
+    {
+      "name": "Cercanias Madrid (Renfe)",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://www.renfe.com/es/en/suburban/suburban-madrid"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Adolfo Suarez Madrid Barajas Airport",
+      "iata": "MAD",
+      "website": "https://www.aena.es/en/adolfo-suarez-madrid-barajas.html"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/es/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Cabify",
+      "url": "https://cabify.com/en"
+    },
+    {
+      "category": "Government",
+      "label": "Madrid City Council",
+      "url": "https://www.madrid.es/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "EMT Madrid app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Metro de Madrid app"
+    }
+  ]
+}

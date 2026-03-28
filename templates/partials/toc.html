@@ -1,0 +1,126 @@
+<!-- Table of Contents Page -->
+{% set airports_list = city_essentials.airports if city_essentials is defined and city_essentials.airports else (airports if airports is defined and airports else []) %}
+{% set has_airports = airports_list|length > 0 %}
+{% set has_supplies = pharmacies or supermarkets or convenience_stores or rental_cars %}
+{% set has_parking = parking is defined and parking and ((parking.links is defined and parking.links|length > 0) or (parking.url is defined and parking.url)) %}
+{% set show_parking = has_parking and SPOTHERO_PARKING_SEARCH_URL %}
+{% set show_esim = ESIM_CARDS_URL %}
+{% set ns = namespace(idx=1) %}
+<div class="toc-page">
+  <h1 class="page-title" style="margin-bottom: 24px;">
+    <svg class="icon-sm"><use href="#icon-file-text"/></svg>
+    Table of Contents
+  </h1>
+
+  <div class="toc-container">
+    <a href="#sec_exec_summary" class="toc-item" data-target="sec_exec_summary">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Executive Summary</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_exec_summary">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+
+    <a href="#sec_current_incidents" class="toc-item" data-target="sec_current_incidents">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Current Incidents</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_current_incidents">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+
+    {% if has_airports %}
+    <a href="#sec_airports" class="toc-item" data-target="sec_airports">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Airports</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_airports">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+    {% endif %}
+
+    <a href="#sec_city_essentials" class="toc-item" data-target="sec_city_essentials">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">City Essentials</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_city_essentials">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+
+    {% if has_supplies %}
+    <a href="#sec_supplies_services" class="toc-item" data-target="sec_supplies_services">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Supplies & Services</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_supplies_services">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+    {% endif %}
+
+    {% if opsec %}
+    <a href="#sec_opsec_personal_safety" class="toc-item" data-target="sec_opsec_personal_safety">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">OPSEC & Personal Safety</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_opsec_personal_safety">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+    {% endif %}
+
+    {% if trip_profile and trip_profile.will_drive and driving_pack %}
+    <a href="#sec_driving_pack" class="toc-item" data-target="sec_driving_pack">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Driving Pack</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_driving_pack">ƒ?"</span>
+    </a>
+    {% set ns.idx = ns.idx + 1 %}
+    {% endif %}
+
+    <a href="#sec_contacts_sources" class="toc-item" data-target="sec_contacts_sources">
+      <span class="toc-number">{{ "%02d"|format(ns.idx) }}</span>
+      <span class="toc-title">Contacts & Sources</span>
+      <span class="toc-leaders"></span>
+      <span class="toc-page-number" id="toc_page_sec_contacts_sources">ƒ?"</span>
+    </a>
+  </div>
+
+  {% if show_parking or show_esim %}
+  <div style="margin-top: 14px; padding: 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+    <div style="font-size: 10px; font-weight: 700; color: #0f172a; margin-bottom: 6px;">Traveler Essentials</div>
+    {% if show_parking %}
+    <div style="font-size: 9px; color: #1f2937; margin-bottom: 4px;">
+      <a href="{{ SPOTHERO_PARKING_SEARCH_URL }}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; font-weight: 600;">Find parking</a>
+      <span class="muted" style="margin-left: 6px;">Reserve a spot before you arrive.</span>
+    </div>
+    {% endif %}
+    {% if show_esim %}
+    <div style="font-size: 9px; color: #1f2937;">
+      <a href="{{ ESIM_CARDS_URL }}" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none; font-weight: 600;">{{ ESIM_CARDS_TOC_CTA or "Get an eSIM" }}</a>
+      <span class="muted" style="margin-left: 6px;">{{ ESIM_CARDS_TOC_BLURB }}</span>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Branding / About Section -->
+  <div style="margin-top: 40px; padding: 20px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; border: 2px solid #3b82f6;">
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+      <div style="width: 48px; height: 48px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size: 14px; font-weight: 700; color: #1e40af;">OSINT Travel Intelligence</div>
+        <div style="font-size: 9px; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em;">Evidence-Based Travel Briefs</div>
+      </div>
+    </div>
+    <div style="font-size: 8.5px; color: #1e3a8a; line-height: 1.5;">
+      <strong>Data Sources:</strong> OpenStreetMap ƒ?› GDELT Project ƒ?› National Weather Service ƒ?› Local News Feeds ƒ?› Open-Meteo
+      <br>
+      <strong>Anti-Hallucination:</strong> All infrastructure data verified from authoritative APIs. AI used only for formatting and synthesis, not fact generation.
+    </div>
+  </div>
+</div>

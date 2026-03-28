@@ -1,0 +1,75 @@
+{
+  "name": "Dubai",
+  "country_code": "AE",
+  "timezone": "Asia/Dubai",
+  "language": "ar",
+  "latitude": 25.2048,
+  "longitude": 55.2708,
+  "population": 4248200,
+  "aliases": [
+    "dubai",
+    "dubai ae",
+    "dubayy",
+    "دبي",
+    "إمارة دبي"
+  ],
+  "emergency_numbers": {
+    "general": "999 / 998 / 997",
+    "police": "999",
+    "ambulance": "998",
+    "fire": "997",
+    "civil_defence": "997"
+  },
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Careem",
+      "url": "https://www.careem.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "S'hail",
+      "url": "https://www.rta.ae/wps/portal/rta/ae/public-transport/s-hail"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "RTA Dubai",
+      "url": "https://www.rta.ae/wps/portal/rta/ae/public-transport/rta-dubai-app"
+    },
+    {
+      "category": "Government",
+      "label": "DubaiNow",
+      "url": "https://www.dubainow.dubai/"
+    }
+  ],
+  "transit_systems": [
+    {
+      "name": "Roads and Transport Authority (RTA)",
+      "modes": [
+        "Metro",
+        "Tram",
+        "Bus",
+        "Marine Transport"
+      ],
+      "website": "https://www.rta.ae/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Dubai International Airport",
+      "iata": "DXB",
+      "website": "https://www.dubaiairports.ae/corporate/dubai-international-dxb"
+    },
+    {
+      "name": "Al Maktoum International Airport",
+      "iata": "DWC",
+      "website": "https://www.dubaiairports.ae/corporate/al-maktoum-international-airport-dwc"
+    }
+  ]
+}

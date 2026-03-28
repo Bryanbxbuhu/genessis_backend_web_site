@@ -1,0 +1,106 @@
+[
+  {
+    "source_key": "la_times_local",
+    "name": "Los Angeles Times (Local)",
+    "type": "rss",
+    "url": "https://www.latimes.com/local/rss2.0.xml",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "laist_latest_news",
+    "name": "LAist (Latest News)",
+    "type": "rss",
+    "url": "https://laist.com/rss/latest-news.atom",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "ktla_news",
+    "name": "KTLA News",
+    "type": "rss",
+    "url": "https://ktla.com/feed/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "ktla_local_news",
+    "name": "KTLA (Local News)",
+    "type": "rss",
+    "url": "https://ktla.com/news/local-news/feed/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "abc7_los_angeles",
+    "name": "ABC7 Los Angeles",
+    "type": "rss",
+    "url": "https://abc7.com/feed",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "press_telegram",
+    "name": "Press-Telegram",
+    "type": "rss",
+    "url": "https://www.presstelegram.com/feed/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "pasadena_star_news",
+    "name": "Pasadena Star-News",
+    "type": "rss",
+    "url": "https://www.pasadenastarnews.com/feed/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "smdp_santa_monica",
+    "name": "Santa Monica Daily Press",
+    "type": "rss",
+    "url": "https://www.smdp.com/rss/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "lataco",
+    "name": "LA Taco",
+    "type": "rss",
+    "url": "https://lataco.com/feed",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "welikela",
+    "name": "We Like L.A.",
+    "type": "rss",
+    "url": "https://www.welikela.com/feed/atom/",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "los_angeles_nws_point_atom",
+    "name": "NWS Active Alerts (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=34.0522,-118.2437",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "los_angeles_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/5368361",
+    "enabled": true,
+    "city_key": "los-angeles"
+  },
+  {
+    "source_key": "los_angeles_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5368361",
+    "enabled": true,
+    "city_key": "los-angeles"
+  }
+]

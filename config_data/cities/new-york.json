@@ -1,0 +1,81 @@
+{
+  "name": "New York, New York, United States",
+  "country_code": "US",
+  "timezone": "America/New_York",
+  "latitude": 40.7128,
+  "longitude": -74.006,
+  "population": 8336817,
+  "aliases": [
+    "new york",
+    "nyc",
+    "new york city",
+    "manhattan"
+  ],
+  "transit_systems": [
+    {
+      "name": "MTA - Subway & Bus",
+      "modes": [
+        "Subway",
+        "Bus"
+      ],
+      "website": "https://new.mta.info/"
+    },
+    {
+      "name": "MTA - Long Island Rail Road",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://new.mta.info/agency/long-island-rail-road"
+    },
+    {
+      "name": "MTA - Metro-North Railroad",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://new.mta.info/agency/metro-north-railroad"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "John F. Kennedy International Airport",
+      "iata": "JFK",
+      "website": "https://www.jfkairport.com/"
+    },
+    {
+      "name": "LaGuardia Airport",
+      "iata": "LGA",
+      "website": "https://www.laguardiaairport.com/"
+    },
+    {
+      "name": "Newark Liberty International Airport",
+      "iata": "EWR",
+      "website": "https://www.newarkairport.com/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Government",
+      "label": "NYC Government Services",
+      "url": "https://www.nyc.gov/main"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "MYmta"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "TrainTime"
+    }
+  ]
+}

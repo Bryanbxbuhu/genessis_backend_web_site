@@ -1,0 +1,96 @@
+{
+  "name": "London",
+  "country_code": "GB",
+  "timezone": "Europe/London",
+  "latitude": 51.5074,
+  "longitude": -0.1278,
+  "population": 8982000,
+  "aliases": [
+    "london",
+    "london uk",
+    "greater london",
+    "city of london"
+  ],
+  "transit_systems": [
+    {
+      "name": "Transport for London (TfL)",
+      "modes": [
+        "Underground",
+        "Bus",
+        "Overground",
+        "DLR",
+        "Tram",
+        "River Bus"
+      ],
+      "website": "https://tfl.gov.uk/"
+    },
+    {
+      "name": "National Rail",
+      "modes": [
+        "Commuter Rail",
+        "Intercity Rail"
+      ],
+      "website": "https://www.nationalrail.co.uk/"
+    }
+  ],
+  "emergency_numbers": {
+    "general": "999",
+    "police": "999",
+    "ambulance": "999",
+    "fire": "999",
+    "other": [
+      {
+        "label": "Non emergency police",
+        "number": "101"
+      },
+      {
+        "label": "NHS non emergency medical",
+        "number": "111"
+      }
+    ]
+  },
+  "language": "en",
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Heathrow Airport",
+      "iata": "LHR",
+      "website": "https://www.heathrow.com/"
+    },
+    {
+      "name": "London Gatwick Airport",
+      "iata": "LGW",
+      "website": "https://www.gatwickairport.com/"
+    },
+    {
+      "name": "London City Airport",
+      "iata": "LCY",
+      "website": "https://www.londoncityairport.com/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/gb/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Bolt",
+      "url": "https://bolt.eu/en-gb/"
+    },
+    {
+      "category": "Government",
+      "label": "Greater London Authority",
+      "url": "https://www.london.gov.uk/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "TfL Go"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "National Rail Enquiries"
+    }
+  ]
+}

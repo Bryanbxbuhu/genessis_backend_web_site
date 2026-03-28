@@ -1,0 +1,65 @@
+{
+  "name": "Minneapolis, Minnesota, United States",
+  "country_code": "US",
+  "timezone": "America/Chicago",
+  "latitude": 44.9778,
+  "longitude": -93.265,
+  "population": 425336,
+  "aliases": [
+    "minneapolis",
+    "minneapolis mn",
+    "mpls",
+    "twin cities",
+    "minneapolis-st paul"
+  ],
+  "transit_systems": [
+    {
+      "name": "Metro Transit (Bus and Light Rail)",
+      "modes": [
+        "Bus",
+        "Light Rail"
+      ],
+      "website": "https://www.metrotransit.org/"
+    },
+    {
+      "name": "Metro Transit - Northstar Line",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://www.metrotransit.org/northstar"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Minneapolis-Saint Paul International Airport",
+      "iata": "MSP",
+      "website": "https://www.mspairport.com/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Government",
+      "label": "City of Minneapolis",
+      "url": "https://www.minneapolismn.gov/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Metro Transit app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Northstar app"
+    }
+  ]
+}

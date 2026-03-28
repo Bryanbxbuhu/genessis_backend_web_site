@@ -1,0 +1,10 @@
+title = "Repository gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Allow non-secret source_key identifiers in source config JSON"
+paths = [
+  '''.*/config_data/sources/.*\.json$''',
+]

@@ -1,0 +1,79 @@
+{
+  "name": "San Francisco, California, United States",
+  "country_code": "US",
+  "timezone": "America/Los_Angeles",
+  "latitude": 37.7749,
+  "longitude": -122.4194,
+  "population": 827526,
+  "aliases": [
+    "san francisco",
+    "sf",
+    "san francisco ca",
+    "bay area",
+    "sfo"
+  ],
+  "transit_systems": [
+    {
+      "name": "SFMTA (Muni)",
+      "modes": [
+        "Bus",
+        "Light Rail",
+        "Streetcar",
+        "Cable Car"
+      ],
+      "website": "https://www.sfmta.com/"
+    },
+    {
+      "name": "BART",
+      "modes": [
+        "Rapid Transit"
+      ],
+      "website": "https://www.bart.gov/"
+    },
+    {
+      "name": "Caltrain",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://www.caltrain.com/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "San Francisco International Airport",
+      "iata": "SFO",
+      "website": "https://www.flysfo.com/"
+    },
+    {
+      "name": "Oakland San Francisco Bay Airport",
+      "iata": "OAK",
+      "website": "https://www.iflyoak.com/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Government",
+      "label": "City and County of San Francisco",
+      "url": "https://www.sf.gov/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "MuniMobile"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "BART app"
+    }
+  ]
+}

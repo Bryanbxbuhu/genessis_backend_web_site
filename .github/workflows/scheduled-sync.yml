@@ -1,0 +1,34 @@
+name: Scheduled data sync
+
+on:
+  schedule:
+    # 5:00 AM EST = 10:00 UTC
+    - cron: '0 10 * * *'
+    # 3:00 PM EST = 20:00 UTC
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir -r requirements.txt
+          python -m playwright install
+      - name: Reset and sync data (skip context)
+        run: |
+          python scripts/reset_and_sync.py

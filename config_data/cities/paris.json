@@ -1,0 +1,73 @@
+{
+  "name": "Paris, France",
+  "country_code": "FR",
+  "timezone": "Europe/Paris",
+  "latitude": 48.8566,
+  "longitude": 2.3522,
+  "population": 2161000,
+  "aliases": [
+    "paris",
+    "paris france",
+    "ile-de-france"
+  ],
+  "language": "fr",
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Bolt",
+      "url": "https://bolt.eu/en-gb/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Ile-de-France Mobilites",
+      "url": "https://www.iledefrance-mobilites.fr/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Bonjour RATP",
+      "url": "https://www.ratp.fr/en/apps/bonjour-ratp"
+    },
+    {
+      "category": "Government",
+      "label": "City of Paris services",
+      "url": "https://www.paris.fr/"
+    }
+  ],
+  "transit_systems": [
+    {
+      "name": "RATP - Métro & Bus",
+      "modes": [
+        "Metro",
+        "Bus",
+        "Tram"
+      ],
+      "website": "https://www.ratp.fr/en"
+    },
+    {
+      "name": "SNCF - RER & Transilien",
+      "modes": [
+        "RER",
+        "Commuter Rail"
+      ],
+      "website": "https://www.transilien.com/en"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Paris Charles de Gaulle Airport",
+      "iata": "CDG",
+      "website": "https://www.parisaeroport.fr/en/passengers/charles-de-gaulle-airport"
+    },
+    {
+      "name": "Paris Orly Airport",
+      "iata": "ORY",
+      "website": "https://www.parisaeroport.fr/en/passengers/orly-airport"
+    }
+  ]
+}

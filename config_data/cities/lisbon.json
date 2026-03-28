@@ -1,0 +1,79 @@
+{
+  "name": "Lisbon, Portugal",
+  "country_code": "PT",
+  "timezone": "Europe/Lisbon",
+  "latitude": 38.7223,
+  "longitude": -9.1393,
+  "population": 505155,
+  "aliases": [
+    "lisbon",
+    "lisboa",
+    "lisbon portugal",
+    "lisboa portugal",
+    "grande lisboa",
+    "portugal",
+    "pt",
+    "amadora",
+    "odivelas",
+    "sintra",
+    "cascais",
+    "oeiras",
+    "almada",
+    "loures",
+    "setubal",
+    "pontinha"
+  ],
+  "language": "pt",
+  "transit_systems": [
+    {
+      "name": "Transports Urbanos de Lisboa (TUL)",
+      "modes": [
+        "Metro",
+        "Tram",
+        "Bus"
+      ],
+      "website": "https://www.tul.pt/en/"
+    },
+    {
+      "name": "Comboios de Portugal (CP)",
+      "modes": [
+        "Train",
+        "Commuter Rail"
+      ],
+      "website": "https://www.cp.pt/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Lisbon Airport (Humberto Delgado)",
+      "iata": "LIS",
+      "website": "https://www.lisbonairport.pt/en/lis/home"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/pt/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Bolt",
+      "url": "https://bolt.eu/en/"
+    },
+    {
+      "category": "Government",
+      "label": "Lisbon City Hall",
+      "url": "https://www.lisboa.pt/en/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Carris app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "CP Comboios app"
+    }
+  ]
+}

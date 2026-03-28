@@ -1,0 +1,123 @@
+[
+  {
+    "source_key": "thisislocallondon_news",
+    "name": "This Is Local London News",
+    "type": "rss",
+    "url": "https://www.thisislocallondon.co.uk/news/rss",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "local",
+      "news",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "mylondon_news",
+    "name": "MyLondon News",
+    "type": "rss",
+    "url": "https://www.mylondon.news/?service=rss",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "local",
+      "news",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "bbc_england_news",
+    "name": "BBC News England",
+    "type": "rss",
+    "url": "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/england/rss.xml",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "news",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "london_gov_updates",
+    "name": "London Gov Updates",
+    "type": "rss",
+    "url": "https://www.london.gov.uk/rss-feeds/80610",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "government",
+      "updates",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "standard_news",
+    "name": "The Standard News",
+    "type": "rss",
+    "url": "https://www.standard.co.uk/rss",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "news",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "us_embassy_uk_alerts",
+    "name": "U.S. Embassy UK Alerts",
+    "type": "rss",
+    "url": "https://uk.usembassy.gov/category/alert/feed/",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "embassy",
+      "alert",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "london_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "weather",
+      "meteoalarm",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "london_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/2643743",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "weather",
+      "en",
+      "GB"
+    ]
+  },
+  {
+    "source_key": "london_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2643743",
+    "city_key": "london",
+    "enabled": true,
+    "tags": [
+      "weather",
+      "en",
+      "GB"
+    ]
+  }
+]

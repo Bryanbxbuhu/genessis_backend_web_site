@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Scan staged secrets",
+      "type": "shell",
+      "command": "python scripts/check_staged_secrets.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Scan repo history secrets",
+      "type": "shell",
+      "command": "python scripts/scan_repo_secret_history.py",
+      "problemMatcher": []
+    },
+    {
+      "label": "Install hooks",
+      "type": "shell",
+      "command": "python -m pre_commit install; python -m pre_commit install --hook-type pre-push",
+      "problemMatcher": []
+    }
+  ]
+}

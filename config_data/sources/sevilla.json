@@ -1,0 +1,58 @@
+[
+  {
+    "source_key": "sevillaactualidad_sevilla",
+    "name": "Sevilla Actualidad",
+    "type": "rss",
+    "url": "https://www.sevillaactualidad.com/feed/",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "diariodesevilla_sevilla",
+    "name": "Diario de Sevilla",
+    "type": "rss",
+    "url": "https://www.diariodesevilla.es/rss/",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "us_embassy_es_alerts",
+    "name": "US Embassy Alerts (Spain)",
+    "type": "rss",
+    "url": "https://es.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "sevilla_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "sevilla_meteoalarm_spain",
+    "name": "Meteoalarm Spain (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-spain",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "sevilla_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/2510911",
+    "enabled": true,
+    "city_key": "sevilla"
+  },
+  {
+    "source_key": "sevilla_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2510911",
+    "enabled": true,
+    "city_key": "sevilla"
+  }
+]

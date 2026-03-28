@@ -1,0 +1,124 @@
+[
+  {
+    "source_key": "lavanguardia_barcelona_local",
+    "name": "Lavanguardia Barcelona local",
+    "type": "rss",
+    "url": "https://www.lavanguardia.com/rss/local/barcelona.xml",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "ara_latest",
+    "name": "Ara Latest",
+    "type": "rss",
+    "url": "https://www.ara.cat/rss/latest/",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "metropoliabierta_latest",
+    "name": "Metropoli Abierta Latest",
+    "type": "rss",
+    "url": "https://metropoliabierta.elespanol.com/rss/latest/",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "rac1_inforac1",
+    "name": "RAC1 InfoRAC1",
+    "type": "rss",
+    "url": "https://www.rac1.cat/rss/info-rac1.xml",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "20minutos_barcelona",
+    "name": "20minutos Barcelona",
+    "type": "rss",
+    "url": "https://www.20minutos.es/rss/cataluna/barcelona/",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "us_embassy_es_alerts_barcelona",
+    "name": "US Embassy Alerts (Spain)",
+    "type": "rss",
+    "url": "https://es.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "barcelona_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "weather",
+      "meteoalarm",
+      "country:EU"
+    ]
+  },
+  {
+    "source_key": "barcelona_meteoalarm_spain",
+    "name": "Meteoalarm Spain (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-spain",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "weather",
+      "meteoalarm",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "barcelona_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/3128760",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "weather",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "barcelona_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/3128760",
+    "enabled": true,
+    "city_key": "barcelona",
+    "tags": [
+      "weather",
+      "country:ES"
+    ]
+  }
+]

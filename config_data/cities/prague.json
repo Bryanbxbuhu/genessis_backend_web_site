@@ -1,0 +1,81 @@
+{
+  "name": "Prague, Czech Republic",
+  "country_code": "CZ",
+  "timezone": "Europe/Prague",
+  "latitude": 50.0755,
+  "longitude": 14.4378,
+  "population": 1309000,
+  "aliases": [
+    "prague",
+    "praha",
+    "prague czech republic",
+    "praha cz"
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "158",
+    "fire": "150",
+    "ambulance": "155",
+    "other": []
+  },
+  "transit_systems": [
+    {
+      "name": "Prague Integrated Transport (PID)",
+      "modes": [
+        "Metro",
+        "Tram",
+        "Bus"
+      ],
+      "website": "https://pid.cz/en/"
+    },
+    {
+      "name": "DPP (Prague Public Transit Company)",
+      "modes": [
+        "Metro",
+        "Tram",
+        "Bus"
+      ],
+      "website": "https://www.dpp.cz/en"
+    },
+    {
+      "name": "České dráhy (Czech Railways)",
+      "modes": [
+        "Rail"
+      ],
+      "website": "https://www.cd.cz/en/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Václav Havel Airport Prague",
+      "iata": "PRG",
+      "website": "https://www.prg.aero/en"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/cz/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Bolt",
+      "url": "https://bolt.eu/en/cities/prague/"
+    },
+    {
+      "category": "Government",
+      "label": "City of Prague Services",
+      "url": "https://praha.eu/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "PID L\u00edta\u010dka"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "M\u016fj vlak"
+    }
+  ]
+}

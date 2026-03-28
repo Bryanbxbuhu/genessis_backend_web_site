@@ -1,0 +1,91 @@
+<!-- OPSEC & Personal Safety Section -->
+{% if opsec %}
+<div id="sec_opsec_personal_safety" class="opsec-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-shield"/></svg>
+    OPSEC & Personal Safety
+  </h1>
+
+  <!-- Baseline Tips -->
+  {% if opsec.baseline_tips %}
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-check"/></svg>
+      Essential Precautions
+    </h2>
+    <div class="essentials-label">Standard best practices for all travelers</div>
+    <ul class="bullets">
+      {% for tip in opsec.baseline_tips %}
+        <li style="margin-bottom: 10px;">
+          <strong>{{ tip.category }}</strong><br>
+          <span class="small">{{ tip.tip }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <!-- Contextual Tips -->
+  {% if opsec.contextual_tips %}
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-alert"/></svg>
+      Current Situation Awareness
+    </h2>
+    <div class="essentials-label">Evidence-based guidance specific to {{ city_name }}</div>
+    
+    {% for ctx_tip in opsec.contextual_tips %}
+      <div style="background: #f9fafb; padding: 12px; border-left: 3px solid #3b82f6; margin-bottom: 12px; border-radius: 4px;">
+        <div style="margin-bottom: 6px;">
+          <strong style="color: #1f2937;">{{ ctx_tip.category }}</strong>
+          {% if ctx_tip.confidence %}
+            <span class="badge" style="background: {% if ctx_tip.confidence >= 0.8 %}#10b981{% elif ctx_tip.confidence >= 0.5 %}#f59e0b{% else %}#6b7280{% endif %}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 8px; margin-left: 6px;">
+              {{ (ctx_tip.confidence * 100)|round|int }}% confidence
+            </span>
+          {% endif %}
+        </div>
+        
+        <div class="small" style="margin-bottom: 8px;">
+          {{ ctx_tip.tip }}
+        </div>
+        
+        <div style="background: white; padding: 8px; border-radius: 3px; margin-bottom: 8px;">
+          <div style="font-size: 8px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">
+            WHY NOW
+          </div>
+          <div class="small" style="color: #374151;">
+            {{ ctx_tip.why_now }}
+          </div>
+        </div>
+        
+        {% if ctx_tip.evidence %}
+          <div style="border-top: 1px solid #e5e7eb; padding-top: 8px;">
+            <div style="font-size: 8px; font-weight: 600; color: #6b7280; text-transform: uppercase; margin-bottom: 4px;">
+              📊 EVIDENCE
+            </div>
+            <ul style="list-style: none; padding-left: 0; margin: 0;">
+              {% for evidence_item in ctx_tip.evidence %}
+                <li style="font-size: 8px; color: #4b5563; margin-bottom: 3px; padding-left: 12px; position: relative;">
+                  <span style="position: absolute; left: 0;">•</span>
+                  {{ evidence_item }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Disclaimer -->
+  <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; border-radius: 4px; margin-top: 16px;">
+    <div style="font-size: 8px; color: #92400e;">
+      <strong>⚠️ Disclaimer:</strong> This guidance is AI-generated based on available data sources and should not replace professional security advice or official travel warnings. Exercise your own judgment and consult local authorities for the most current information.
+    </div>
+  </div>
+
+</div>
+
+<div class="page-break"></div>
+{% endif %}

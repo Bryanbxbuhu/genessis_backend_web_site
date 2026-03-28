@@ -1,0 +1,122 @@
+[
+  {
+    "source_key": "el_universal_metropoli_mexico_city",
+    "name": "El Universal Metropoli DF",
+    "type": "rss",
+    "url": "https://www.eluniversal.com.mx/arc/outboundfeeds/news/metropoli/?outputType=xml",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "chilango_cdmx_mexico_city",
+    "name": "Chilango CDMX",
+    "type": "rss",
+    "url": "https://www.chilango.com/feed/",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "radio_formula_portada_mexico_city",
+    "name": "Radio Formula Portada",
+    "type": "rss",
+    "url": "https://www.radioformula.com.mx/rss/feed.xml",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "aristegui_noticias_mexico_city",
+    "name": "Aristegui Noticias",
+    "type": "rss",
+    "url": "https://editorial.aristeguinoticias.com/feed/",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "jornada_capital_mexico_city",
+    "name": "La Jornada Edicion",
+    "type": "rss",
+    "url": "https://www.jornada.com.mx/rss/edicion.xml?v=1",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "heraldodemexico_mexico_city",
+    "name": "El Heraldo Portada",
+    "type": "rss",
+    "url": "https://heraldodemexico.com.mx/rss/feed.html?r=1",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "razon_ciudad_mexico_city",
+    "name": "La Razon Ciudad (disabled: pending CI validation)",
+    "type": "rss",
+    "url": "https://rss.razonmx.com/ciudad.xml",
+    "enabled": false,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "veinticuatro_horas_mexico_city",
+    "name": "24 Horas (disabled: pending CI validation)",
+    "type": "rss",
+    "url": "https://24-horas.mx/feed/",
+    "enabled": false,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "reforma_portada_mexico_city",
+    "name": "Reforma Portada",
+    "type": "rss",
+    "url": "https://www.reforma.com/rss/portada.xml",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "proceso_politica_mexico_city",
+    "name": "Proceso Politica",
+    "type": "rss",
+    "url": "https://www.proceso.com.mx/rss/feed.html?r=9",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "elfinanciero_mexico_city",
+    "name": "El Financiero RSS (disabled: pending CI validation)",
+    "type": "rss",
+    "url": "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml",
+    "enabled": false,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "eleconomista_mexico_city",
+    "name": "El Economista",
+    "type": "rss",
+    "url": "https://www.eleconomista.com.mx/rss/ultimas-noticias",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "milenio_mexico_city",
+    "name": "Milenio RSS",
+    "type": "rss",
+    "url": "https://www.milenio.com/rss",
+    "enabled": true,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "excelsior_mexico_city",
+    "name": "Excelsior RSS (disabled: pending CI validation)",
+    "type": "rss",
+    "url": "https://www.excelsior.com.mx/rss/",
+    "enabled": false,
+    "city_key": "mexico-city"
+  },
+  {
+    "source_key": "us_embassy_mx_alerts",
+    "name": "US Embassy Alerts (Mexico)",
+    "type": "rss",
+    "url": "https://mx.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "mexico-city"
+  }
+]

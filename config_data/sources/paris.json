@@ -1,0 +1,66 @@
+[
+  {
+    "source_key": "france24_paris",
+    "name": "France 24 News (Paris)",
+    "type": "rss",
+    "url": "https://www.france24.com/en/france/rss",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "le_parisien_paris",
+    "name": "Le Parisien - Paris",
+    "type": "rss",
+    "url": "http://www.leparisien.fr/paris-75/rss.xml",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "20minutes_paris",
+    "name": "20 Minutes - Paris",
+    "type": "rss",
+    "url": "https://www.20minutes.fr/feeds/rss-paris.xml",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "us_embassy_fr_alerts",
+    "name": "US Embassy Alerts (France)",
+    "type": "rss",
+    "url": "https://fr.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "paris_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "paris_meteoalarm_france",
+    "name": "Meteoalarm France (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-france",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "paris_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/2988507",
+    "enabled": true,
+    "city_key": "paris"
+  },
+  {
+    "source_key": "paris_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2988507",
+    "enabled": true,
+    "city_key": "paris"
+  }
+]

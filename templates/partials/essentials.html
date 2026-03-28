@@ -1,0 +1,388 @@
+<!-- City Essentials & Advisory Page -->
+<div id="sec_city_essentials" class="essentials-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+    City Essentials
+  </h1>
+  {% if important_services is defined %}
+    {% set services = important_services %}
+  {% elif city_essentials is defined and city_essentials is mapping %}
+    {% set services = city_essentials.get("important_services", []) %}
+  {% else %}
+    {% set services = [] %}
+  {% endif %}
+
+  {% if important_services_categories is defined %}
+    {% set categories = important_services_categories %}
+  {% elif city_essentials is defined and city_essentials is mapping %}
+    {% set categories = city_essentials.get("important_services_categories", []) %}
+  {% else %}
+    {% set categories = [] %}
+  {% endif %}
+
+  {% if google_maps_category_links is defined and google_maps_category_links is mapping %}
+    {% set links = google_maps_category_links %}
+  {% elif city_essentials is defined and city_essentials is mapping %}
+    {% set links = city_essentials.get("google_maps_category_links", {}) %}
+  {% else %}
+    {% set links = {} %}
+  {% endif %}
+
+  <div class="essentials-grid">
+    <!-- Hospitals -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-hospital"/></svg>
+        Medical Facilities
+      </h2>
+      <div class="essentials-label">Major hospitals and urgent care</div>
+      {% set hospitals_with_site = hospitals|selectattr('website')|list %}
+      {% set hospitals_no_site = hospitals|rejectattr('website')|list %}
+      {% set hospitals_display = hospitals_with_site if hospitals_with_site else hospitals_no_site %}
+      <ul class="bullets">
+        {% for h in hospitals_display[:5] %}
+          <li style="margin-bottom: 8px;">
+            <strong>{{ h.name }}</strong>{% if h.notes %} — {{ h.notes }}{% endif %}
+            {% if h.website or h.google_maps_url %}
+              <br><span class="small muted">
+                {% if h.website %}
+                  <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                  <a href="{{ h.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">Website</a>
+                {% endif %}
+                {% if h.website and h.google_maps_url %} · {% endif %}
+                {% if h.google_maps_url %}
+                  📍 <a href="{{ h.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                {% endif %}
+              </span>
+            {% endif %}
+          </li>
+        {% endfor %}
+        {% if hospitals_display|length == 0 %}
+          <li class="muted">Hospital data not available for this location.</li>
+        {% endif %}
+      </ul>
+      {% if links is mapping and links.get("hospitals") %}
+      <div class="small muted" style="margin-top: 8px;">
+        <a href="{{ links['hospitals'] }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Other Hospitals</a>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Transit -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-bus"/></svg>
+        Public Transportation
+      </h2>
+      {% set transit_with_site = transit|selectattr('website')|list %}
+      <ul class="bullets">
+        {% for t in transit_with_site %}
+          <li>
+            <strong>{{ t.name }}</strong>
+            {% if t.description %}
+              <br><span class="small">{{ t.description }}</span>
+            {% endif %}
+            {% if t.modes %}
+              <br><span class="small muted">Services: {{ t.modes|join(", ") }}</span>
+            {% endif %}
+            {% if t.website %}
+              <br><span class="small muted">
+                <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                <a href="{{ t.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ t.website }}</a>
+              </span>
+            {% endif %}
+            {% if t.taxis %}
+              <br><span class="small">
+                <svg class="icon-xs"><use href="#icon-taxi"/></svg>
+                Taxis: {{ t.taxis }}
+              </span>
+            {% endif %}
+            {% if t.rideshare %}
+              <br><span class="small">
+                <svg class="icon-xs"><use href="#icon-car"/></svg>
+                Rideshare: {{ t.rideshare }}
+              </span>
+            {% endif %}
+          </li>
+        {% endfor %}
+        {% if transit_with_site|length == 0 %}
+          <li class="muted">Transit information not available.</li>
+        {% endif %}
+      </ul>
+    </div>
+
+    {% if services %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        Important services and apps
+      </h2>
+      {% set _service_user_agent = user_agent if user_agent is defined else '' %}
+      {% if categories is iterable and categories is not string %}
+        {% set _service_categories = categories|list %}
+      {% else %}
+        {% set _service_categories = [] %}
+      {% endif %}
+      {% if not _service_categories and services %}
+        {% set _derived = namespace(values=[]) %}
+        {% for service in services %}
+          {% if service is mapping %}
+            {% set _category = service.get('category') %}
+            {% if _category and (_category not in _derived.values) %}
+              {% set _ = _derived.values.append(_category) %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% set _service_categories = _derived.values|sort %}
+      {% endif %}
+      {% for category in _service_categories %}
+        {% set category_items = services|selectattr('category', 'equalto', category)|list %}
+        {% if category_items %}
+        <h3 style="margin-top: 8px;">{{ category }}</h3>
+        <ul class="bullets">
+          {% for item in category_items %}
+          <li style="margin-bottom: 6px;">
+            {% set _primary_service_url = getPrimaryServiceUrl(item, _service_user_agent) %}
+            {% if _primary_service_url %}
+              <a
+                href="{{ _primary_service_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="color: #3b82f6; text-decoration: none;"
+                {% if item.ios_url or item.android_url %}
+                data-service-link-primary="1"
+                data-ios-url="{{ item.ios_url or '' }}"
+                data-android-url="{{ item.android_url or '' }}"
+                data-url="{{ item.url or '' }}"
+                {% endif %}
+              >{{ item.label }}</a>
+            {% else %}
+              <span>{{ item.label }}</span>
+            {% endif %}
+            {% if item.ios_url or item.android_url %}
+              <br><span class="small muted">
+                {% if item.ios_url %}
+                  <a href="{{ item.ios_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">iOS</a>
+                {% endif %}
+                {% if item.ios_url and item.android_url %} &middot; {% endif %}
+                {% if item.android_url %}
+                  <a href="{{ item.android_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Android</a>
+                {% endif %}
+              </span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      {% endfor %}
+      <script>
+        (function () {
+          function getPrimaryServiceUrl(service, userAgent) {
+            if (!service || typeof service !== "object") {
+              return "";
+            }
+
+            var iosUrl = String(service.ios_url || "").trim();
+            var androidUrl = String(service.android_url || "").trim();
+            var defaultUrl = String(service.url || "").trim();
+
+            if (!iosUrl && !androidUrl) {
+              return defaultUrl;
+            }
+
+            var ua = String(userAgent || "").toLowerCase();
+            var isAndroid = ua.indexOf("android") >= 0;
+            var isIOS = ua.indexOf("iphone") >= 0 || ua.indexOf("ipad") >= 0 || ua.indexOf("ipod") >= 0;
+
+            if (isIOS && iosUrl) {
+              return iosUrl;
+            }
+            if (isAndroid && androidUrl) {
+              return androidUrl;
+            }
+            if (iosUrl) {
+              return iosUrl;
+            }
+            if (androidUrl) {
+              return androidUrl;
+            }
+            return defaultUrl;
+          }
+
+          if (typeof window !== "undefined") {
+            window.getPrimaryServiceUrl = getPrimaryServiceUrl;
+          }
+
+          function updatePrimaryServiceLinks() {
+            if (typeof document === "undefined") {
+              return;
+            }
+            var links = document.querySelectorAll("[data-service-link-primary='1']");
+            if (!links || !links.length) {
+              return;
+            }
+
+            var userAgent = "";
+            if (typeof navigator !== "undefined" && navigator.userAgent) {
+              userAgent = navigator.userAgent;
+            }
+
+            for (var i = 0; i < links.length; i += 1) {
+              var link = links[i];
+              var primaryUrl = getPrimaryServiceUrl(
+                {
+                  url: link.getAttribute("data-url"),
+                  ios_url: link.getAttribute("data-ios-url"),
+                  android_url: link.getAttribute("data-android-url"),
+                },
+                userAgent
+              );
+              if (primaryUrl) {
+                link.setAttribute("href", primaryUrl);
+              }
+            }
+          }
+
+          if (typeof document !== "undefined") {
+            if (document.readyState === "loading") {
+              document.addEventListener("DOMContentLoaded", updatePrimaryServiceLinks);
+            } else {
+              updatePrimaryServiceLinks();
+            }
+          }
+        })();
+      </script>
+    </div>
+    {% endif %}
+
+    <!-- Emergency -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-phone"/></svg>
+        Emergency Contact
+      </h2>
+      {% set general = emergency_contacts.general %}
+      {% set police = emergency_contacts.police %}
+      {% set ambulance = emergency_contacts.ambulance %}
+      {% set fire = emergency_contacts.fire %}
+      {% set all_same = police and ambulance and fire and police == ambulance and police == fire %}
+      {% if police and ambulance and fire and not all_same %}
+        <div class="emergency-grid">
+          <div class="emergency-card">
+            <div class="emergency-label">Police</div>
+            <div class="emergency-value">{{ police }}</div>
+          </div>
+          <div class="emergency-card">
+            <div class="emergency-label">Ambulance</div>
+            <div class="emergency-value">{{ ambulance }}</div>
+          </div>
+          <div class="emergency-card">
+            <div class="emergency-label">Fire</div>
+            <div class="emergency-value">{{ fire }}</div>
+          </div>
+        </div>
+      {% elif general %}
+        <div class="emergency-card emergency-primary">
+          <div class="emergency-label">General</div>
+          <div class="emergency-value">{{ general }}</div>
+        </div>
+      {% elif police or ambulance or fire %}
+        <div class="emergency-grid">
+          {% if police %}
+          <div class="emergency-card">
+            <div class="emergency-label">Police</div>
+            <div class="emergency-value">{{ police }}</div>
+          </div>
+          {% endif %}
+          {% if ambulance %}
+          <div class="emergency-card">
+            <div class="emergency-label">Ambulance</div>
+            <div class="emergency-value">{{ ambulance }}</div>
+          </div>
+          {% endif %}
+          {% if fire %}
+          <div class="emergency-card">
+            <div class="emergency-label">Fire</div>
+            <div class="emergency-value">{{ fire }}</div>
+          </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="emergency-card emergency-primary">
+          <div class="emergency-label">Not listed</div>
+          <div class="emergency-value">—</div>
+        </div>
+      {% endif %}
+    </div>
+    
+    <!-- Weather Forecast -->
+    {% if weather_summary %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-cloud"/></svg>
+        7-Day Weather Forecast
+      </h2>
+      <div style="margin-bottom: 8px;">
+        <strong>Current Conditions:</strong><br>
+        <span class="small">{{ weather_summary.current }}</span>
+      </div>
+      <div style="margin-bottom: 8px;">
+        <strong>Outlook:</strong><br>
+        <span class="small">{{ weather_summary.outlook }}</span>
+      </div>
+      {% if weather_summary.traveler_impact %}
+      <div style="background: #f3f4f6; padding: 8px; border-radius: 4px; margin-top: 8px;">
+        <strong style="font-size: 9.5px;">📋 Traveler Impact:</strong><br>
+        <span class="small">{{ weather_summary.traveler_impact }}</span>
+      </div>
+      {% endif %}
+      <div class="small muted" style="margin-top:8px;">
+        Source: Open-Meteo Weather API
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Travel Advisory -->
+  {% if travel_advisory %}
+  <div class="card advisory-card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-alert"/></svg>
+      Official Travel Advisory
+    </h2>
+    <div class="advisory-box">
+      {% if advisory_level %}
+        <div class="advisory-level">{{ advisory_level }}</div>
+      {% endif %}
+      <div class="advisory-text">{{ travel_advisory }}</div>
+    </div>
+    {% if advisory_source %}
+    <div class="small muted" style="margin-top:8px;">
+      Source:
+      {% if travel_advisory_url %}
+        <a href="{{ travel_advisory_url }}" target="_blank" rel="noopener">{{ advisory_source }}</a>
+      {% else %}
+        {{ advisory_source }}
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Map -->
+  {% if map_path %}
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+      Location Map
+    </h2>
+    <div class="img"><img src="{{ map_path }}" alt="Location map"/></div>
+    <div class="small muted" style="margin-top:6px;">
+      Map data © OpenStreetMap contributors
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="page-break"></div>

@@ -1,0 +1,43 @@
+<!-- Airports Section -->
+{% set airports_list = city_essentials.airports if city_essentials is defined and city_essentials.airports else (airports if airports is defined and airports else []) %}
+{% if airports_list %}
+<div id="sec_airports" class="airports-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+    Airports
+  </h1>
+
+  <div class="card">
+    <div class="essentials-label">Primary commercial airports for this destination</div>
+    <ul class="bullets">
+      {% for airport in airports_list[:5] %}
+        <li style="margin-bottom: 8px;">
+          {% if airport.website %}
+            <a href="{{ airport.website }}" target="_blank" style="color: #111827; text-decoration: none;">
+              <strong>{{ airport.name }}</strong>
+            </a>
+          {% else %}
+            <strong>{{ airport.name }}</strong>
+          {% endif %}
+          {% if airport.iata %}
+            <br><span class="small muted">IATA: {{ airport.iata }}</span>
+          {% endif %}
+          {% if airport.website %}
+            {% set display_host = airport.website %}
+            {% if '://' in display_host %}
+              {% set display_host = display_host.split('://')[1] %}
+            {% endif %}
+            {% set display_host = display_host.split('/')[0].split('?')[0] %}
+            <br><span class="small muted">
+              <svg class="icon-xs"><use href="#icon-globe"/></svg>
+              <a href="{{ airport.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<div class="page-break"></div>
+{% endif %}

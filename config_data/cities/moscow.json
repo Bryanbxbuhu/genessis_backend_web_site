@@ -1,0 +1,95 @@
+{
+  "name": "Moscow",
+  "country_code": "RU",
+  "timezone": "Europe/Moscow",
+  "latitude": 55.7558,
+  "longitude": 37.6173,
+  "population": 12600000,
+  "aliases": [
+    "moscow",
+    "moskva",
+    "moscow russia",
+    "москва"
+  ],
+  "transit_systems": [
+    {
+      "name": "Moscow Metro",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://mosmetro.ru/"
+    },
+    {
+      "name": "Mosgortrans",
+      "modes": [
+        "Bus",
+        "Tram",
+        "Trolleybus"
+      ],
+      "website": "https://mosgortrans.ru/"
+    },
+    {
+      "name": "Aeroexpress",
+      "modes": [
+        "Airport Rail"
+      ],
+      "website": "https://aeroexpress.ru/"
+    }
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "102",
+    "ambulance": "103",
+    "fire": "101",
+    "other": [
+      {
+        "label": "Gas emergency",
+        "number": "104"
+      }
+    ]
+  },
+  "language": "ru",
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Sheremetyevo International Airport",
+      "iata": "SVO",
+      "website": "https://www.svo.aero/en/main"
+    },
+    {
+      "name": "Moscow Domodedovo Airport",
+      "iata": "DME",
+      "website": "https://dme.ru/en/"
+    },
+    {
+      "name": "Vnukovo International Airport",
+      "iata": "VKO",
+      "website": "https://www.vnukovo.ru/en/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Yandex Go",
+      "url": "https://go.yandex/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "inDrive",
+      "url": "https://indrive.com/en/"
+    },
+    {
+      "category": "Government",
+      "label": "Moscow City Services",
+      "url": "https://www.mos.ru/en/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Moscow Metro app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Aeroexpress app"
+    }
+  ]
+}

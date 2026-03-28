@@ -1,0 +1,114 @@
+[
+  {
+    "source_key": "elmundo_madrid",
+    "name": "El Mundo Madrid",
+    "type": "rss",
+    "url": "https://estaticos.elmundo.es/elmundo/rss/madrid.xml",
+    "fallback_url": "http://estaticos.elmundo.es/elmundo/rss/madrid.xml",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "madrid24horas_madrid",
+    "name": "Madrid24horas",
+    "type": "rss",
+    "url": "https://www.madrid24horas.com/rss/madrid/",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "comunidad_madrid_latest_news",
+    "name": "Comunidad de Madrid - Latest News",
+    "type": "rss",
+    "url": "https://www.comunidad.madrid/rss/latest-news.xml",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "telemadrid_noticias",
+    "name": "Telemadrid Noticias",
+    "type": "rss",
+    "url": "https://www.telemadrid.es/noticias/feed",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "language:es",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "emt_madrid_incidencias",
+    "name": "EMT Madrid Incidencias",
+    "type": "rss",
+    "url": "https://datos.madrid.es/egob/catalogo/202992-0-EMT-incidencias.rss",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "language:es",
+      "country:ES",
+      "category:transit"
+    ]
+  },
+  {
+    "source_key": "madrid_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "weather",
+      "meteoalarm",
+      "country:EU"
+    ]
+  },
+  {
+    "source_key": "madrid_meteoalarm_spain",
+    "name": "Meteoalarm Spain (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-spain",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "weather",
+      "meteoalarm",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "madrid_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/3117735",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "weather",
+      "country:ES"
+    ]
+  },
+  {
+    "source_key": "madrid_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/3117735",
+    "enabled": true,
+    "city_key": "madrid",
+    "tags": [
+      "weather",
+      "country:ES"
+    ]
+  }
+]

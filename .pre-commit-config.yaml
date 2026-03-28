@@ -1,0 +1,16 @@
+repos:
+  - repo: local
+    hooks:
+      - id: scan-staged-secrets
+        name: Scan staged secrets (gitleaks)
+        entry: python scripts/check_staged_secrets.py
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+      - id: scan-repo-history-secrets
+        name: Scan repo history secrets (gitleaks)
+        entry: python scripts/scan_repo_secret_history.py
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

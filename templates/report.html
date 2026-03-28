@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Traveler Intelligence Brief - {{ destination }}</title>
+  <style>
+    /* ---------- Page + typography ---------- */
+    @page { size: A4; margin: 16mm 16mm 20mm 16mm; }
+    html, body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+      font-size: 10.5px; 
+      color: #111827; 
+      line-height: 1.45;
+    }
+    .muted { color: #6b7280; }
+    .small { font-size: 9px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 9px; }
+    h1 { font-size: 20px; margin: 0; font-weight: 700; }
+    h2 { font-size: 11px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: .08em; color: #111827; font-weight: 600; }
+    .hr { height: 1px; background: #e5e7eb; margin: 12px 0; }
+    .section-divider { height: 1px; background: #f3f4f6; margin: 10px 0; }
+
+    /* ---------- Layout ---------- */
+    .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+    .brand { display: flex; flex-direction: column; gap: 3px; }
+    .meta { text-align: right; line-height: 1.4; }
+    
+    /* At-a-glance strip */
+    .glance-strip { 
+      display: flex; 
+      gap: 16px; 
+      padding: 10px 12px; 
+      background: #f9fafb; 
+      border: 1px solid #e5e7eb; 
+      border-radius: 8px;
+      margin-bottom: 12px;
+      break-inside: avoid;
+    }
+    .glance-item { flex: 1; }
+    .glance-label { font-size: 8px; text-transform: uppercase; letter-spacing: .08em; color: #6b7280; margin-bottom: 3px; }
+    .glance-value { font-weight: 600; font-size: 11px; }
+    .glance-value.low { color: #059669; }
+    .glance-value.med { color: #d97706; }
+    .glance-value.high { color: #dc2626; }
+    .glance-value.critical { color: #7f1d1d; }
+    
+    .grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px; }
+    .card { 
+      border: 1px solid #e5e7eb; 
+      border-radius: 10px; 
+      padding: 12px; 
+      background: #ffffff;
+      break-inside: avoid;
+    }
+    .card + .card { margin-top: 10px; }
+
+    /* ---------- Badges ---------- */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .chip { 
+      display: inline-flex; 
+      flex-direction: column;
+      border: 1px solid #e5e7eb; 
+      border-radius: 8px; 
+      padding: 6px 10px; 
+      gap: 3px;
+      flex: 1;
+      min-width: 120px;
+    }
+    .chip-header { display: flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: #9ca3af; flex-shrink: 0; }
+    .dot.low { background: #22c55e; }
+    .dot.med { background: #f59e0b; }
+    .dot.high { background: #ef4444; }
+    .dot.critical { background: #7f1d1d; }
+    .chip-note { font-size: 8.5px; color: #6b7280; line-height: 1.3; }
+
+    /* ---------- Lists ---------- */
+    .checklist { margin: 0; padding-left: 18px; }
+    .checklist li { margin: 0 0 6px 0; line-height: 1.4; }
+    .bullets { margin: 0; padding-left: 16px; }
+    .bullets li { margin: 0 0 5px 0; line-height: 1.4; }
+
+    /* ---------- Playbook ---------- */
+    .playbook { border-collapse: collapse; width: 100%; }
+    .playbook td { padding: 6px 0; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+    .playbook td:first-child { font-weight: 600; width: 35%; padding-right: 10px; }
+    .playbook-do { color: #059669; }
+    .playbook-avoid { color: #dc2626; font-size: 9px; }
+
+    /* ---------- Table ---------- */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: 7px 6px; vertical-align: top; }
+    th { text-align: left; font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+    .nowrap { white-space: nowrap; }
+    .recency-tag { 
+      display: inline-block; 
+      font-size: 8px; 
+      background: #f3f4f6; 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      color: #6b7280;
+      margin-left: 4px;
+    }
+
+    /* ---------- Images ---------- */
+    .img { width: 100%; border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; break-inside: avoid; }
+    .img img { width: 100%; display: block; }
+
+    /* ---------- City essentials ---------- */
+    .essentials-row { margin-bottom: 12px; }
+    .essentials-row:last-child { margin-bottom: 0; }
+    .essentials-label { font-size: 9px; text-transform: uppercase; letter-spacing: .06em; color: #6b7280; margin-bottom: 5px; font-weight: 600; }
+
+    /* ---------- Advisory box ---------- */
+    .advisory-box {
+      background: #fef3c7;
+      border: 1px solid #fbbf24;
+      border-radius: 8px;
+      padding: 10px;
+      break-inside: avoid;
+    }
+    .advisory-level { font-weight: 600; color: #92400e; margin-bottom: 4px; }
+    .advisory-text { font-size: 9.5px; line-height: 1.4; color: #78350f; }
+
+    /* ---------- Sources ---------- */
+    .sources-list { margin: 0; padding-left: 16px; font-size: 9px; }
+    .sources-list li { margin: 0 0 3px 0; line-height: 1.3; }
+    .sources-list .source-link { color: inherit; text-decoration: none; }
+    .sources-list .source-link:hover { text-decoration: underline; }
+    .sources-more { font-style: italic; color: #6b7280; }
+
+    /* ---------- Footer ---------- */
+    .footer { 
+      margin-top: 12px; 
+      display: flex; 
+      justify-content: space-between; 
+      gap: 10px; 
+      align-items: flex-end;
+      padding-top: 10px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    /* ---------- Print quality ---------- */
+    .card, table, .glance-strip, .advisory-box { break-inside: avoid; }
+    tbody tr { break-inside: avoid; }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="brand">
+      <h1>Traveler Intelligence Brief</h1>
+      <div class="muted">Destination: <strong>{{ destination }}</strong></div>
+    </div>
+    <div class="meta small muted">
+      Generated: {{ generated_utc }} UTC<br/>
+      Window: {{ lookback_label }}<br/>
+      Coverage: {{ coverage_label }}
+    </div>
+  </div>
+
+  <!-- At-a-glance strip -->
+  <div class="glance-strip">
+    <div class="glance-item">
+      <div class="glance-label">Overall Risk</div>
+      <div class="glance-value {{ overall_risk }}">{{ overall_risk|upper }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">Top Risk Driver</div>
+      <div class="glance-value">{{ top_risk_driver }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">Time Window</div>
+      <div class="glance-value">{{ lookback_label }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">Coverage Status</div>
+      <div class="glance-value">{{ coverage_status }}</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- LEFT COLUMN -->
+    <div>
+      <div class="card">
+        <h2>Top 5 Actions</h2>
+        <ol class="checklist">
+          {% for item in top_actions %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>What's happening</h2>
+        <ul class="bullets">
+          {% for item in whats_happening %}
+            <li>{{ item }}</li>
+          {% endfor %}
+          {% if whats_happening|length == 0 %}
+            <li class="muted">No traveler-impact incidents in feeds for this window.</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Incidents</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="nowrap">Date</th>
+              <th>Type</th>
+              <th>Where</th>
+              <th>Traveler impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for inc in incidents %}
+              <tr>
+                <td class="nowrap">
+                  {{ inc.date }}
+                  {% if inc.recency %}<span class="recency-tag">{{ inc.recency }}</span>{% endif %}
+                </td>
+                <td>{{ inc.type }}</td>
+                <td>{{ inc.where or '—' }}</td>
+                <td>{{ inc.impact }}</td>
+              </tr>
+            {% endfor %}
+            {% if incidents|length == 0 %}
+              <tr><td colspan="4" class="muted">None in feed.</td></tr>
+            {% endif %}
+          </tbody>
+        </table>
+        <div class="small muted" style="margin-top:8px;">
+          Full article links available in web version.
+        </div>
+      </div>
+
+      {% if chart_path %}
+      <div class="card">
+        <h2>Trend snapshot</h2>
+        <div class="img"><img src="{{ chart_path }}" alt="Incident trends chart"/></div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+      <div class="card">
+        <h2>Risk overview</h2>
+        <div class="chips">
+          {% for r in risk_badges %}
+            <div class="chip">
+              <div class="chip-header">
+                <span class="dot {{ r.level }}"></span>
+                <span><strong>{{ r.name }}:</strong> {{ r.level|upper }}</span>
+              </div>
+              {% if r.note %}
+                <div class="chip-note">{{ r.note }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="margin-top:10px;">If you see this, do that</h2>
+        <table class="playbook">
+          {% for cue in cues %}
+            <tr>
+              <td><strong>{{ cue.cue }}</strong></td>
+              <td>
+                <div class="playbook-do">→ {{ cue.action }}</div>
+                {% if cue.avoid %}
+                  <div class="playbook-avoid">⚠ Avoid: {{ cue.avoid }}</div>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      {% set airports_list = city_essentials.airports if city_essentials is defined and city_essentials.airports else (airports if airports is defined and airports else []) %}
+      {% if airports_list %}
+      <div class="card">
+        <h2>Airports</h2>
+        <ul class="bullets">
+          {% for airport in airports_list[:5] %}
+            <li style="margin-bottom: 8px;">
+              {% if airport.website %}
+                <a href="{{ airport.website }}" target="_blank" style="color: #111827; text-decoration: none;">
+                  <strong>{{ airport.name }}</strong>
+                </a>
+              {% else %}
+                <strong>{{ airport.name }}</strong>
+              {% endif %}
+              {% if airport.iata %}
+                <br><span class="small muted">IATA: {{ airport.iata }}</span>
+              {% endif %}
+              {% if airport.website %}
+                <br><span class="small muted">Website: <a href="{{ airport.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ airport.website }}</a></span>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <div class="card">
+        <h2>City essentials</h2>
+
+        <div class="essentials-row">
+          <div class="essentials-label">Local hospitals (major facilities)</div>
+          {% set hospitals_with_site = hospitals|selectattr('website')|list %}
+          <ul class="bullets">
+            {% for h in hospitals_with_site[:5] %}
+              <li style="margin-bottom: 8px;">
+                <strong>{{ h.name }}</strong>{% if h.notes %} — {{ h.notes }}{% endif %}
+                {% if h.website or h.google_maps_url %}
+                  <br><span class="small muted">
+                    {% if h.website %}
+                      🌐 <a href="{{ h.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">Website</a>
+                    {% endif %}
+                    {% if h.website and h.google_maps_url %} · {% endif %}
+                    {% if h.google_maps_url %}
+                      📍 <a href="{{ h.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                    {% endif %}
+                  </span>
+                {% endif %}
+              </li>
+            {% endfor %}
+            {% if hospitals_with_site|length == 0 %}
+              <li class="muted">Hospital data not available for this location.</li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="essentials-row">
+          <div class="essentials-label">Public transportation</div>
+          {% set transit_with_site = transit|selectattr('website')|list %}
+          <ul class="bullets">
+            {% for t in transit_with_site %}
+              <li>
+                <strong>{{ t.name }}</strong>
+                {% if t.description %}
+                  <br><span class="small">{{ t.description }}</span>
+                {% endif %}
+                {% if t.modes %}
+                  <br><span class="small muted">Services: {{ t.modes|join(", ") }}</span>
+                {% endif %}
+                {% if t.website %}
+                  <br><span class="small muted">Website: <a href="{{ t.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ t.website }}</a></span>
+                {% endif %}
+                {% if t.taxis %}
+                  <br><span class="small">🚕 Taxis: {{ t.taxis }}</span>
+                {% endif %}
+                {% if t.rideshare %}
+                  <br><span class="small">🚗 Rideshare: {{ t.rideshare }}</span>
+                {% endif %}
+              </li>
+            {% endfor %}
+            {% if transit_with_site|length == 0 %}
+              <li class="muted">Transit tool not configured for this city.</li>
+            {% endif %}
+          </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="essentials-row">
+          <div class="essentials-label">Emergency</div>
+          <ul class="bullets">
+            <li><strong>General:</strong> {{ emergency_contacts.general }}</li>
+          </ul>
+        </div>
+      </div>
+
+      {% if travel_advisory %}
+      <div class="card">
+        <h2>Travel Advisory</h2>
+        <div class="advisory-box">
+          {% if advisory_level %}
+            <div class="advisory-level">{{ advisory_level }}</div>
+          {% endif %}
+          <div class="advisory-text">{{ travel_advisory }}</div>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if map_path %}
+      <div class="card">
+        <h2>Map</h2>
+        <div class="img"><img src="{{ map_path }}" alt="Location map"/></div>
+        <div class="small muted" style="margin-top:6px;">Map data: OpenStreetMap contributors.</div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="footer small muted">
+    <div>
+      <strong>Data coverage</strong>: {{ data_coverage }}
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <div class="small">
+    <h2>Sources</h2>
+    <ul class="sources-list">
+      {% for s in sources[:3] %}
+        {% set source = source_link_meta(s) %}
+        <li>
+          {% if source.url %}
+            <a
+              class="source-link"
+              href="{{ source.url }}"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >{{ source.label }}</a>
+          {% else %}
+            {{ source.label }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      {% if sources|length > 3 %}
+        <li class="sources-more">+ {{ sources|length - 3 }} more sources</li>
+      {% endif %}
+      {% if sources|length == 0 %}
+        <li class="muted">None listed.</li>
+      {% endif %}
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "name": "Los Angeles, California, United States",
+  "country_code": "US",
+  "timezone": "America/Los_Angeles",
+  "latitude": 34.0522,
+  "longitude": -118.2437,
+  "population": 3898747,
+  "aliases": [
+    "los angeles",
+    "la",
+    "l.a.",
+    "los angeles ca",
+    "los angeles california"
+  ],
+  "transit_systems": [
+    {
+      "name": "LA Metro",
+      "modes": [
+        "Subway",
+        "Light Rail",
+        "Bus"
+      ],
+      "website": "https://www.metro.net"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Los Angeles International Airport",
+      "iata": "LAX",
+      "website": "https://www.flylax.com/"
+    },
+    {
+      "name": "Hollywood Burbank Airport",
+      "iata": "BUR",
+      "website": "https://hollywoodburbankairport.com/"
+    },
+    {
+      "name": "Long Beach Airport",
+      "iata": "LGB",
+      "website": "https://www.longbeach.gov/airport/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Government",
+      "label": "City of Los Angeles",
+      "url": "https://lacity.gov/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "LA Metro app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "TAP LA"
+    }
+  ]
+}

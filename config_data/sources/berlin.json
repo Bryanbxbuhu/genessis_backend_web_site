@@ -1,0 +1,94 @@
+[
+  {
+    "source_key": "berliner_zeitung_berlin",
+    "name": "Berliner Zeitung",
+    "type": "rss",
+    "url": "https://www.berliner-zeitung.de/feed.xml",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "berlin_de_presse_lichtenberg",
+    "name": "Berlin.de Pressemitteilungen Lichtenberg",
+    "type": "rss",
+    "url": "https://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Lichtenberg",
+    "enabled": true,
+    "city_key": "berlin",
+    "fallback_url": "http://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Lichtenberg"
+  },
+  {
+    "source_key": "berlin_de_presse_mitte",
+    "name": "Berlin.de Pressemitteilungen Mitte",
+    "type": "rss",
+    "url": "https://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Mitte",
+    "enabled": true,
+    "city_key": "berlin",
+    "fallback_url": "http://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Mitte"
+  },
+  {
+    "source_key": "berlin_de_presse_pankow",
+    "name": "Berlin.de Pressemitteilungen Pankow",
+    "type": "rss",
+    "url": "https://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Pankow",
+    "enabled": true,
+    "city_key": "berlin",
+    "fallback_url": "http://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Pankow"
+  },
+  {
+    "source_key": "berlin_de_presse_friedrichshain_kreuzberg",
+    "name": "Berlin.de Pressemitteilungen Friedrichshain Kreuzberg",
+    "type": "rss",
+    "url": "https://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Friedrichshain-Kreuzberg",
+    "enabled": true,
+    "city_key": "berlin",
+    "fallback_url": "http://www.berlin.de/presse/pressemitteilungen/index/feed?institutions[]=Bezirksamt+Friedrichshain-Kreuzberg"
+  },
+  {
+    "source_key": "berlin_polizei_meldungen",
+    "name": "Berlin.de Polizei Meldungen",
+    "type": "rss",
+    "url": "https://www.berlin.de/polizei/polizeimeldungen/index.php/rss",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "rbb24_aktuell_berlin",
+    "name": "rbb24 Aktuell",
+    "type": "rss",
+    "url": "https://www.rbb24.de/aktuell/index.xml/feed=rss.xml",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "us_embassy_germany_alerts",
+    "name": "U.S. Embassy Germany Alerts",
+    "type": "rss",
+    "url": "https://de.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "berlin_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "berlin_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/2950159",
+    "enabled": true,
+    "city_key": "berlin"
+  },
+  {
+    "source_key": "berlin_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2950159",
+    "enabled": true,
+    "city_key": "berlin"
+  }
+]

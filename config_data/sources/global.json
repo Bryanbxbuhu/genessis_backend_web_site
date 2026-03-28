@@ -1,0 +1,58 @@
+[
+  {
+    "source_key": "canada_travel_advisories",
+    "name": "Canada Travel Advisories",
+    "type": "json",
+    "url": "https://data.international.gc.ca/travel-voyage/index-updated.json",
+    "enabled": true,
+    "city_key": null
+  },
+  {
+    "source_key": "us_travel_advisories",
+    "name": "US State Department Travel Advisories",
+    "type": "rss",
+    "url": "https://travel.state.gov/_res/rss/TAsTWs.xml",
+    "enabled": true,
+    "city_key": null
+  },
+  {
+    "source_key": "gdelt_geo",
+    "name": "GDELT Project News",
+    "type": "api",
+    "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+    "enabled": true,
+    "city_key": null
+  },
+  {
+    "source_key": "nws_alerts",
+    "name": "National Weather Service Alerts",
+    "type": "api",
+    "url": "https://api.weather.gov/alerts/active",
+    "enabled": true,
+    "city_key": null
+  },
+  {
+    "source_key": "open_meteo_forecast",
+    "name": "Open-Meteo Weather Forecast",
+    "type": "api",
+    "url": "https://api.open-meteo.com/v1/forecast",
+    "enabled": true,
+    "city_key": null
+  },
+  {
+    "source_key": "weather_gc_city_rss_template",
+    "name": "Environment Canada City Weather RSS (Template)",
+    "type": "rss",
+    "url": "https://weather.gc.ca/rss/city/{PROVINCECODE}-{CITYCODE}_e.xml",
+    "enabled": false,
+    "city_key": null
+  },
+  {
+    "source_key": "meteoalarm_italy_legacy_rss",
+    "name": "Meteoalarm Italy (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-italy",
+    "enabled": false,
+    "city_key": null
+  }
+]

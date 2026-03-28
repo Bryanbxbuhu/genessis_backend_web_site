@@ -1,0 +1,58 @@
+[
+  {
+    "source_key": "fox9_minneapolis_news",
+    "name": "FOX 9 News (Minneapolis)",
+    "type": "rss",
+    "url": "https://www.fox9.com/rss/category/news",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "mndaily_minneapolis",
+    "name": "Minnesota Daily",
+    "type": "rss",
+    "url": "https://mndaily.com/feed/",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "kstp_minneapolis_top_news",
+    "name": "KSTP Top News",
+    "type": "rss",
+    "url": "https://kstp.com/category/kstp-news/top-news/feed/",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "cbsnews_us_latest",
+    "name": "CBS News US (Latest)",
+    "type": "rss",
+    "url": "https://www.cbsnews.com/latest/rss/us",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "minneapolis_nws_point_atom",
+    "name": "NWS Active Alerts (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=44.9778,-93.265",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "minneapolis_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/5037649",
+    "enabled": true,
+    "city_key": "minneapolis"
+  },
+  {
+    "source_key": "minneapolis_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5037649",
+    "enabled": true,
+    "city_key": "minneapolis"
+  }
+]

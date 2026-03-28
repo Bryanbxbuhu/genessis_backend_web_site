@@ -1,0 +1,102 @@
+{
+  "name": "Delhi, India",
+  "country_code": "IN",
+  "timezone": "Asia/Kolkata",
+  "language": "en",
+  "latitude": 28.6139,
+  "longitude": 77.209,
+  "population": 16787941,
+  "aliases": [
+    "Delhi",
+    "New Delhi",
+    "Delhi, India",
+    "National Capital Territory of Delhi",
+    "NCT Delhi",
+    "दिल्ली",
+    "नई दिल्ली"
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "112",
+    "ambulance": "112",
+    "fire": "112",
+    "other": [
+      {
+        "label": "Police (legacy)",
+        "number": "100"
+      },
+      {
+        "label": "Fire (legacy)",
+        "number": "101"
+      },
+      {
+        "label": "Ambulance (legacy)",
+        "number": "102"
+      },
+      {
+        "label": "Tourist helpline",
+        "number": "1363"
+      },
+      {
+        "label": "Women in distress",
+        "number": "1091"
+      }
+    ]
+  },
+  "transit_systems": [
+    {
+      "name": "Delhi Metro Rail Corporation (DMRC)",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://delhimetrorail.com/"
+    },
+    {
+      "name": "Delhi Transport Corporation (DTC)",
+      "modes": [
+        "Bus"
+      ],
+      "website": "https://dtc.delhi.gov.in/"
+    },
+    {
+      "name": "Indian Railways Enquiry",
+      "modes": [
+        "Intercity Rail"
+      ],
+      "website": "https://www.indianrail.gov.in/enquiry/"
+    }
+  ],
+  "airports": [
+    {
+      "name": "Indira Gandhi International Airport",
+      "iata": "DEL",
+      "website": "https://www.newdelhiairport.in/"
+    }
+  ],
+  "enabled": true,
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/in/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Ola",
+      "url": "https://www.olacabs.com/"
+    },
+    {
+      "category": "Government",
+      "label": "Delhi Government Services",
+      "url": "https://delhi.gov.in/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "DMRC app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "IRCTC Rail Connect"
+    }
+  ]
+}

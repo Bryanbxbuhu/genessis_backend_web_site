@@ -1,0 +1,65 @@
+{
+  "name": "Dubrovnik",
+  "country_code": "HR",
+  "timezone": "Europe/Zagreb",
+  "latitude": 42.6507,
+  "longitude": 18.0944,
+  "population": 41562,
+  "aliases": [
+    "dubrovnik",
+    "dubrovnik croatia",
+    "dubrovnik hr",
+    "ragusa"
+  ],
+  "language": "hr",
+  "emergency_numbers": {
+    "general": "112",
+    "police": "192",
+    "fire": "193",
+    "ambulance": "194",
+    "other": []
+  },
+  "transit_systems": [
+    {
+      "name": "Libertas Dubrovnik",
+      "modes": [
+        "Bus"
+      ],
+      "website": "https://www.libertasdubrovnik.hr/en"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Dubrovnik Airport",
+      "iata": "DBV",
+      "website": "https://www.airport-dubrovnik.hr/en"
+    }
+  ],
+  "travel_advisory_url": "https://travel.state.gov/en/international-travel/travel-advisories/croatia.html",
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/hr/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Bolt",
+      "url": "https://bolt.eu/en/"
+    },
+    {
+      "category": "Government",
+      "label": "City of Dubrovnik",
+      "url": "https://www.dubrovnik.hr/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Libertas Dubrovnik app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Dubrovnik bus app"
+    }
+  ]
+}

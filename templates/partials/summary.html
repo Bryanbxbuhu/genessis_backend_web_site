@@ -1,0 +1,95 @@
+<!-- Quick Summary Page -->
+<div id="sec_exec_summary" class="summary-page">
+  <h1 class="page-title">Executive Summary</h1>
+
+  <!-- At-a-glance strip -->
+  <div class="glance-strip">
+    <div class="glance-item">
+      <div class="glance-label">
+        <svg class="icon-xs"><use href="#icon-shield"/></svg>
+        Overall Risk
+      </div>
+      <div class="glance-value {{ overall_risk }}">{{ overall_risk|upper }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">
+        <svg class="icon-xs"><use href="#icon-alert"/></svg>
+        Top Risk Driver
+      </div>
+      <div class="glance-value">{{ top_risk_driver }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">
+        <svg class="icon-xs"><use href="#icon-calendar"/></svg>
+        Time Window
+      </div>
+      <div class="glance-value">{{ lookback_label }}</div>
+    </div>
+    <div class="glance-item">
+      <div class="glance-label">
+        <svg class="icon-xs"><use href="#icon-check"/></svg>
+        Coverage Status
+      </div>
+      <div class="glance-value">{{ coverage_status }}</div>
+    </div>
+  </div>
+
+  <div class="small muted" style="margin-top: 6px;">
+    Overall Risk: {{ overall_risk|upper }}
+  </div>
+
+  <div class="summary-grid">
+    <!-- Top Actions -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-check"/></svg>
+        Priority Actions
+      </h2>
+      <ol class="checklist">
+        {% for item in top_actions %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <!-- What's Happening -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-info"/></svg>
+        Current Situation
+      </h2>
+      <ul class="bullets">
+        {% for item in whats_happening %}
+          <li>{{ item }}</li>
+        {% endfor %}
+        {% if whats_happening|length == 0 %}
+          <li class="muted">No traveler-impact incidents in feeds for this window.</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Risk Overview -->
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-shield"/></svg>
+      Risk Drivers
+    </h2>
+    <div class="chips">
+      {% for r in risk_badges %}
+        <div class="chip">
+          <div class="chip-header">
+            <span class="dot {{ r.level }}"></span>
+            <span><strong>{{ r.name }}:</strong> {{ r.level|upper }}</span>
+          </div>
+          {% if r.note %}
+            <div class="chip-note">{{ r.note }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+<div class="page-break"></div>

@@ -1,0 +1,50 @@
+[
+  {
+    "source_key": "slobodna_dalmacija_dubrovnik_main",
+    "name": "Slobodna Dalmacija",
+    "type": "rss",
+    "url": "https://slobodnadalmacija.hr/feed",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  },
+  {
+    "source_key": "slobodna_dalmacija_dubrovnik_tag",
+    "name": "Slobodna Dalmacija - Dubrovnik Tag",
+    "type": "rss",
+    "url": "https://slobodnadalmacija.hr/feed/tag/dubrovnik",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  },
+  {
+    "source_key": "slobodna_dalmacija_dubrovnik_category_246",
+    "name": "Slobodna Dalmacija - Dubrovnik Category",
+    "type": "rss",
+    "url": "https://slobodnadalmacija.hr/feed/category/246",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  },
+  {
+    "source_key": "dubrovnikinsider_crna_kronika",
+    "name": "Dubrovnik Insider - Crna Kronika",
+    "type": "rss",
+    "url": "https://dubrovnikinsider.hr/category/dubrovnik-insider-2/crna-kronika/feed/",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  },
+  {
+    "source_key": "dubrovnik_times",
+    "name": "The Dubrovnik Times",
+    "type": "rss",
+    "url": "https://www.thedubrovniktimes.com/feed?format=feed&type=rss",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  },
+  {
+    "source_key": "us_embassy_hr_alerts",
+    "name": "US Embassy Alerts (Croatia)",
+    "type": "rss",
+    "url": "https://hr.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "dubrovnik"
+  }
+]

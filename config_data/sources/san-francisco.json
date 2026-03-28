@@ -1,0 +1,67 @@
+[
+  {
+    "source_key": "sfist_san_francisco",
+    "name": "SFist (San Francisco)",
+    "type": "rss",
+    "url": "https://feeds.feedburner.com/sfist",
+    "fallback_url": "https://sfist.com/rss/",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "kron4_bay_area",
+    "name": "KRON4 (San Francisco Bay Area)",
+    "type": "rss",
+    "url": "https://www.kron4.com/feed",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "abc7_bay_area",
+    "name": "ABC7 News (Bay Area)",
+    "type": "rss",
+    "url": "https://abc7news.com/feed",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "kqed_san_francisco_bay",
+    "name": "KQED (San Francisco Bay)",
+    "type": "rss",
+    "url": "https://ww2.kqed.org/news/tag/san-francisco-bay/feed",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "sfgov_news",
+    "name": "SFGov News",
+    "type": "rss",
+    "url": "https://www.sfgov.org/news.xml",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "san_francisco_nws_point_atom",
+    "name": "NWS Active Alerts (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=37.7749,-122.4194",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "san_francisco_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/5391959",
+    "enabled": true,
+    "city_key": "san-francisco"
+  },
+  {
+    "source_key": "san_francisco_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5391959",
+    "enabled": true,
+    "city_key": "san-francisco"
+  }
+]

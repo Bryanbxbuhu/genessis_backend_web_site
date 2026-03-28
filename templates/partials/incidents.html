@@ -1,0 +1,79 @@
+<!-- Incidents & Trends Page -->
+<div id="sec_current_incidents" class="incidents-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-alert"/></svg>
+    Incident Analysis
+  </h1>
+
+  <!-- Situational Awareness Guidance -->
+  {% if cues %}
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-alert"/></svg>
+      Situational Awareness Guidance
+    </h2>
+    <table class="playbook">
+      {% for cue in cues %}
+        <tr>
+          <td><strong>{{ cue.cue }}</strong></td>
+          <td>
+            <div class="playbook-do">→ {{ cue.action }}</div>
+            {% if cue.avoid %}
+              <div class="playbook-avoid">⚠ Avoid: {{ cue.avoid }}</div>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  <div class="card">
+    <h2>Recent Incidents</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="nowrap">Date</th>
+          <th>Type</th>
+          <th>Where</th>
+          <th>Traveler Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inc in incidents %}
+          <tr>
+            <td class="nowrap">
+              {{ inc.date }}
+              {% if inc.recency %}<span class="recency-tag">{{ inc.recency }}</span>{% endif %}
+            </td>
+            <td>{{ inc.type }}</td>
+            <td>{{ inc.where or '—' }}</td>
+            <td>{{ inc.impact }}</td>
+          </tr>
+        {% endfor %}
+        {% if incidents|length == 0 %}
+          <tr><td colspan="4" class="muted">No incidents reported in this period.</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+    <div class="small muted" style="margin-top:8px;">
+      Full article links available in source listings.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-trending-up"/></svg>
+      30-Day Risk Trend Analysis (Crime, Terrorism, Traffic, Health)
+    </h2>
+    {% if combined_trend_chart_path %}
+      <div class="img"><img src="{{ combined_trend_chart_path }}" alt="Combined trends chart"/></div>
+      <div class="small muted" style="margin-top:6px;">
+        Combined view of all four risk categories over the past 30 days.
+      </div>
+    {% else %}
+      <div class="muted">{{ trend_note or 'Insufficient incident history to generate a 30-day trend chart yet.' }}</div>
+    {% endif %}
+  </div>
+
+</div>

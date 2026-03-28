@@ -1,0 +1,85 @@
+{
+  "name": "Tokyo, Japan",
+  "country_code": "JP",
+  "timezone": "Asia/Tokyo",
+  "language": "ja",
+  "latitude": 35.6762,
+  "longitude": 139.6503,
+  "population": 13960000,
+  "aliases": [
+    "tokyo",
+    "tokyo japan",
+    "tokyo metropolis",
+    "東京都"
+  ],
+  "emergency_numbers": {
+    "general": "110 / 119",
+    "police": "110",
+    "ambulance": "119",
+    "fire": "119"
+  },
+  "transit_systems": [
+    {
+      "name": "Tokyo Metro",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://www.tokyometro.jp/en/"
+    },
+    {
+      "name": "Toei Transportation",
+      "modes": [
+        "Metro",
+        "Bus",
+        "Tram"
+      ],
+      "website": "https://www.kotsu.metro.tokyo.jp/eng/"
+    },
+    {
+      "name": "JR East",
+      "modes": [
+        "Commuter Rail",
+        "Regional Rail"
+      ],
+      "website": "https://www.jreast.co.jp/e/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Haneda Airport",
+      "iata": "HND",
+      "website": "https://tokyo-haneda.com/en/"
+    },
+    {
+      "name": "Narita International Airport",
+      "iata": "NRT",
+      "website": "https://www.narita-airport.jp/en/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "GO Taxi App",
+      "url": "https://go.goinc.jp/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/global/en/cities/tokyo/"
+    },
+    {
+      "category": "Government",
+      "label": "Tokyo Metropolitan Government",
+      "url": "https://www.english.metro.tokyo.lg.jp/top"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Tokyo Subway Navigation"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "JR East app"
+    }
+  ]
+}

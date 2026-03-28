@@ -1,0 +1,124 @@
+[
+  {
+    "source_key": "tokyo_rss_keishicho",
+    "name": "Tokyo Metropolitan Police Department RSS",
+    "type": "rss",
+    "url": "https://www.keishicho.metro.tokyo.lg.jp/rss_news.xml",
+    "enabled": true,
+    "city_key": "tokyo",
+    "tags": [
+      "country:JP",
+      "language:ja",
+      "topic:public_safety",
+      "publisher:government"
+    ]
+  },
+  {
+    "source_key": "tokyo_rss_my_tokyo",
+    "name": "My Tokyo Official Portal RSS",
+    "type": "rss",
+    "url": "https://www.my.metro.tokyo.lg.jp/rss/-/asset_publisher/rijn/rss",
+    "fallback_url": "https://www.my.metro.tokyo.lg.jp/rss/-/asset_publisher/rijn/rss/",
+    "enabled": true,
+    "city_key": "tokyo",
+    "tags": [
+      "country:JP",
+      "language:ja",
+      "topic:government",
+      "publisher:government"
+    ]
+  },
+  {
+    "source_key": "tokyo_rss_asahi_headlines",
+    "name": "Asahi Shimbun Headlines RDF",
+    "type": "rss",
+    "url": "https://rss.asahi.com/rss/asahi/newsheadlines.rdf",
+    "enabled": true,
+    "city_key": "tokyo",
+    "fallback_url": "http://rss.asahi.com/rss/asahi/newsheadlines.rdf",
+    "tags": [
+      "country:JP",
+      "language:ja",
+      "topic:news",
+      "publisher:media"
+    ]
+  },
+  {
+    "source_key": "tokyo_rss_news_on_japan",
+    "name": "News on Japan Top RSS",
+    "type": "rss",
+    "url": "https://newsonjapan.com/rss/top.xml",
+    "enabled": true,
+    "city_key": "tokyo",
+    "tags": [
+      "country:JP",
+      "language:en",
+      "topic:news",
+      "publisher:media"
+    ]
+  },
+  {
+    "source_key": "tokyo_rss_nhk_news",
+    "name": "NHK News RSS",
+    "type": "rss",
+    "url": "https://www3.nhk.or.jp/rss/news/cat0.xml",
+    "enabled": true,
+    "city_key": "tokyo",
+    "tags": [
+      "country:JP",
+      "language:ja",
+      "topic:news",
+      "publisher:public_broadcaster"
+    ]
+  },
+  {
+    "source_key": "tokyo_metropolitan_government_rss",
+    "name": "Tokyo Metropolitan Government RSS",
+    "type": "rss",
+    "url": "https://www.metro.tokyo.lg.jp/index.html/-/asset_publisher/knkg/rss",
+    "enabled": true,
+    "city_key": "tokyo"
+  },
+  {
+    "source_key": "tokyo_disaster_prevention_rss",
+    "name": "Tokyo Disaster Prevention RSS",
+    "type": "rss",
+    "url": "https://www.bousai.metro.tokyo.lg.jp/news.rss",
+    "fallback_url": "https://www.bousai.metro.tokyo.lg.jp/rss.xml",
+    "enabled": true,
+    "city_key": "tokyo"
+  },
+  {
+    "source_key": "jma_eqvol",
+    "name": "JMA Earthquake and Volcano Feed",
+    "type": "rss",
+    "url": "https://www.data.jma.go.jp/developer/xml/feed/eqvol.xml",
+    "enabled": true,
+    "city_key": "tokyo"
+  },
+  {
+    "source_key": "jma_extra",
+    "name": "JMA Weather Warnings Feed",
+    "type": "rss",
+    "url": "https://www.data.jma.go.jp/developer/xml/feed/extra.xml",
+    "enabled": true,
+    "city_key": "tokyo"
+  },
+  {
+    "source_key": "mainichi_english_latest",
+    "name": "Mainichi English Latest",
+    "type": "rss",
+    "url": "https://mainichi.jp/rss/etc/english_latest.rss",
+    "fallback_url": "https://news.google.com/rss/search?q=site:mainichi.jp/english&hl=en-US&gl=US&ceid=US:en",
+    "enabled": true,
+    "city_key": "tokyo"
+  },
+  {
+    "source_key": "tokyo_weekender_news_opinion",
+    "name": "Tokyo Weekender News and Opinion",
+    "type": "rss",
+    "url": "https://www.tokyoweekender.com/japan-life/news-and-opinion/feed/",
+    "enabled": true,
+    "city_key": "tokyo"
+  }
+]

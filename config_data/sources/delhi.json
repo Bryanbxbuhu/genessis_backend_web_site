@@ -1,0 +1,55 @@
+[
+  {
+    "source_key": "indian_express_delhi_city",
+    "name": "The Indian Express, Delhi (City)",
+    "type": "rss",
+    "url": "https://indianexpress.com/section/cities/delhi/feed/",
+    "enabled": true,
+    "city_key": "delhi",
+    "tags": ["local_news", "delhi", "india", "asia"]
+  },
+  {
+    "source_key": "indian_express_delhi_confidential",
+    "name": "The Indian Express, Delhi Confidential",
+    "type": "rss",
+    "url": "https://indianexpress.com/section/delhi-confidential/feed/",
+    "enabled": true,
+    "city_key": "delhi",
+    "tags": ["local_news", "delhi", "india", "asia"]
+  },
+  {
+    "source_key": "hindustan_times_delhi",
+    "name": "Hindustan Times, Delhi",
+    "type": "rss",
+    "url": "https://www.hindustantimes.com/feeds/rss/cities/delhi-news/rssfeed.xml",
+    "enabled": true,
+    "city_key": "delhi",
+    "tags": ["local_news", "delhi", "india", "asia"]
+  },
+  {
+    "source_key": "times_of_india_delhi",
+    "name": "Times of India, Delhi",
+    "type": "rss",
+    "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128839596.cms",
+    "enabled": true,
+    "city_key": "delhi",
+    "tags": ["local_news", "delhi", "india", "asia"]
+  },
+  {
+    "source_key": "ndtv_cities",
+    "name": "NDTV, Cities",
+    "type": "rss",
+    "url": "https://feeds.feedburner.com/ndtvnews-cities-news",
+    "enabled": true,
+    "city_key": "delhi",
+    "tags": ["local_news", "india", "asia"]
+  },
+  {
+    "source_key": "us_embassy_in_alerts",
+    "name": "US Embassy Alerts (India)",
+    "type": "rss",
+    "url": "https://in.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "delhi"
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "name": "Sevilla, Spain",
+  "country_code": "ES",
+  "timezone": "Europe/Madrid",
+  "latitude": 37.3891,
+  "longitude": -5.9845,
+  "population": 684234,
+  "aliases": [
+    "sevilla",
+    "seville",
+    "sevilla spain"
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "091",
+    "fire": "080",
+    "ambulance": "061",
+    "other": []
+  },
+  "transit_systems": [
+    {
+      "name": "TUSSAM",
+      "modes": [
+        "Bus"
+      ],
+      "website": "https://www.tussam.es/"
+    },
+    {
+      "name": "Metro de Sevilla",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://www.metro-sevilla.es/"
+    },
+    {
+      "name": "Renfe Cercanías Sevilla",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://www.renfe.com/es/es/cercanias/cercanias-sevilla"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Sevilla Airport",
+      "iata": "SVQ",
+      "website": "https://www.aena.es/en/sevilla.html"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/es/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Cabify",
+      "url": "https://cabify.com/en"
+    },
+    {
+      "category": "Government",
+      "label": "Seville City Hall",
+      "url": "https://www.sevilla.org/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "TUSSAM app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Metro de Sevilla app"
+    }
+  ]
+}

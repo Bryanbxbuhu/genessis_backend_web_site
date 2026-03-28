@@ -1,0 +1,54 @@
+name: Check forbidden files in commits
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-forbidden-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for forbidden files and hardcoded key patterns
+        run: |
+          echo "Checking for forbidden files..."
+          FORBIDDEN_FOUND=0
+          FORBIDDEN_ENV_FILES=$(git ls-files | grep -E '(^|/)\.env($|\.)|(^|/)\.envrc$' | grep -Ev '(^|/)\.env\.example$' || true)
+
+          if [ -n "$FORBIDDEN_ENV_FILES" ]; then
+            echo "ERROR: forbidden env files are committed to the repository."
+            echo "Files found:"
+            echo "$FORBIDDEN_ENV_FILES"
+            FORBIDDEN_FOUND=1
+          fi
+
+          if git ls-files | grep -Eq '^\.venv($|/)'; then
+            echo "ERROR: .venv/ directory is committed to the repository."
+            echo "Files found:"
+            git ls-files | grep -E '^\.venv($|/)'
+            FORBIDDEN_FOUND=1
+          fi
+
+          if [ -f config.py ]; then
+            if grep -En 'sk-[A-Za-z0-9_-]{20,}|[A-Za-z0-9]{8,}msh[A-Za-z0-9]{16,}|eyJ[A-Za-z0-9_-]{20,}' config.py; then
+              echo "ERROR: config.py appears to contain a hardcoded API key pattern."
+              FORBIDDEN_FOUND=1
+            fi
+          fi
+
+          if [ "$FORBIDDEN_FOUND" -eq 1 ]; then
+            echo ""
+            echo "To fix this issue:"
+            echo "  1. Remove .env, .env.local, .env.* and .venv from git index if tracked."
+            echo "  2. Remove hardcoded keys from config.py."
+            echo "  3. Keep only .env.example tracked; ensure .gitignore excludes the rest."
+            echo "  4. Commit and push the fix."
+            exit 1
+          fi
+
+          echo "No forbidden files or key patterns found."

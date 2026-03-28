@@ -1,0 +1,34 @@
+[
+  {
+    "source_key": "local10_miami",
+    "name": "Local 10 News (Miami)",
+    "type": "rss",
+    "url": "https://www.local10.com/arc/outboundfeeds/rss/category/news/local/?outputType=xml",
+    "enabled": true,
+    "city_key": "miami"
+  },
+  {
+    "source_key": "miami_nws_point_atom",
+    "name": "NWS Active Alerts (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=25.7617,-80.1918",
+    "enabled": true,
+    "city_key": "miami"
+  },
+  {
+    "source_key": "miami_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/4164138",
+    "enabled": true,
+    "city_key": "miami"
+  },
+  {
+    "source_key": "miami_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/4164138",
+    "enabled": true,
+    "city_key": "miami"
+  }
+]

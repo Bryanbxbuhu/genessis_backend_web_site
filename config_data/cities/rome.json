@@ -1,0 +1,90 @@
+{
+  "name": "Rome, Italy",
+  "country": "Italy",
+  "country_code": "IT",
+  "region": "Lazio",
+  "timezone": "Europe/Rome",
+  "latitude": 41.9028,
+  "longitude": 12.4964,
+  "population": 2872800,
+  "aliases": [
+    "rome",
+    "roma",
+    "rome italy",
+    "roma italy",
+    "roma it",
+    "lazio",
+    "citta metropolitana di roma"
+  ],
+  "language": "it",
+  "transit_systems": [
+    {
+      "name": "ATAC Roma",
+      "modes": [
+        "Metro",
+        "Bus",
+        "Tram",
+        "Urban Rail"
+      ],
+      "website": "https://www.atac.roma.it/"
+    },
+    {
+      "name": "Trenitalia",
+      "modes": [
+        "Regional Rail",
+        "Intercity Rail"
+      ],
+      "website": "https://www.trenitalia.com/"
+    }
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "112",
+    "ambulance": "112",
+    "fire": "112"
+  },
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Leonardo da Vinci Fiumicino Airport",
+      "iata": "FCO",
+      "website": "https://www.adr.it/fiumicino"
+    },
+    {
+      "name": "Ciampino G. B. Pastine Airport",
+      "iata": "CIA",
+      "website": "https://www.adr.it/ciampino"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/it/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "FREENOW",
+      "url": "https://www.free-now.com/it-en/"
+    },
+    {
+      "category": "Government",
+      "label": "Roma Capitale",
+      "url": "https://www.comune.roma.it/web/it/home.page"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Moovit",
+      "url": "https://moovitapp.com/",
+      "ios_url": "https://apps.apple.com/us/app/moovit-bus-transit-tracker/id498477945",
+      "android_url": "https://play.google.com/store/apps/details?id=com.tranzmate"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Citymapper",
+      "url": "https://citymapper.com/",
+      "ios_url": "https://apps.apple.com/us/app/citymapper-all-live-transit/id469463298",
+      "android_url": "https://play.google.com/store/apps/details?id=com.citymapper.app.release"
+    }
+  ]
+}

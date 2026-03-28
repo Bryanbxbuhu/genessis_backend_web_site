@@ -1,0 +1,88 @@
+{
+  "name": "Berlin, Germany",
+  "country_code": "DE",
+  "timezone": "Europe/Berlin",
+  "latitude": 52.52,
+  "longitude": 13.405,
+  "population": 3685265,
+  "aliases": [
+    "berlin",
+    "berlin germany",
+    "berlin de",
+    "berlin mitte",
+    "berlin pankow",
+    "berlin friedrichshain",
+    "berlin kreuzberg",
+    "berlin lichtenberg",
+    "berlin charlottenburg",
+    "berlin neukoelln",
+    "berlin neukölln"
+  ],
+  "language": "de",
+  "transit_systems": [
+    {
+      "name": "BVG",
+      "modes": [
+        "U Bahn",
+        "Bus",
+        "Tram",
+        "Ferry"
+      ],
+      "website": "https://www.bvg.de/en"
+    },
+    {
+      "name": "S Bahn Berlin",
+      "modes": [
+        "S Bahn"
+      ],
+      "website": "https://sbahn.berlin/en/"
+    },
+    {
+      "name": "Deutsche Bahn",
+      "modes": [
+        "Regional Rail",
+        "Intercity Rail"
+      ],
+      "website": "https://www.bahn.com/en"
+    }
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "110",
+    "ambulance": "112",
+    "fire": "112"
+  },
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Berlin Brandenburg Airport",
+      "iata": "BER",
+      "website": "https://ber.berlin-airport.de/en.html"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/de/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "FREENOW",
+      "url": "https://www.free-now.com/de-en/"
+    },
+    {
+      "category": "Government",
+      "label": "Berlin Service Portal",
+      "url": "https://service.berlin.de/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "BVG app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "DB Navigator"
+    }
+  ]
+}

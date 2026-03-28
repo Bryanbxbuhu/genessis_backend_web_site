@@ -1,0 +1,77 @@
+{
+  "name": "Mexico City, Mexico",
+  "country_code": "MX",
+  "timezone": "America/Mexico_City",
+  "language": "es",
+  "latitude": 19.4326,
+  "longitude": -99.1332,
+  "population": 9209944,
+  "aliases": [
+    "mexico city",
+    "ciudad de méxico",
+    "ciudad de mexico",
+    "cdmx",
+    "méxico d.f.",
+    "mexico df"
+  ],
+  "emergency_numbers": {
+    "general": "911",
+    "police": "911",
+    "ambulance": "911",
+    "fire": "911"
+  },
+  "transit_systems": [
+    {
+      "name": "Sistema de Transporte Colectivo Metro",
+      "modes": [
+        "Metro"
+      ],
+      "website": "https://www.metro.cdmx.gob.mx/"
+    },
+    {
+      "name": "Metrobús CDMX",
+      "modes": [
+        "Bus Rapid Transit"
+      ],
+      "website": "https://www.metrobus.cdmx.gob.mx/"
+    }
+  ],
+  "airports": [
+    {
+      "name": "Benito Juárez International Airport",
+      "iata": "MEX",
+      "website": "https://www.aicm.com.mx/"
+    },
+    {
+      "name": "Felipe Ángeles International Airport",
+      "iata": "NLU",
+      "website": "https://www.aifa.aero/"
+    }
+  ],
+  "enabled": true,
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/mx/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "DiDi",
+      "url": "https://mexico.didiglobal.com/"
+    },
+    {
+      "category": "Government",
+      "label": "Mexico City Government",
+      "url": "https://www.cdmx.gob.mx/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Metro CDMX app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Metrob\u00fas CDMX app"
+    }
+  ]
+}

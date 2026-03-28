@@ -1,0 +1,181 @@
+name: Daily data sync and report update
+
+on:
+  schedule:
+    # US cities (Miami, New York, San Francisco, Los Angeles, Minneapolis, Mexico City) - 6:00 AM EST = 11:00 UTC
+    - cron: '0 11 * * *'
+    # European cities (Lisbon, Prague, Dubrovnik, Paris, Madrid, Barcelona, Sevilla, London, Rome, Berlin, Moscow) - 6:00 AM Madrid = 5:00 UTC
+    - cron: '0 5 * * *'
+    # Asia cities (Tokyo) - 6:00 AM JST = 21:00 UTC (previous day)
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+    inputs:
+      region:
+        description: 'Region to process (us, europe, asia, or both)'
+        required: false
+        default: 'both'
+
+jobs:
+  regression-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir -r requirements.txt
+      - name: Run regression tests
+        run: |
+          if [ -d tests ]; then
+            python -m unittest discover -s tests
+          else
+            echo "No tests/ directory found; skipping regression tests."
+          fi
+
+  us-reports:
+    runs-on: ubuntu-latest
+    needs: regression-tests
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'us' || github.event.inputs.region == 'both') || (github.event_name == 'schedule' && github.event.schedule == '0 11 * * *')
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+      LOS_ANGELES_WIKIMEDIA_ENRICHMENT_ENABLED: true
+      MEXICO_CITY_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir -r requirements.txt
+          python -m playwright install
+      - name: Reset and sync scoped runtime data (Americas)
+        run: |
+          python scripts/reset_and_sync.py --region americas
+      - name: Generate Miami report
+        run: |
+          python run_report.py miami --skip-pdf
+      - name: Generate New York report
+        run: |
+          python run_report.py new-york --skip-pdf
+      - name: Generate San Francisco report
+        run: |
+          python run_report.py san-francisco --skip-pdf
+      - name: Generate Los Angeles report
+        run: |
+          python run_report.py los-angeles --skip-pdf
+      - name: Generate Minneapolis report
+        run: |
+          python run_report.py minneapolis --skip-pdf
+      - name: Generate Mexico City report
+        run: |
+          python run_report.py mexico-city --skip-pdf
+
+  europe-reports:
+    runs-on: ubuntu-latest
+    needs: regression-tests
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'europe' || github.event.inputs.region == 'both') || (github.event_name == 'schedule' && github.event.schedule == '0 5 * * *')
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+      BERLIN_WIKIMEDIA_ENRICHMENT_ENABLED: true
+      DUBAI_WIKIMEDIA_ENRICHMENT_ENABLED: true
+      DUBROVNIK_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir -r requirements.txt
+          python -m playwright install
+      - name: Reset and sync scoped runtime data (Europe)
+        run: |
+          python scripts/reset_and_sync.py --region europe
+      - name: Generate Lisbon report
+        run: |
+          python run_report.py lisbon --skip-pdf
+      - name: Generate Prague report
+        run: |
+          python run_report.py prague --skip-pdf
+      - name: Generate Dubrovnik report
+        run: |
+          python run_report.py dubrovnik --skip-pdf
+      - name: Generate Paris report
+        run: |
+          python run_report.py paris --skip-pdf
+      - name: Generate Madrid report
+        run: |
+          python run_report.py madrid --skip-pdf
+      - name: Generate Barcelona report
+        run: |
+          python run_report.py barcelona --skip-pdf
+      - name: Generate Sevilla report
+        run: |
+          python run_report.py sevilla --skip-pdf
+      - name: Generate London report
+        run: |
+          python run_report.py london --skip-pdf
+      - name: Generate Rome report
+        run: |
+          python run_report.py rome --skip-pdf
+      - name: Generate Berlin report
+        run: |
+          python run_report.py berlin --skip-pdf
+      - name: Generate Dubai report
+        run: |
+          python run_report.py dubai --skip-pdf
+      - name: Generate Moscow report
+        run: |
+          python run_report.py moscow --skip-pdf
+
+  asia-reports:
+    runs-on: ubuntu-latest
+    needs: regression-tests
+    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'asia' || github.event.inputs.region == 'both') || (github.event_name == 'schedule' && github.event.schedule == '0 21 * * *')
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+      BARCELONA_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir -r requirements.txt
+          python -m playwright install
+      - name: Reset and sync scoped runtime data (Asia)
+        run: |
+          python scripts/reset_and_sync.py --region asia
+      - name: Generate Tokyo report
+        run: |
+          python run_report.py tokyo --skip-pdf
+      - name: Generate Delhi report
+        run: |
+          python run_report.py delhi --skip-pdf

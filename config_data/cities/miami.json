@@ -1,0 +1,59 @@
+{
+  "name": "Miami, Florida, United States",
+  "country_code": "US",
+  "timezone": "America/New_York",
+  "latitude": 25.7617,
+  "longitude": -80.1918,
+  "population": 442241,
+  "aliases": [
+    "miami",
+    "miami florida",
+    "miami fl",
+    "south florida"
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "GO Miami-Dade Transit",
+      "url": "https://www.miamidade.gov/"
+    },
+    {
+      "category": "Government",
+      "label": "Miami-Dade County Services",
+      "url": "https://www.miamidade.gov/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Miami transit app"
+    }
+  ],
+  "transit_systems": [
+    {
+      "name": "Miami-Dade Transit",
+      "modes": [
+        "Metrorail",
+        "Metromover",
+        "Metrobus"
+      ],
+      "website": "https://www.miamidade.gov/transit/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Miami International Airport",
+      "iata": "MIA",
+      "website": "https://www.miami-airport.com/"
+    }
+  ]
+}

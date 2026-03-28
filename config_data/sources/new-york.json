@@ -1,0 +1,34 @@
+[
+  {
+    "source_key": "ny1_news",
+    "name": "NY1 News (New York)",
+    "type": "rss",
+    "url": "https://www.nbcnewyork.com/news/local/feed/",
+    "enabled": true,
+    "city_key": "new-york"
+  },
+  {
+    "source_key": "new_york_nws_point_atom",
+    "name": "NWS Active Alerts (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=40.7128,-74.006",
+    "enabled": true,
+    "city_key": "new-york"
+  },
+  {
+    "source_key": "new_york_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/5128581",
+    "enabled": true,
+    "city_key": "new-york"
+  },
+  {
+    "source_key": "new_york_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/5128581",
+    "enabled": true,
+    "city_key": "new-york"
+  }
+]

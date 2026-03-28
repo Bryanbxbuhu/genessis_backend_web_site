@@ -1,0 +1,333 @@
+<!-- Supplies & Services Section -->
+{% set _is_prague = (city_key == 'prague') or (city_key == 'test_prague') %}
+{% set DM_WEBSITE_BY_COUNTRY = {"DE": "https://www.dm.de/", "CZ": "https://www.dm.cz/"} %}
+{% set WALMART_URL = "https://www.walmart.com" %}
+{% set dm_country_code = country_code if country_code is defined else (meta.country_code if meta is defined else "") %}
+{% set dm_country_code = (dm_country_code or "").upper() %}
+{% set dm_url = DM_WEBSITE_BY_COUNTRY.get(dm_country_code) %}
+{% set driving_enabled = trip_profile and trip_profile.will_drive %}
+{% set include_rental_cars_page = include_rental_cars_page|default(false) %}
+{% if google_maps_category_links is defined and google_maps_category_links is mapping %}
+  {% set links = google_maps_category_links %}
+{% elif supplies_services is defined and supplies_services is mapping %}
+  {% set links = supplies_services.get("google_maps_category_links", {}) %}
+{% else %}
+  {% set links = {} %}
+{% endif %}
+{% if pharmacies or supermarkets or convenience_stores or rental_cars or _is_prague %}
+<div id="sec_supplies_services" class="supplies-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+    Supplies & Services
+  </h1>
+
+  <div class="essentials-grid">
+    {% if (pharmacies|length == 0) and (supermarkets|length == 0) and (convenience_stores|length == 0) and (rental_cars|length == 0) %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        Supplies & Services
+      </h2>
+      <div class="muted">Data not available yet for this location.</div>
+    </div>
+    {% endif %}
+    <!-- Pharmacies -->
+    {% set pharmacies_with_site = pharmacies|selectattr('website')|list %}
+    {% if pharmacies_with_site %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-hospital"/></svg>
+        Pharmacies & Drugstores
+      </h2>
+      <div class="essentials-label">Major pharmacy chains for prescriptions and over-the-counter medications</div>
+      <ul class="bullets">
+        {% set chain_map = {} %}
+        {# First pass: group by chain name, prefer entries with websites. Only consider entries that have a website. #}
+        {% for pharmacy in pharmacies_with_site %}
+          {% if pharmacy.name %}
+            {% set chain_key = pharmacy.name.lower().replace('-', '').replace(' ', '').replace('_', '') %}
+            {% if chain_key not in chain_map or (pharmacy.website and not chain_map[chain_key].website) %}
+              {% set _ = chain_map.update({chain_key: pharmacy}) %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {# Second pass: render unique chains with websites only #}
+        {% for chain_key, pharmacy in chain_map.items() %}
+          {% set display_name = ' '.join(pharmacy.name.split()[:3]) if pharmacy.name.split()|length > 1 else pharmacy.name %}
+          <li style="margin-bottom: 8px;">
+            <strong>{{ display_name }}</strong>
+            {% if pharmacy.website or pharmacy.google_maps_url %}
+              {% set display_host = pharmacy.website %}
+              {% if '://' in display_host %}
+                {% set display_host = display_host.split('://')[1] %}
+              {% endif %}
+              {% set display_host = display_host.split('/')[0].split('?')[0] %}
+              <br><span class="small muted">
+                {% if pharmacy.website %}
+                  <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                  <a href="{{ pharmacy.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+                {% endif %}
+                {% if pharmacy.website and pharmacy.google_maps_url %} · {% endif %}
+                {% if pharmacy.google_maps_url %}
+                  📍 <a href="{{ pharmacy.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                {% endif %}
+              </span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      {% if links is mapping and links.get("pharmacies") %}
+      <div class="small muted" style="margin-top: 6px;">
+        <a href="{{ links['pharmacies'] }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Other Pharmacies</a>
+      </div>
+      {% endif %}
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Additional pharmacy chains (including Walgreens, independent pharmacies) may be available. Use map apps to locate nearby options.
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Supermarkets -->
+    {% set supermarkets_with_site = supermarkets|selectattr('website')|list %}
+    {% if supermarkets_with_site %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        Supermarkets & Grocery Stores
+      </h2>
+      <div class="essentials-label">Major grocery chains for supplies</div>
+      <ul class="bullets">
+        {% set chain_map = {} %}
+        {# First pass: group by chain name, prefer entries with websites #}
+        {% for store in supermarkets_with_site %}
+          {% set chain_key = store.name.lower().replace('-', '').replace(' ', '').replace('_', '') %}
+          {% if chain_key not in chain_map or (store.website and not chain_map[chain_key].website) %}
+            {% set _ = chain_map.update({chain_key: store}) %}
+          {% endif %}
+        {% endfor %}
+        {# Second pass: render unique chains with websites #}
+        {% set rendered_domains = [] %}
+        {% for chain_key, store in chain_map.items() %}
+          {% set display_name = ' '.join(store.name.split()[:3]) if store.name.split()|length > 1 else store.name %}
+          {% if store.website %}
+            {% set display_host = store.website %}
+            {% if '://' in display_host %}
+              {% set display_host = display_host.split('://')[1] %}
+            {% endif %}
+            {% set display_host = display_host.split('/')[0].split('?')[0] %}
+            {# Deduplicate by domain to avoid repeated chains with name variants (e.g., "Publix" vs "Publix Super Market") #}
+            {% if display_host not in rendered_domains %}
+              {% set _ = rendered_domains.append(display_host) %}
+              <li style="margin-bottom: 8px;">
+                <strong>{{ display_name }}</strong>
+                <br><span class="small muted">
+                  {% if store.website %}
+                    <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                    <a href="{{ store.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+                  {% endif %}
+                  {% if store.website and store.google_maps_url %} · {% endif %}
+                  {% if store.google_maps_url %}
+                    📍 <a href="{{ store.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                  {% endif %}
+                </span>
+              </li>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if links is mapping and links.get("supermarkets") %}
+      <div class="small muted" style="margin-top: 6px;">
+        <a href="{{ links['supermarkets'] }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Other Grocery Stores</a>
+      </div>
+      {% endif %}
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Additional supermarkets and local grocery stores may be available. Use map apps to locate nearby options.
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Convenience Stores -->
+    {% set convenience_with_site = convenience_stores|selectattr('website')|list %}
+    {% if convenience_with_site %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        Convenience Stores
+      </h2>
+      <div class="essentials-label">Quick access to essentials and snacks</div>
+      <ul class="bullets">
+        {% set chain_map = {} %}
+        {# First pass: group by chain name, prefer entries with websites #}
+        {% for store in convenience_with_site %}
+          {% set chain_key = store.name.lower().replace('-', '').replace(' ', '').replace('_', '') %}
+          {# Prefer entries with websites, or take first occurrence #}
+          {% if chain_key not in chain_map or (store.website and not chain_map[chain_key].website) %}
+            {% set _ = chain_map.update({chain_key: store}) %}
+          {% endif %}
+        {% endfor %}
+        {# Second pass: render unique chains (deduplicated by normalized name) #}
+        {% set rendered_chains = [] %}
+        {% for chain_key, store in chain_map.items() %}
+          {# Normalize display name: "7-Eleven" variations -> "7-Eleven", "Circle K" variations -> "Circle K" #}
+          {% set display_name = store.name %}
+          {% if '7' in store.name.lower() and 'eleven' in store.name.lower() %}
+            {% set display_name = '7-Eleven' %}
+          {% elif 'circle' in store.name.lower() and 'k' in store.name.lower() %}
+            {% set display_name = 'Circle K' %}
+          {% elif 'cvs' in store.name.lower() %}
+            {% set display_name = 'CVS' %}
+          {% elif 'walgreens' in store.name.lower() %}
+            {% set display_name = 'Walgreens' %}
+          {% else %}
+            {# Use first 3 words for non-canonical stores (e.g., "4 Corners Marketplace", "57th Street Deli") #}
+            {% set display_name = ' '.join(store.name.split()[:3]) if store.name.split()|length > 1 else store.name %}
+          {% endif %}
+          
+          {# Only render if not already rendered #}
+          {% if display_name not in rendered_chains %}
+            {% set _ = rendered_chains.append(display_name) %}
+            <li style="margin-bottom: 8px;">
+              <strong>{{ display_name }}</strong>
+              {% if store.website %}
+                {% set display_host = store.website %}
+                {% if '://' in display_host %}
+                  {% set display_host = display_host.split('://')[1] %}
+                {% endif %}
+                {% set display_host = display_host.split('/')[0].split('?')[0] %}
+                {# Extract clean domain (e.g., "7-eleven.com" not full location URL) #}
+                {% if '7-eleven.com' in display_host %}
+                  {% set display_host = '7-eleven.com' %}
+                {% elif 'circlek.com' in display_host %}
+                  {% set display_host = 'circlek.com' %}
+                {% elif 'cvs.com' in display_host %}
+                  {% set display_host = 'cvs.com' %}
+                {% elif 'walgreens.com' in display_host %}
+                  {% set display_host = 'walgreens.com' %}
+                {% endif %}
+                <br><span class="small muted">
+                  {% if store.website %}
+                    <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                    <a href="{{ store.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+                  {% endif %}
+                  {% if store.website and store.google_maps_url %} · {% endif %}
+                  {% if store.google_maps_url %}
+                    📍 <a href="{{ store.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                  {% endif %}
+                </span>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if links is mapping and links.get("convenience_stores") %}
+      <div class="small muted" style="margin-top: 6px;">
+        <a href="{{ links['convenience_stores'] }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Other Convenience Stores</a>
+      </div>
+      {% endif %}
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Additional convenience stores and corner markets may be available. Use map apps to locate nearby options.
+      </div>
+    </div>
+    {% else %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        Convenience Stores
+      </h2>
+      <div class="muted">Data not available yet for this location.</div>
+    </div>
+    {% endif %}
+    
+    <!-- Rental Cars (only when driving pack page is not included) -->
+    {% set rental_with_site = rental_cars|selectattr('website')|list %}
+    {% if rental_cars and not driving_enabled and not include_rental_cars_page %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-car"/></svg>
+        Rental Cars
+      </h2>
+      <div class="essentials-label">Available rental providers</div>
+      {% if rental_with_site %}
+      <ul class="bullets">
+        {% for rental in rental_with_site %}
+          <li style="margin-bottom: 6px;">
+            <strong>{{ rental.name }}</strong>
+            {% if rental.website %}
+              {% set display_host = rental.website %}
+              {% if '://' in display_host %}
+                {% set display_host = display_host.split('://')[1] %}
+              {% endif %}
+              {% set display_host = display_host.split('/')[0].split('?')[0] %}
+              <br><span class="small muted">
+                <svg class="icon-xs"><use href="#icon-globe"/></svg>
+                <a href="{{ rental.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+              </span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="muted">Data not available yet for this location.</div>
+      {% endif %}
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Other rental car companies may be available. Confirm availability with providers directly.
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Parking (US only) -->
+    {% if parking and parking.links %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        {{ parking.title }}
+      </h2>
+      {% if parking.provider %}
+      <div class="essentials-label">{{ parking.provider }}</div>
+      {% endif %}
+      <p class="small" style="margin: 8px 0;">{{ parking.description }}</p>
+      <div style="margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap;">
+        {# Render buttons using the raw URLs exactly as provided in parking.links #}
+        {% for link in parking.links %}
+          <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" 
+             style="display: inline-block; padding: 8px 12px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; font-size: var(--font-sm);">
+            {{ link.label }}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Book parking in advance to secure a spot near your destination.
+      </div>
+    </div>
+    {% elif parking and parking.url %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-map-pin"/></svg>
+        {{ parking.title }}
+      </h2>
+      {% if parking.provider %}
+      <div class="essentials-label">{{ parking.provider }}</div>
+      {% endif %}
+      <p class="small" style="margin: 8px 0;">{{ parking.description }}</p>
+      <div style="margin-top: 10px;">
+        <a href="{{ parking.url }}" target="_blank" rel="noopener noreferrer" 
+           style="display: inline-block; padding: 8px 12px; background-color: #3b82f6; color: white; text-decoration: none; border-radius: 4px; font-weight: 600; font-size: var(--font-sm);">
+          {{ parking.cta_text }}
+        </a>
+      </div>
+      <div class="small muted" style="margin-top: 8px; font-style: italic;">
+        Note: Book parking in advance to secure a spot near your destination.
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Distilled Water Guidance -->
+  <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 10px; border-radius: 4px; margin-top: 16px;">
+    <div style="font-size: 9px; color: #0c4a6e;">
+      <strong>💧 Distilled Water:</strong> Recommend purchasing at listed supermarkets or pharmacies. This guide does not verify specific product availability per store.{% if dm_url %} In this country, dm drogerie markt may also carry distilled water. Check dm: <a href="{{ dm_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">dm</a>.{% endif %}{% if dm_country_code == "ES" %} In Spain, distilled water is most reliably found at pharmacies.{% elif dm_country_code == "US" %} In the United States, distilled water is widely available at supermarkets, pharmacies, and major retailers like Walmart: <a href="{{ WALMART_URL }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Walmart</a>.{% endif %}
+    </div>
+  </div>
+
+</div>
+{% endif %}

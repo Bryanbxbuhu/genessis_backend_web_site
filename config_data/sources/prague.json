@@ -1,0 +1,132 @@
+[
+  {
+    "source_key": "prazsky_denik_prague",
+    "name": "Prazsky Denik (Prague)",
+    "type": "rss",
+    "url": "https://prazsky.denik.cz/rss/server-original.html",
+    "fallback_url": "https://prazsky.denik.cz/rss/z_regionu.html",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "praguemorning",
+    "name": "Prague Morning",
+    "type": "rss",
+    "url": "https://praguemorning.cz/feed/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "us_embassy_cz_alerts",
+    "name": "US Embassy Alerts (Czechia)",
+    "type": "rss",
+    "url": "https://cz.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "prazsky_denik_region",
+    "name": "Prazsky Denik - Region News",
+    "type": "rss",
+    "url": "https://prazsky.denik.cz/rss/z_regionu.html",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "idnes_zpravodaj",
+    "name": "iDNES - News",
+    "type": "rss",
+    "url": "https://servis.idnes.cz/rss.aspx?c=zpravodaj",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "aktualne_cz",
+    "name": "Aktualne.cz",
+    "type": "rss",
+    "url": "https://www.aktualne.cz/rss",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "denikn",
+    "name": "Deník N - Minute Updates",
+    "type": "rss",
+    "url": "https://denikn.cz/minuta/feed/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "pid_news",
+    "name": "PID News",
+    "type": "rss",
+    "url": "https://pid.cz/feed/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "pid_planned_outages",
+    "name": "PID Planned Outages",
+    "type": "rss",
+    "url": "https://pid.cz/feed/rss-vyluky/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "pid_operational_incidents",
+    "name": "PID Operational Incidents",
+    "type": "rss",
+    "url": "https://pid.cz/feed/rss-mimoradnosti/",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "dpp_updates",
+    "name": "DPP Updates",
+    "type": "rss",
+    "url": "https://www.dpp.cz/rss/en/rss.xml",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "radio_prague_international_latest",
+    "name": "Radio Prague International Latest",
+    "type": "rss",
+    "url": "https://english.radio.cz/rcz-rss/en",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "czech_police_rss",
+    "name": "Police of the Czech Republic RSS",
+    "type": "rss",
+    "url": "https://policie.gov.cz/script/rss.aspx?nid=10206",
+    "fallback_url": "http://www.policie.cz/script/rss.aspx?nid=10206",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "prague_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "prague_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/3067696",
+    "enabled": true,
+    "city_key": "prague"
+  },
+  {
+    "source_key": "prague_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/3067696",
+    "enabled": true,
+    "city_key": "prague"
+  }
+]

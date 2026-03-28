@@ -1,0 +1,143 @@
+﻿<!-- Driving Pack Section (conditional) -->
+{% set driving_enabled = trip_profile and trip_profile.will_drive %}
+{% set driving_pack_data = driving_pack or {} %}
+{% set driving_checklist = driving_pack_data.get('checklist', []) %}
+{% set driving_rental_notes = driving_pack_data.get('rental_notes', []) %}
+{% set driving_accident_steps = driving_pack_data.get('accident_steps', []) %}
+{% set rental_list = rental_cars or [] %}
+{% set rental_with_site = rental_list|selectattr('website')|list %}
+{% set include_rental_cars_page = include_rental_cars_page|default(false) %}
+{% if driving_enabled or (include_rental_cars_page and rental_list) %}
+<div id="sec_driving_pack" class="driving-pack-page">
+  <h1 class="page-title">
+    <svg class="icon-sm"><use href="#icon-car"/></svg>
+    {% if driving_enabled %}Driving Pack{% else %}Rental Cars{% endif %}
+  </h1>
+
+  <div class="essentials-grid">
+    <!-- Document Readiness -->
+    {% if driving_enabled %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-file-text"/></svg>
+        Document Readiness
+      </h2>
+      <div class="essentials-label">Required documents and preparation</div>
+      {% if driving_checklist %}
+      <ul class="bullets">
+        {% for item in driving_checklist %}
+          <li style="margin-bottom: 6px;">{{ item }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="muted">No driving checklist available yet.</div>
+      {% endif %}
+      
+      {% if trip_profile and trip_profile.needs_idp %}
+      <div style="background: #fffbeb; border: 1px solid #fcd34d; padding: 8px; border-radius: 4px; margin-top: 8px;">
+        <div style="font-size: 9px; color: #92400e;">
+          <strong>International Driving Permit:</strong> Obtain an IDP via authorized issuers (e.g., AAA for US travelers) before departure.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <!-- Rental Cars -->
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-car"/></svg>
+        Rental Cars
+      </h2>
+      <div class="essentials-label">Available rental providers</div>
+      {% if rental_with_site %}
+      <ul class="bullets">
+        {% for rental in rental_with_site %}
+          <li style="margin-bottom: 6px;">
+            <strong>{{ rental.name }}</strong>
+            {% if rental.website %}
+              {% set domain = rental.website.split('/')[2] if '/' in rental.website else rental.website %}
+              -> <a href="{{ rental.website }}" style="color: #2563eb; font-size: 8px; word-break: break-all;">{{ domain }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="muted">No rental car listings available yet for this destination.</div>
+      {% endif %}
+      <div style="margin-top: 8px; padding: 8px; background: #f3f4f6; border-radius: 4px;">
+        <div style="font-size: 8px; color: #374151; font-style: italic;">
+          <strong>Note:</strong> Other rental car companies may be available at this destination. The companies listed above have been verified via OpenStreetMap data. Always confirm availability, pricing, and requirements directly with your chosen provider before booking.
+        </div>
+      </div>
+      
+      {% if trip_profile and trip_profile.rental_provider %}
+      <div style="margin-top: 8px; font-size: 9px; color: #6b7280;">
+        Selected Provider: <strong>{{ trip_profile.rental_provider }}</strong>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Rental Requirements -->
+    {% if driving_enabled %}
+    <div class="card">
+      <h2>
+        <svg class="icon-sm"><use href="#icon-car"/></svg>
+        Rental & On-Road Friction
+      </h2>
+      <div class="essentials-label">Common rental requirements and tips</div>
+      {% if driving_rental_notes %}
+      <ul class="bullets">
+        {% for note in driving_rental_notes %}
+          <li style="margin-bottom: 6px;">{{ note }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="muted">No rental tips available yet.</div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Accident Steps -->
+  {% if driving_enabled %}
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-alert"/></svg>
+      Roadside Assistance & Accident Steps
+    </h2>
+    <div class="essentials-label">What to do in case of an accident</div>
+    {% if driving_accident_steps %}
+    <ol style="padding-left: 20px; margin: 8px 0;">
+      {% for step in driving_accident_steps %}
+        <li style="margin-bottom: 6px; font-size: 9.5px;">{{ step }}</li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <div class="muted">No accident guidance available yet.</div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Trip Notes -->
+  {% if driving_enabled and trip_profile and trip_profile.notes %}
+  <div style="background: #f0f9ff; border: 1px solid #bae6fd; padding: 10px; border-radius: 4px; margin-top: 12px;">
+    <div style="font-size: 9px; color: #0c4a6e;">
+      <strong>Trip Notes:</strong> {{ trip_profile.notes }}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Disclaimer -->
+  {% if driving_enabled %}
+  <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 10px; border-radius: 4px; margin-top: 12px;">
+    <div style="font-size: 8px; color: #92400e;">
+      <strong>Disclaimer:</strong> This guidance is general and practical. Country-specific legal requirements may vary and are not verified by this report. Consult official sources and your rental provider for authoritative requirements.
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="page-break"></div>
+{% endif %}

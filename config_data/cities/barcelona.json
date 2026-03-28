@@ -1,0 +1,80 @@
+{
+  "name": "Barcelona",
+  "country_code": "ES",
+  "timezone": "Europe/Madrid",
+  "language": "es",
+  "latitude": 41.3851,
+  "longitude": 2.1734,
+  "population": 1620343,
+  "aliases": [
+    "barcelona",
+    "barcelona spain",
+    "barcelona es",
+    "barna"
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "091",
+    "fire": "080",
+    "ambulance": "061",
+    "other": []
+  },
+  "transit_systems": [
+    {
+      "name": "TMB (Metro and Bus)",
+      "modes": [
+        "Metro",
+        "Bus"
+      ],
+      "website": "https://www.tmb.cat"
+    },
+    {
+      "name": "FGC",
+      "modes": [
+        "Train",
+        "Commuter Rail"
+      ],
+      "website": "https://www.fgc.cat"
+    },
+    {
+      "name": "Rodalies de Catalunya",
+      "modes": [
+        "Commuter Rail"
+      ],
+      "website": "https://rodalies.gencat.cat"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Josep Tarradellas Barcelona El Prat Airport",
+      "iata": "BCN",
+      "website": "https://www.aena.es/en/josep-tarradellas-barcelona-el-prat.html"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/es/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Cabify",
+      "url": "https://cabify.com/en"
+    },
+    {
+      "category": "Government",
+      "label": "Barcelona City Council",
+      "url": "https://ajuntament.barcelona.cat/en/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "TMB app"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "Rodalies app"
+    }
+  ]
+}

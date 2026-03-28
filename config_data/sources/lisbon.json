@@ -1,0 +1,66 @@
+[
+  {
+    "source_key": "dn_lisbon",
+    "name": "Di\u00e1rio de Not\u00edcias (Lisbon)",
+    "type": "rss",
+    "url": "https://www.dn.pt/feed",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "observador_lisbon_feed",
+    "name": "Observador (Lisbon)",
+    "type": "rss",
+    "url": "https://observador.pt/feed",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "observador_lisbon_rss",
+    "name": "Observador (Lisbon) RSS",
+    "type": "rss",
+    "url": "https://observador.pt/rss",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "cm_jornal_lisbon",
+    "name": "Correio da Manh\u00e3 (Lisbon)",
+    "type": "rss",
+    "url": "https://www.cmjornal.pt/rss",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "us_embassy_pt_alerts",
+    "name": "US Embassy Alerts (Portugal)",
+    "type": "rss",
+    "url": "https://pt.usembassy.gov/category/alert/feed/",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "lisbon_meteoalarm_europe",
+    "name": "Meteoalarm Europe (Legacy RSS)",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-rss-europe",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "lisbon_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/2267057",
+    "enabled": true,
+    "city_key": "lisbon"
+  },
+  {
+    "source_key": "lisbon_bbc_observation",
+    "name": "BBC Weather Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/2267057",
+    "enabled": true,
+    "city_key": "lisbon"
+  }
+]

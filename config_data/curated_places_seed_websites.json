@@ -1,0 +1,1347 @@
+{
+  "version": 1,
+  "generated_utc": "2026-01-22T17:15:39+00:00",
+  "notes": "Seed locations (max 4 per category) used to ensure stable, high-quality websites for core categories.",
+  "cities": {
+    "berlin": {
+      "hospitals": [
+        {
+          "name": "Charité Universitätsmedizin Berlin",
+          "website": "https://www.charite.de/"
+        },
+        {
+          "name": "Vivantes",
+          "website": "https://www.vivantes.de/"
+        },
+        {
+          "name": "Helios Klinikum Berlin Buch",
+          "website": "https://www.helios-gesundheit.de/kliniken/berlin-buch/"
+        },
+        {
+          "name": "DRK Kliniken Berlin",
+          "website": "https://www.drk-kliniken-berlin.de/"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Shop Apotheke",
+          "website": "https://www.shop-apotheke.com/"
+        },
+        {
+          "name": "DocMorris",
+          "website": "https://corporate.docmorris.com/en/"
+        },
+        {
+          "name": "easyApotheke",
+          "website": "https://www.easyapotheke.de/"
+        },
+        {
+          "name": "LINDA Apotheken",
+          "website": "https://www.linda.de/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "REWE",
+          "website": "https://www.rewe.de/"
+        },
+        {
+          "name": "EDEKA",
+          "website": "https://www.edeka.de/"
+        },
+        {
+          "name": "Lidl",
+          "website": "https://www.lidl.de/"
+        },
+        {
+          "name": "ALDI Nord",
+          "website": "https://www.aldi-nord.de/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "REWE To Go",
+          "website": "https://www.rewe.de/services/rewe-to-go/"
+        },
+        {
+          "name": "Aral",
+          "website": "https://www.aral.de/"
+        },
+        {
+          "name": "Shell",
+          "website": "https://www.shell.de/"
+        },
+        {
+          "name": "PENNY",
+          "website": "https://www.penny.de/"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "SIXT",
+          "website": "https://www.sixt.com/"
+        },
+        {
+          "name": "Europcar",
+          "website": "https://www.europcar.com/"
+        },
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.de/"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.de/"
+        }
+      ]
+    },
+    "barcelona": {
+      "convenience_stores": [
+        {
+          "name": "Carrefour Express",
+          "website": "https://www.carrefour.es"
+        },
+        {
+          "name": "DIA",
+          "website": "https://www.dia.es"
+        },
+        {
+          "name": "Supercor",
+          "website": "https://www.elcorteingles.es/supercor/"
+        },
+        {
+          "name": "Bonpreu",
+          "website": "https://www.bonpreu.cat"
+        }
+      ]
+    },
+    "madrid": {
+      "supermarkets": [
+        {
+          "name": "Mercadona",
+          "website": "https://www.mercadona.es"
+        },
+        {
+          "name": "DIA",
+          "website": "https://www.dia.es"
+        },
+        {
+          "name": "ALDI España",
+          "website": "https://www.aldi.es"
+        },
+        {
+          "name": "El Corte Inglés Supermercado",
+          "website": "https://www.elcorteingles.es/supermercado/"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Farmacia 24 horas (Conde de Orgaz)",
+          "website": "https://www.farmaciacondeorgaz.com"
+        },
+        {
+          "name": "Farmacia Montecarmelo",
+          "website": "https://farmaciamontecarmelo.com"
+        },
+        {
+          "name": "Farmacia Maria Petra León García",
+          "website": "https://farmaciamaria.es"
+        },
+        {
+          "name": "Farmacia Burgocentro",
+          "website": "https://burgocentro.es"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Carrefour Express",
+          "website": "https://www.carrefour.es"
+        },
+        {
+          "name": "Supercor",
+          "website": "https://www.elcorteingles.es/supercor/"
+        },
+        {
+          "name": "DIA",
+          "website": "https://www.dia.es"
+        },
+        {
+          "name": "Alcampo",
+          "website": "https://www.alcampo.es"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Hospital Universitario La Paz",
+          "website": "https://www.comunidad.madrid/hospital/lapaz"
+        },
+        {
+          "name": "Hospital General Universitario Gregorio Marañón",
+          "website": "https://www.comunidad.madrid/hospital/gregoriomaranon"
+        },
+        {
+          "name": "Hospital Universitario 12 de Octubre",
+          "website": "https://www.comunidad.madrid/hospital/12octubre"
+        },
+        {
+          "name": "Hospital Clínico San Carlos",
+          "website": "https://www.comunidad.madrid/hospital/clinicosancarlos"
+        }
+      ]
+    },
+    "sevilla": {
+      "supermarkets": [
+        {
+          "name": "Mercadona",
+          "website": "https://www.mercadona.es"
+        },
+        {
+          "name": "DIA",
+          "website": "https://www.dia.es"
+        },
+        {
+          "name": "ALDI España",
+          "website": "https://www.aldi.es"
+        },
+        {
+          "name": "Supermercados MAS",
+          "website": "https://www.supermercadosmas.com"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Farmacia Caballero",
+          "website": "https://www.farmaciacaballero.com"
+        },
+        {
+          "name": "Farmacia Botica del Glorioso",
+          "website": "https://boticadelglorioso.com"
+        },
+        {
+          "name": "Farmacias Trébol",
+          "website": "https://farmaciastrebol.com"
+        },
+        {
+          "name": "Farmacia Online Mifarma",
+          "website": "https://www.mifarma.es"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Carrefour Express",
+          "website": "https://www.carrefour.es"
+        },
+        {
+          "name": "Supercor",
+          "website": "https://www.elcorteingles.es/supercor/"
+        },
+        {
+          "name": "DIA",
+          "website": "https://www.dia.es"
+        },
+        {
+          "name": "Alcampo",
+          "website": "https://www.alcampo.es"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Hospital Universitario Virgen del Rocío",
+          "website": "https://www.hospitaluvrocio.es"
+        },
+        {
+          "name": "Hospital Universitario Virgen Macarena",
+          "website": "https://www.hospitalmacarena.es"
+        },
+        {
+          "name": "Hospital Quirónsalud Sagrado Corazón",
+          "website": "https://www.quironsalud.com/sagrado-corazon"
+        },
+        {
+          "name": "Hospital Vithas Sevilla",
+          "website": "https://vithas.es/centros/hospital-vithas-sevilla/"
+        }
+      ]
+    },
+    "lisbon": {
+      "supermarkets": [
+        {
+          "name": "Continente",
+          "website": "https://www.continente.pt"
+        },
+        {
+          "name": "Pingo Doce",
+          "website": "https://www.pingodoce.pt"
+        },
+        {
+          "name": "Lidl Portugal",
+          "website": "https://www.lidl.pt"
+        },
+        {
+          "name": "Auchan Portugal",
+          "website": "https://www.auchan.pt"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Farmácia Alameda",
+          "website": "https://www.farmaciasportuguesas.pt/"
+        },
+        {
+          "name": "Farmácia do Calhariz",
+          "website": "https://www.asuafarmaciaonline.pt/"
+        },
+        {
+          "name": "Farmácia Central Gomes",
+          "website": "https://www.asuafarmaciaonline.pt/"
+        },
+        {
+          "name": "Holon Farmácias",
+          "website": "https://holon.pt/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Meu Super",
+          "website": "https://www.meusuper.pt"
+        },
+        {
+          "name": "Amanhecer",
+          "website": "https://www.amanhecer.pt"
+        },
+        {
+          "name": "Continente Bom Dia",
+          "website": "https://www.continente.pt"
+        },
+        {
+          "name": "Pingo Doce",
+          "website": "https://www.pingodoce.pt"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Hospital de Santa Maria",
+          "website": "https://www.chuln.min-saude.pt"
+        },
+        {
+          "name": "Hospital Dona Estefânia",
+          "website": "https://www.chlc.min-saude.pt"
+        },
+        {
+          "name": "Hospital da Luz Lisboa",
+          "website": "https://www.hospitaldaluz.pt"
+        },
+        {
+          "name": "Hospital CUF Tejo",
+          "website": "https://www.cuf.pt/hospitais-e-clinicas/hospital-cuf-tejo"
+        }
+      ]
+    },
+    "london": {
+      "supermarkets": [
+        {
+          "name": "Tesco",
+          "website": "https://www.tesco.com"
+        },
+        {
+          "name": "Sainsbury's",
+          "website": "https://www.sainsburys.co.uk"
+        },
+        {
+          "name": "Waitrose",
+          "website": "https://www.waitrose.com"
+        },
+        {
+          "name": "Lidl UK",
+          "website": "https://www.lidl.co.uk"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Boots",
+          "website": "https://www.boots.com"
+        },
+        {
+          "name": "Superdrug",
+          "website": "https://www.superdrug.com"
+        },
+        {
+          "name": "Well Pharmacy",
+          "website": "https://www.well.co.uk"
+        },
+        {
+          "name": "Day Lewis Pharmacy",
+          "website": "https://www.daylewis.co.uk"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Tesco Express",
+          "website": "https://www.tesco.com"
+        },
+        {
+          "name": "Sainsbury's Local",
+          "website": "https://www.sainsburys.co.uk"
+        },
+        {
+          "name": "Co-op Food",
+          "website": "https://www.coop.co.uk"
+        },
+        {
+          "name": "Londis",
+          "website": "https://www.londis.co.uk"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Guy's and St Thomas' NHS Foundation Trust",
+          "website": "https://www.guysandstthomas.nhs.uk"
+        },
+        {
+          "name": "University College London Hospitals (UCLH)",
+          "website": "https://www.uclh.nhs.uk"
+        },
+        {
+          "name": "Imperial College Healthcare NHS Trust",
+          "website": "https://www.imperial.nhs.uk"
+        },
+        {
+          "name": "St George's University Hospitals NHS Foundation Trust",
+          "website": "https://www.stgeorges.nhs.uk"
+        }
+      ]
+    },
+    "paris": {
+      "supermarkets": [
+        {
+          "name": "Carrefour",
+          "website": "https://www.carrefour.fr"
+        },
+        {
+          "name": "Monoprix",
+          "website": "https://www.monoprix.fr"
+        },
+        {
+          "name": "Franprix",
+          "website": "https://www.franprix.fr"
+        },
+        {
+          "name": "ALDI France",
+          "website": "https://www.aldi.fr"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Citypharma",
+          "website": "https://pharmacie-citypharma.fr"
+        },
+        {
+          "name": "Grande Pharmacie Hahnemann",
+          "website": "https://www.pharmaciehahnemann.com"
+        },
+        {
+          "name": "Grande Pharmacie Anatole France",
+          "website": "https://www.grandepharmacieanatolefrance.com"
+        },
+        {
+          "name": "American Hospital Pharmacy",
+          "website": "https://www.american-hospital.org"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Carrefour City",
+          "website": "https://www.carrefour.fr"
+        },
+        {
+          "name": "Carrefour Express",
+          "website": "https://www.carrefour.fr"
+        },
+        {
+          "name": "Franprix",
+          "website": "https://www.franprix.fr"
+        },
+        {
+          "name": "Monop'",
+          "website": "https://www.monoprix.fr"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Assistance Publique – Hôpitaux de Paris (AP-HP)",
+          "website": "https://www.aphp.fr"
+        },
+        {
+          "name": "American Hospital of Paris",
+          "website": "https://www.american-hospital.org"
+        },
+        {
+          "name": "Hôpital Pitié-Salpêtrière (AP-HP)",
+          "website": "https://pitiesalpetriere.aphp.fr"
+        },
+        {
+          "name": "Hôpital Saint-Louis (AP-HP)",
+          "website": "https://saintlouis.aphp.fr"
+        }
+      ]
+    },
+    "prague": {
+      "supermarkets": [
+        {
+          "name": "Albert",
+          "website": "https://www.albert.cz"
+        },
+        {
+          "name": "Lidl Česko",
+          "website": "https://www.lidl.cz"
+        },
+        {
+          "name": "Tesco Česko",
+          "website": "https://www.tesco.cz"
+        },
+        {
+          "name": "Kaufland ČR",
+          "website": "https://www.kaufland.cz"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "BENU Lékárna",
+          "website": "https://www.benu.cz"
+        },
+        {
+          "name": "Dr.Max",
+          "website": "https://www.drmax.cz"
+        },
+        {
+          "name": "Lékárna Apomed",
+          "website": "https://www.apomed.cz"
+        },
+        {
+          "name": "Lékárna Němocnice Na Homolce",
+          "website": "https://www.homolka.cz"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Žabka",
+          "website": "https://www.zabka.cz"
+        },
+        {
+          "name": "Albert",
+          "website": "https://www.albert.cz"
+        },
+        {
+          "name": "Tesco Express",
+          "website": "https://www.tesco.cz"
+        },
+        {
+          "name": "Lidl Česko",
+          "website": "https://www.lidl.cz"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Fakultní nemocnice v Motole",
+          "website": "https://www.fnmotol.cz"
+        },
+        {
+          "name": "Nemocnice Na Homolce",
+          "website": "https://www.homolka.cz"
+        },
+        {
+          "name": "Všeobecná fakultní nemocnice v Praze",
+          "website": "https://www.vfn.cz"
+        },
+        {
+          "name": "Nemocnice Bulovka",
+          "website": "https://bulovka.cz"
+        }
+      ]
+    },
+    "dubrovnik": {
+      "hospitals": [
+        {
+          "name": "Opća bolnica Dubrovnik",
+          "website": "https://www.bolnica-du.hr/"
+        },
+        {
+          "name": "Gradska bolnica Dubrovnik",
+          "website": "https://www.dzs.hr/"
+        },
+        {
+          "name": "Ambulanta Mokošica",
+          "website": "https://www.dom-zdravlja-dubrovnik.hr/hr/lokacije/mokosica"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Apoteka Placa",
+          "website": "https://www.ljekarne-vlatka-markovic.hr/"
+        },
+        {
+          "name": "Ljekarna Ragusa",
+          "website": "https://www.ljekarne-ragusa.hr/"
+        },
+        {
+          "name": "Farmagenus",
+          "website": "https://www.farmagenus.hr/"
+        },
+        {
+          "name": "Pharmalogist",
+          "website": "https://www.pharmalogist.com/"
+        },
+        {
+          "name": "Ljekarne-zagreb.hr",
+          "website": "https://www.ljekarne-zagreb.hr/"
+        },
+        {
+          "name": "Apoteka Kod Biste",
+          "website": "https://www.apoteka-kod-biste.hr/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Konzum",
+          "website": "https://www.konzum.hr/"
+        },
+        {
+          "name": "Lidl Hrvatska",
+          "website": "https://www.lidl.hr/"
+        },
+        {
+          "name": "Studenac",
+          "website": "https://www.studenac.hr/"
+        },
+        {
+          "name": "Kaufland Hrvatska",
+          "website": "https://www.kaufland.hr/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Tisak",
+          "website": "https://www.tisak.hr/"
+        },
+        {
+          "name": "INA",
+          "website": "https://www.ina.hr/en/"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "SIXT Croatia",
+          "website": "https://www.sixt.com/car-rental/croatia/"
+        },
+        {
+          "name": "Europcar Croatia",
+          "website": "https://www.europcar.com.hr/en//"
+        }
+      ]
+    },
+    "new-york": {
+      "supermarkets": [
+        {
+          "name": "Trader Joe's",
+          "website": "https://www.traderjoes.com"
+        },
+        {
+          "name": "Whole Foods Market",
+          "website": "https://www.wholefoodsmarket.com"
+        },
+        {
+          "name": "Key Food",
+          "website": "https://www.keyfood.com"
+        },
+        {
+          "name": "C-Town Supermarkets",
+          "website": "https://ctownsupermarkets.com"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "CVS Pharmacy",
+          "website": "https://www.cvs.com"
+        },
+        {
+          "name": "Walgreens",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "Duane Reade (Walgreens)",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "Capsule Pharmacy",
+          "website": "https://capsule.com"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "7-Eleven",
+          "website": "https://www.7-eleven.com"
+        },
+        {
+          "name": "Family Dollar",
+          "website": "https://www.familydollar.com"
+        },
+        {
+          "name": "Dollar Tree",
+          "website": "https://www.dollartree.com"
+        },
+        {
+          "name": "CVS (Essentials)",
+          "website": "https://www.cvs.com"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "NYU Langone Health",
+          "website": "https://nyulangone.org"
+        },
+        {
+          "name": "Mount Sinai Health System",
+          "website": "https://www.mountsinai.org"
+        },
+        {
+          "name": "NewYork-Presbyterian",
+          "website": "https://www.nyp.org"
+        },
+        {
+          "name": "Bellevue Hospital (NYC Health + Hospitals)",
+          "website": "https://www.nychealthandhospitals.org/bellevue/"
+        }
+      ]
+    },
+    "san-francisco": {
+      "supermarkets": [
+        {
+          "name": "Safeway",
+          "website": "https://www.safeway.com"
+        },
+        {
+          "name": "Trader Joe's",
+          "website": "https://www.traderjoes.com"
+        },
+        {
+          "name": "Whole Foods Market",
+          "website": "https://www.wholefoodsmarket.com"
+        },
+        {
+          "name": "99 Ranch Market",
+          "website": "https://www.99ranch.com"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "CVS Pharmacy",
+          "website": "https://www.cvs.com"
+        },
+        {
+          "name": "Walgreens",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "Kaiser Permanente Pharmacy",
+          "website": "https://healthy.kaiserpermanente.org"
+        },
+        {
+          "name": "Safeway Pharmacy",
+          "website": "https://www.safeway.com/pharmacy"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "7-Eleven",
+          "website": "https://www.7-eleven.com"
+        },
+        {
+          "name": "Walgreens (Essentials)",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "CVS (Essentials)",
+          "website": "https://www.cvs.com"
+        },
+        {
+          "name": "Safeway",
+          "website": "https://www.safeway.com"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "UCSF Health",
+          "website": "https://www.ucsfhealth.org"
+        },
+        {
+          "name": "Zuckerberg San Francisco General Hospital",
+          "website": "https://zuckerbergsanfranciscogeneral.org"
+        },
+        {
+          "name": "Kaiser Permanente San Francisco",
+          "website": "https://healthy.kaiserpermanente.org"
+        },
+        {
+          "name": "Sutter Health",
+          "website": "https://www.sutterhealth.org"
+        }
+      ]
+    },
+    "los-angeles": {
+      "hospitals": [
+        {
+          "name": "Cedars-Sinai",
+          "website": "https://www.cedars-sinai.org/"
+        },
+        {
+          "name": "UCLA Health",
+          "website": "https://www.uclahealth.org/"
+        },
+        {
+          "name": "Keck Medicine of USC",
+          "website": "https://www.keckmedicine.org/"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "CVS Pharmacy",
+          "website": "https://www.cvs.com"
+        },
+        {
+          "name": "Walgreens",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "Rite Aid",
+          "website": "https://www.riteaid.com"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Ralphs",
+          "website": "https://www.ralphs.com"
+        },
+        {
+          "name": "Trader Joe's",
+          "website": "https://www.traderjoes.com"
+        },
+        {
+          "name": "Whole Foods Market",
+          "website": "https://www.wholefoodsmarket.com"
+        },
+        {
+          "name": "Vons",
+          "website": "https://www.vons.com"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "7-Eleven",
+          "website": "https://www.7-eleven.com"
+        },
+        {
+          "name": "ampm",
+          "website": "https://www.ampm.com"
+        },
+        {
+          "name": "Circle K",
+          "website": "https://www.circlek.com"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Enterprise",
+          "website": "https://www.enterprise.com"
+        },
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.com"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.com"
+        }
+      ]
+    },
+    "delhi": {
+      "hospitals": [
+        {
+          "name": "AIIMS New Delhi",
+          "website": "https://www.aiims.edu/"
+        },
+        {
+          "name": "Apollo Hospitals (Delhi)",
+          "website": "https://www.apollohospitals.com/delhi"
+        },
+        {
+          "name": "Fortis Healthcare",
+          "website": "https://www.fortishealthcare.com/"
+        },
+        {
+          "name": "Max Healthcare",
+          "website": "https://www.maxhealthcare.in/"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Apollo Pharmacy",
+          "website": "https://www.apollopharmacy.in/"
+        },
+        {
+          "name": "MedPlus",
+          "website": "https://www.medplusmart.com/"
+        },
+        {
+          "name": "Netmeds",
+          "website": "https://www.netmeds.com/"
+        },
+        {
+          "name": "PharmEasy",
+          "website": "https://pharmeasy.in/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Reliance SMART",
+          "website": "https://www.reliancesmart.in/"
+        },
+        {
+          "name": "DMart",
+          "website": "https://www.dmartindia.com/"
+        },
+        {
+          "name": "Spencer's",
+          "website": "https://www.spencers.in/"
+        },
+        {
+          "name": "Nature's Basket",
+          "website": "https://www.naturesbasket.co.in/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "24SEVEN",
+          "website": "https://orders.24-seven.in/"
+        },
+        {
+          "name": "Blinkit",
+          "website": "https://blinkit.com/"
+        },
+        {
+          "name": "Zepto",
+          "website": "https://www.zeptonow.com/"
+        },
+        {
+          "name": "Swiggy Instamart",
+          "website": "https://www.swiggy.com/instamart"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Zoomcar",
+          "website": "https://www.zoomcar.com"
+        },
+        {
+          "name": "Revv",
+          "website": "https://www.revv.co.in"
+        },
+        {
+          "name": "Myles",
+          "website": "https://www.mylescars.com"
+        },
+        {
+          "name": "Savaari",
+          "website": "https://www.savaari.com"
+        }
+      ]
+    },
+    "dubai": {
+      "pharmacies": [
+        {
+          "name": "LIFE Pharmacy",
+          "website": "https://www.lifepharmacy.com/"
+        },
+        {
+          "name": "Aster Pharmacy",
+          "website": "https://www.asterpharmacy.ae/"
+        },
+        {
+          "name": "BinSina Pharmacy",
+          "website": "https://www.binsina.ae/"
+        },
+        {
+          "name": "Supercare Pharmacy",
+          "website": "https://www.supercare.ae/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Carrefour UAE",
+          "website": "https://www.carrefouruae.com/"
+        },
+        {
+          "name": "Lulu Hypermarket",
+          "website": "https://www.luluhypermarket.com/"
+        },
+        {
+          "name": "Spinneys",
+          "website": "https://www.spinneys.com/"
+        },
+        {
+          "name": "Waitrose UAE",
+          "website": "https://www.waitrose.ae/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "ZOOM",
+          "website": "https://www.zoomstore.com/"
+        },
+        {
+          "name": "Circle K UAE",
+          "website": "https://www.circlek.ae/"
+        },
+        {
+          "name": "Carrefour Market UAE",
+          "website": "https://www.carrefouruae.com/"
+        },
+        {
+          "name": "Choithrams",
+          "website": "https://www.choithrams.com/"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Enterprise",
+          "website": "https://www.enterprise.com/"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.com/"
+        },
+        {
+          "name": "Budget",
+          "website": "https://www.budget.com/"
+        },
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.com/"
+        }
+      ]
+    },
+    "tokyo": {
+      "supermarkets": [
+        {
+          "name": "AEON",
+          "website": "https://www.aeon.info"
+        },
+        {
+          "name": "Ito-Yokado",
+          "website": "https://www.itoyokado.co.jp"
+        },
+        {
+          "name": "SEIYU",
+          "website": "https://www.seiyu.co.jp"
+        },
+        {
+          "name": "LIFE",
+          "website": "https://www.lifecorp.jp"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Matsumoto Kiyoshi",
+          "website": "https://www.matsukiyo.co.jp"
+        },
+        {
+          "name": "Welcia",
+          "website": "https://www.welcia-yakkyoku.co.jp"
+        },
+        {
+          "name": "SUGI Pharmacy",
+          "website": "https://www.drug-sugi.co.jp"
+        },
+        {
+          "name": "Tsuruha Drug",
+          "website": "https://www.tsuruha.co.jp"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "7-Eleven Japan",
+          "website": "https://www.sej.co.jp"
+        },
+        {
+          "name": "FamilyMart",
+          "website": "https://www.family.co.jp"
+        },
+        {
+          "name": "Lawson",
+          "website": "https://www.lawson.co.jp"
+        },
+        {
+          "name": "MINISTOP",
+          "website": "https://www.ministop.co.jp"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "St. Luke's International Hospital",
+          "website": "https://hospital.luke.ac.jp"
+        },
+        {
+          "name": "The University of Tokyo Hospital",
+          "website": "https://www.h.u-tokyo.ac.jp"
+        },
+        {
+          "name": "Keio University Hospital",
+          "website": "https://www.hosp.keio.ac.jp"
+        },
+        {
+          "name": "Tokyo Medical University Hospital",
+          "website": "https://hospinfo.tokyo-med.ac.jp"
+        }
+      ]
+    },
+    "moscow": {
+      "supermarkets": [
+        {
+          "name": "Pyaterochka (Пятёрочка)",
+          "website": "https://5ka.ru"
+        },
+        {
+          "name": "Perekrestok (Перекрёсток)",
+          "website": "https://www.perekrestok.ru"
+        },
+        {
+          "name": "Magnit (Магнит)",
+          "website": "https://magnit.ru"
+        },
+        {
+          "name": "Lenta (Лента)",
+          "website": "https://lenta.com"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Аптека 36,6",
+          "website": "https://apteka366.ru"
+        },
+        {
+          "name": "Ригла",
+          "website": "https://www.rigla.ru"
+        },
+        {
+          "name": "Горздрав",
+          "website": "https://gorzdrav.org"
+        },
+        {
+          "name": "apteka.ru",
+          "website": "https://apteka.ru"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "VkusVill (ВкусВилл)",
+          "website": "https://vkusvill.ru"
+        },
+        {
+          "name": "Fix Price",
+          "website": "https://fix-price.com"
+        },
+        {
+          "name": "Pyaterochka (Пятёрочка)",
+          "website": "https://5ka.ru"
+        },
+        {
+          "name": "Magnit (Магнит)",
+          "website": "https://magnit.ru"
+        }
+      ],
+      "hospitals": [
+        {
+          "name": "Botkin Hospital",
+          "website": "https://botkinmoscow.ru/en/"
+        },
+        {
+          "name": "N.V. Sklifosovsky Research Institute for Emergency Medicine",
+          "website": "https://sklif.mos.ru/"
+        },
+        {
+          "name": "Sechenov University",
+          "website": "https://www.sechenov.ru/"
+        },
+        {
+          "name": "City Clinical Hospital No. 24",
+          "website": "https://www.gkb-24.ru/"
+        }
+      ]
+    },
+    "minneapolis": {
+      "hospitals": [
+        {
+          "name": "Abbott Northwestern Hospital",
+          "website": "https://www.allinahealth.org/abbott-northwestern-hospital"
+        },
+        {
+          "name": "Hennepin Healthcare",
+          "website": "https://www.hennepinhealthcare.org/"
+        },
+        {
+          "name": "M Health Fairview University of Minnesota Medical Center",
+          "website": "https://mhealthfairview.org/locations/MHealth-Fairview-University-of-Minnesota-Medical-Center"
+        },
+        {
+          "name": "North Memorial Health Hospital",
+          "website": "https://northmemorial.com/"
+        }
+      ]
+    },
+    "mexico-city": {
+      "pharmacies": [
+        {
+          "name": "Farmacias San Pablo",
+          "website": "https://www.farmaciasanpablo.com.mx/"
+        },
+        {
+          "name": "Farmacias del Ahorro",
+          "website": "https://www.fahorro.com/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Walmart Mexico",
+          "website": "https://www.walmart.com.mx/"
+        },
+        {
+          "name": "Soriana",
+          "website": "https://www.soriana.com/"
+        },
+        {
+          "name": "Chedraui",
+          "website": "https://www.chedraui.com.mx/"
+        },
+        {
+          "name": "La Comer",
+          "website": "https://www.lacomer.com.mx/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "OXXO",
+          "website": "https://www.oxxo.com/"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.com/"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.com/"
+        },
+        {
+          "name": "Europcar",
+          "website": "https://www.europcar.com/"
+        },
+        {
+          "name": "SIXT",
+          "website": "https://www.sixt.com/"
+        }
+      ]
+    },
+    "rome": {
+      "hospitals": [
+        {
+          "name": "Policlinico Gemelli",
+          "website": "https://www.policlinicogemelli.it/"
+        },
+        {
+          "name": "Ospedale Santo Spirito",
+          "website": "https://www.ospedalesantospirito.it/"
+        },
+        {
+          "name": "Ospedale Fatebenefratelli",
+          "website": "https://www.fatebenefratelli.org/"
+        },
+        {
+          "name": "Ospedale San Raffaele Roma",
+          "website": "https://www.sanraffaele.it/locations/roma"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "Farmacia Internazionale Barberini",
+          "website": "http://www.farmaciainternazionaleroma.it/"
+        },
+        {
+          "name": "Antica Farmacia San Giacomo",
+          "website": "https://farmaciasangiacomoroma.it/"
+        },
+        {
+          "name": "Farmacia Trinità dei Monti",
+          "website": "https://www.lafarmacia.it/trova-farmacia/piazza-di-spagna-roma"
+        },
+        {
+          "name": "Farmacia Igea San Gallicano",
+          "website": "https://farmaciaigea.com/"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Carrefour",
+          "website": "https://www.carrefour.it/"
+        },
+        {
+          "name": "Conad",
+          "website": "https://www.conad.it/"
+        },
+        {
+          "name": "Coop",
+          "website": "https://www.coop.it/"
+        },
+        {
+          "name": "Esselunga",
+          "website": "https://www.esselunga.it/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "Spesa Express",
+          "website": "https://www.spesaexpress.it/"
+        },
+        {
+          "name": "Punto Convenienza",
+          "website": "https://www.puntoconvenienza.com/"
+        },
+        {
+          "name": "Carrefour Express",
+          "website": "https://www.carrefour.it/"
+        },
+        {
+          "name": "Todis",
+          "website": "https://www.todis.it/"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.com/rentacar/locations/italy.html"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.it/"
+        },
+        {
+          "name": "Europcar",
+          "website": "https://www.europcar.it/"
+        },
+        {
+          "name": "Budget",
+          "website": "https://www.budget.it/"
+        }
+      ]
+    }
+  }
+}

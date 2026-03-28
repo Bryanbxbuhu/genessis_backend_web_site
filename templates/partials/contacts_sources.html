@@ -1,0 +1,57 @@
+<!-- Sources Page (Simplified) -->
+<div id="sec_contacts_sources" class="contacts-page">
+  <h1 class="page-title" style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">
+    <svg class="icon-sm"><use href="#icon-file-text"/></svg>
+    Intelligence Sources
+  </h1>
+
+  <!-- Data Sources -->
+  <div class="card">
+    <h2>
+      <svg class="icon-sm"><use href="#icon-file-text"/></svg>
+      Data Sources
+    </h2>
+    
+    <div class="source-coverage">
+      <strong>Coverage Summary:</strong> {{ data_coverage }}
+    </div>
+
+    <h3>Primary Sources</h3>
+    <ul class="sources-list">
+      {% for s in sources[:5] %}
+        {% set source = source_link_meta(s) %}
+        <li>
+          {% if source.url %}
+            <a
+              class="source-link"
+              href="{{ source.url }}"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >{{ source.label }}</a>
+          {% else %}
+            {{ source.label }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      {% if sources|length > 5 %}
+        <li class="sources-more">+ {{ sources|length - 5 }} additional sources</li>
+      {% endif %}
+      {% if sources|length == 0 %}
+        <li class="muted">No sources listed for this report period.</li>
+      {% endif %}
+    </ul>
+
+    <div class="small muted" style="margin-top:12px; padding-top:12px; border-top: 1px solid #e5e7eb;">
+      <h3>Data Collection Methodology</h3>
+      <p>This intelligence brief aggregates data from:</p>
+      <ul style="margin:6px 0; padding-left:20px;">
+        <li>Real-time news feeds from verified local media outlets</li>
+        <li>OpenStreetMap database for verified infrastructure (hospitals, transit)</li>
+        <li>Government travel advisories and official alerts</li>
+        <li>Proprietary analysis algorithms for relevance filtering</li>
+      </ul>
+      <p>All facility data (hospitals, transit) is verified against authoritative geospatial databases to prevent hallucinations.</p>
+    </div>
+  </div>
+
+</div>
