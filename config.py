@@ -25,6 +25,20 @@ def _load_secret(name: str) -> str:
     return value
 
 
+def _load_secret_any(*names: str) -> str:
+    for name in names:
+        value = (os.getenv(name) or "").strip()
+        if value:
+            return value
+    if _IN_CI:
+        joined = " or ".join(f"'{name}'" for name in names)
+        raise RuntimeError(
+            f"Missing required secret {joined} in CI environment. "
+            f"Set one of these secrets in repository/workflow settings."
+        )
+    return ""
+
+
 OPENAI_API_KEY = _load_secret("OPENAI_API_KEY")
 
 # OpenAI Model Configuration
@@ -42,7 +56,8 @@ SUPABASE_SERVICE_ROLE_KEY = _load_secret("SUPABASE_SERVICE_ROLE_KEY") or None
 # ⚠️ QUOTA LIMIT: 100 calls per day - use sparingly!
 # Get free key at: https://rapidapi.com/google-maps-apis-google-maps-apis-default/api/google-maps-api3
 RAPIDAPI_HOST = os.getenv("RAPIDAPI_HOST", "google-maps-api3.p.rapidapi.com")
-RAPIDAPI_KEY = _load_secret("RAPIDAPI_KEY")
+# Support both historical names used in local env and CI secrets.
+RAPIDAPI_KEY = _load_secret_any("RAPIDAPI_KEY", "RAPID_API_KEY")
 GOOGLE_PLACES_ENABLED = os.getenv("GOOGLE_PLACES_ENABLED", "False").lower() == "true"
 GOOGLE_PLACES_MAX_CALLS_PER_DAY = 100  # Hard limit from RapidAPI free tier
 

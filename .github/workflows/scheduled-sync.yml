@@ -15,7 +15,8 @@ jobs:
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+      RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
       WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
       WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
     steps:
