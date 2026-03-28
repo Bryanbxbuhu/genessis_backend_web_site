@@ -65,23 +65,49 @@ jobs:
         run: |
           python scripts/reset_and_sync.py --region americas
       - name: Generate Miami report
+        id: miami
+        continue-on-error: true
         run: |
           python run_report.py miami --skip-pdf
       - name: Generate New York report
+        id: new-york
+        continue-on-error: true
         run: |
           python run_report.py new-york --skip-pdf
       - name: Generate San Francisco report
+        id: san-francisco
+        continue-on-error: true
         run: |
           python run_report.py san-francisco --skip-pdf
       - name: Generate Los Angeles report
+        id: los-angeles
+        continue-on-error: true
         run: |
           python run_report.py los-angeles --skip-pdf
       - name: Generate Minneapolis report
+        id: minneapolis
+        continue-on-error: true
         run: |
           python run_report.py minneapolis --skip-pdf
       - name: Generate Mexico City report
+        id: mexico-city
+        continue-on-error: true
         run: |
           python run_report.py mexico-city --skip-pdf
+      - name: Check for failures (Americas)
+        run: |
+          failed=""
+          if [ "${{ steps.miami.outcome }}" = "failure" ]; then failed="$failed miami"; fi
+          if [ "${{ steps.new-york.outcome }}" = "failure" ]; then failed="$failed new-york"; fi
+          if [ "${{ steps.san-francisco.outcome }}" = "failure" ]; then failed="$failed san-francisco"; fi
+          if [ "${{ steps.los-angeles.outcome }}" = "failure" ]; then failed="$failed los-angeles"; fi
+          if [ "${{ steps.minneapolis.outcome }}" = "failure" ]; then failed="$failed minneapolis"; fi
+          if [ "${{ steps.mexico-city.outcome }}" = "failure" ]; then failed="$failed mexico-city"; fi
+          if [ -n "$failed" ]; then
+            echo "::warning::Failed reports:$failed"
+            exit 1
+          fi
+          echo "All Americas reports generated successfully."
 
   europe-reports:
     runs-on: ubuntu-latest
@@ -113,41 +139,85 @@ jobs:
         run: |
           python scripts/reset_and_sync.py --region europe
       - name: Generate Lisbon report
+        id: lisbon
+        continue-on-error: true
         run: |
           python run_report.py lisbon --skip-pdf
       - name: Generate Prague report
+        id: prague
+        continue-on-error: true
         run: |
           python run_report.py prague --skip-pdf
       - name: Generate Dubrovnik report
+        id: dubrovnik
+        continue-on-error: true
         run: |
           python run_report.py dubrovnik --skip-pdf
       - name: Generate Paris report
+        id: paris
+        continue-on-error: true
         run: |
           python run_report.py paris --skip-pdf
       - name: Generate Madrid report
+        id: madrid
+        continue-on-error: true
         run: |
           python run_report.py madrid --skip-pdf
       - name: Generate Barcelona report
+        id: barcelona
+        continue-on-error: true
         run: |
           python run_report.py barcelona --skip-pdf
       - name: Generate Sevilla report
+        id: sevilla
+        continue-on-error: true
         run: |
           python run_report.py sevilla --skip-pdf
       - name: Generate London report
+        id: london
+        continue-on-error: true
         run: |
           python run_report.py london --skip-pdf
       - name: Generate Rome report
+        id: rome
+        continue-on-error: true
         run: |
           python run_report.py rome --skip-pdf
       - name: Generate Berlin report
+        id: berlin
+        continue-on-error: true
         run: |
           python run_report.py berlin --skip-pdf
       - name: Generate Dubai report
+        id: dubai
+        continue-on-error: true
         run: |
           python run_report.py dubai --skip-pdf
       - name: Generate Moscow report
+        id: moscow
+        continue-on-error: true
         run: |
           python run_report.py moscow --skip-pdf
+      - name: Check for failures (Europe)
+        run: |
+          failed=""
+          if [ "${{ steps.lisbon.outcome }}" = "failure" ]; then failed="$failed lisbon"; fi
+          if [ "${{ steps.prague.outcome }}" = "failure" ]; then failed="$failed prague"; fi
+          if [ "${{ steps.dubrovnik.outcome }}" = "failure" ]; then failed="$failed dubrovnik"; fi
+          if [ "${{ steps.paris.outcome }}" = "failure" ]; then failed="$failed paris"; fi
+          if [ "${{ steps.madrid.outcome }}" = "failure" ]; then failed="$failed madrid"; fi
+          if [ "${{ steps.barcelona.outcome }}" = "failure" ]; then failed="$failed barcelona"; fi
+          if [ "${{ steps.sevilla.outcome }}" = "failure" ]; then failed="$failed sevilla"; fi
+          if [ "${{ steps.london.outcome }}" = "failure" ]; then failed="$failed london"; fi
+          if [ "${{ steps.rome.outcome }}" = "failure" ]; then failed="$failed rome"; fi
+          if [ "${{ steps.berlin.outcome }}" = "failure" ]; then failed="$failed berlin"; fi
+          if [ "${{ steps.dubai.outcome }}" = "failure" ]; then failed="$failed dubai"; fi
+          if [ "${{ steps.moscow.outcome }}" = "failure" ]; then failed="$failed moscow"; fi
+          if [ -n "$failed" ]; then
+            echo "::warning::Failed reports:$failed"
+            exit 1
+          fi
+          echo "All Europe reports generated successfully."
 
   asia-reports:
     runs-on: ubuntu-latest
@@ -177,8 +247,22 @@ jobs:
         run: |
           python scripts/reset_and_sync.py --region asia
       - name: Generate Tokyo report
+        id: tokyo
+        continue-on-error: true
         run: |
           python run_report.py tokyo --skip-pdf
       - name: Generate Delhi report
+        id: delhi
+        continue-on-error: true
         run: |
           python run_report.py delhi --skip-pdf
+      - name: Check for failures (Asia)
+        run: |
+          failed=""
+          if [ "${{ steps.tokyo.outcome }}" = "failure" ]; then failed="$failed tokyo"; fi
+          if [ "${{ steps.delhi.outcome }}" = "failure" ]; then failed="$failed delhi"; fi
+          if [ -n "$failed" ]; then
+            echo "::warning::Failed reports:$failed"
+            exit 1
+          fi
+          echo "All Asia reports generated successfully."
