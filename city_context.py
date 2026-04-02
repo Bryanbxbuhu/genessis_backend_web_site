@@ -20,6 +20,7 @@ from math import atan2, cos, radians, sin, sqrt
 from urllib.parse import urlparse
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
+from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 import requests
 from ddgs import DDGS
 from openai import OpenAI
@@ -156,6 +157,33 @@ class CityContextTool:
         if elapsed < 1.0:
             time.sleep(1.0 - elapsed)
         self._last_nominatim_call = time.time()
+    
+    def _ddg_search_with_timeout(self, query: str, max_results: int = 5, timeout_seconds: int = 10) -> Optional[List[Dict]]:
+        """
+        Perform a DuckDuckGo search with a timeout.
+        
+        The DDGS library has no explicit timeout and can hang indefinitely.
+        This wrapper ensures searches complete within a reasonable time.
+        
+        Args:
+            query: Search query
+            max_results: Maximum number of results to return
+            timeout_seconds: Timeout in seconds (default 10)
+            
+        Returns:
+            List of search results or None if timeout/error occurs
+        """
+        try:
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(lambda: list(DDGS().text(query, max_results=max_results)))
+                results = future.result(timeout=timeout_seconds)
+                return results if results else None
+        except FuturesTimeoutError:
+            print(f"  WARN DDG search timed out after {timeout_seconds}s: {query[:50]}...")
+            return None
+        except Exception as e:
+            print(f"  WARN DDG search failed: {str(e)[:100]}")
+            return None
     
     def _lookup_osm_details(self, osm_id: int, osm_type: str) -> Optional[Dict]:
         """Lookup OSM element details via Nominatim with extratags.
@@ -800,11 +828,10 @@ class CityContextTool:
             for attempt in range(3):
                 try:
                     query = f"{facility['name']} {city_name} official website"
-                    with DDGS() as ddg:
-                        results = ddg.text(query, max_results=5)
-                        
-                        if not results:
-                            break
+                    results = self._ddg_search_with_timeout(query, max_results=5, timeout_seconds=10)
+                    
+                    if not results:
+                        break
                         
                         # Filter out aggregators and pick best candidate
                         candidates = []
@@ -906,8 +933,7 @@ Return JSON: {{"website": "https://..."}} with the OFFICIAL {facility_type} site
         """
         try:
             query = f"top hospitals in {city_name}"
-            with DDGS() as ddg:
-                results = ddg.text(query, max_results=10)
+            results = self._ddg_search_with_timeout(query, max_results=10, timeout_seconds=15)
             
             if not results:
                 return facilities
