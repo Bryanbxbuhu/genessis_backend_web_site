@@ -10,7 +10,7 @@ from pydantic import BaseModel, StrictBool, StrictStr, ValidationError, validato
 
 
 CONFIG_DIR_ENV = "OSINT_CONFIG_DIR"
-ALLOWED_SOURCE_TYPES = {"rss", "json", "api"}
+ALLOWED_SOURCE_TYPES = {"rss", "json", "api", "playwright"}
 
 
 class CityModel(BaseModel):
@@ -38,6 +38,9 @@ class SourceModel(BaseModel):
     enabled: Optional[StrictBool] = True
     city_key: Optional[StrictStr] = None
     fallback_url: Optional[StrictStr] = None
+    wait_selector: Optional[StrictStr] = None
+    label: Optional[StrictStr] = None
+    timeout_seconds: Optional[float] = None
     tags: Optional[List[StrictStr]] = None
 
     @validator("type")
@@ -51,10 +54,10 @@ class SourceModel(BaseModel):
         if not value or not value.strip():
             raise ValueError("url must be non-empty")
         src_type = values.get("type")
-        if src_type == "rss":
+        if src_type in {"rss", "playwright"}:
             parsed = urlparse(value)
             if parsed.scheme not in {"http", "https"}:
-                raise ValueError("rss url must be http or https")
+                raise ValueError(f"{src_type} url must be http or https")
         return value
 
     @validator("fallback_url")

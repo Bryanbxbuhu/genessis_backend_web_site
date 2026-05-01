@@ -30,5 +30,15 @@
     "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/4164138",
     "enabled": true,
     "city_key": "miami"
+  },
+  {
+    "source_key": "miami_dade_rider_alerts_playwright",
+    "name": "Miami-Dade Transit Rider Alerts",
+    "type": "playwright",
+    "url": "https://www.miamidade.gov/global/transportation/web-component/rider-alerts.page",
+    "wait_selector": "rider-alerts",
+    "label": "transit_rider_alerts",
+    "enabled": true,
+    "city_key": "miami"
   }
 ]

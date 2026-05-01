@@ -44,6 +44,11 @@ flowchart LR
 pip install -r requirements.txt
 ```
 
+Install the Chromium browser binary used by Playwright-backed sync scrapers:
+```bash
+playwright install chromium
+```
+
 2. Create local secrets file from template:
 ```bash
 # PowerShell

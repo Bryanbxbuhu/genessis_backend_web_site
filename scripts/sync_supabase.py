@@ -1488,6 +1488,127 @@ def fetch_rss_feed(
         return []
 
 
+def fetch_playwright_page_source(
+    source: Dict[str, Any],
+    city_key: str,
+    city_name: str,
+    status_out: Dict[str, Any] | None = None,
+) -> List[FeedItem]:
+    """Fetch a JS-rendered page source and convert it to a FeedItem snapshot."""
+    import asyncio
+    import hashlib
+
+    source_key = source.get("source_key") or "playwright_source"
+    source_name = source.get("name") or source.get("label") or source_key
+    url = source.get("url") or ""
+    wait_selector = source.get("wait_selector") or None
+    label = source.get("label") or source_key
+
+    def _set_status(**kwargs: Any) -> None:
+        if status_out is not None:
+            status_out.update(kwargs)
+
+    _set_status(
+        source_key=source_key,
+        name=source_name,
+        human_name=source_name,
+        city_key=city_key,
+        primary_url=url,
+        final_url_used=url,
+        wait_selector=wait_selector,
+        total_entries_parsed=0,
+        items_returned_after_filtering=0,
+        status="error",
+        error_message=None,
+    )
+
+    if not url:
+        print(f"   WARN Missing Playwright URL for {city_key}/{source_key}")
+        _set_status(status="error", error_message="missing_url")
+        return []
+
+    try:
+        from scripts.scrapers.playwright_scraper import scrape_page
+    except Exception as exc:
+        print(
+            f"   WARN Playwright scraper unavailable for {city_key}/{source_key}: "
+            f"{type(exc).__name__}: {exc}"
+        )
+        _set_status(status="skipped", error_message="playwright_scraper_unavailable")
+        return []
+
+    try:
+        timeout_seconds = float(source.get("timeout_seconds") or 10.0)
+    except Exception:
+        timeout_seconds = 10.0
+
+    try:
+        text = asyncio.run(
+            scrape_page(
+                url,
+                wait_selector=wait_selector,
+                city_name=city_name,
+                timeout_seconds=timeout_seconds,
+            )
+        )
+    except Exception as exc:
+        print(
+            f"   WARN Failed to run Playwright scraper for {city_key}/{source_key}: "
+            f"{type(exc).__name__}: {exc}"
+        )
+        _set_status(status="warning", error_message=str(exc))
+        return []
+
+    if not text:
+        _set_status(status="warning", error_message="no_text_returned")
+        return []
+
+    now = datetime.now(timezone.utc)
+    fingerprint = hashlib.sha256(f"{source_key}:{url}".encode("utf-8")).hexdigest()[:16]
+    summary = text if len(text) <= 20000 else f"{text[:20000].rstrip()}\n[truncated]"
+
+    item = FeedItem(
+        id=f"{source_key}_{fingerprint}",
+        source_key=source_key,
+        city_key=city_key,
+        guid=f"{source_key}:{url}",
+        url=url,
+        title=source_name,
+        summary=summary,
+        published_at=now,
+        fetched_at=now,
+        travel_relevance_score=1.0,
+        travel_keywords_matched=["__playwright_source__"],
+        travel_relevance_reason="playwright_source_snapshot",
+        raw={
+            "source_type": "playwright",
+            "label": label,
+            "url": url,
+            "wait_selector": wait_selector,
+            "content_text": text,
+            "content": text,
+            "fetched_at": now.isoformat(),
+            "travel_relevance_score": 1.0,
+            "travel_keywords_matched": ["__playwright_source__"],
+            "travel_relevance_reason": "playwright_source_snapshot",
+        },
+    )
+    item.match_meta = {
+        "match_type": "city_specific_playwright_source",
+        "city_key": city_key,
+        "source_key": source_key,
+        "label": label,
+    }
+
+    _set_status(
+        status="ok",
+        error_message=None,
+        total_entries_parsed=1,
+        items_returned_after_filtering=1,
+    )
+    return [item]
+
+
 def fetch_us_state_dept_advisories(filter_country_name: str | None = None) -> List[FeedItem]:
     """Fetch US State Department travel advisories from RSS feed.
 
@@ -1977,9 +2098,45 @@ def sync_city(
                 }
             )
             reporter.add_record(status_out)
-    
+
     # --------------------------------------------------------------------
-    # 2. GDELT Geo News
+    # 2. Playwright Page Sources (JS-rendered fallback)
+    # --------------------------------------------------------------------
+
+    playwright_sources = [
+        source for source in config.SOURCES
+        if source.get("type") == "playwright"
+        and source.get("city_key") == city_key
+        and source.get("enabled", True)
+    ]
+
+    if playwright_sources:
+        print(f"\nFetching Playwright page sources for {city_key}...")
+
+    for source in playwright_sources:
+        status_out: Dict[str, Any] = {}
+        items = fetch_playwright_page_source(
+            source=source,
+            city_key=city_key,
+            city_name=city_name,
+            status_out=status_out,
+        )
+        all_items.extend(items)
+
+        if reporter is not None:
+            status_out.update(
+                {
+                    "city_key": city_key,
+                    "source_key": source.get("source_key"),
+                    "name": source.get("name"),
+                    "human_name": source.get("name"),
+                    "items_returned_after_filtering": len(items),
+                }
+            )
+            reporter.add_record(status_out)
+
+    # --------------------------------------------------------------------
+    # 3. GDELT Geo News
     # --------------------------------------------------------------------
     
     print(f"\nðŸŒ Fetching GDELT news for {city_key}...")
@@ -2064,7 +2221,7 @@ def sync_city(
             )
     
     # --------------------------------------------------------------------
-    # 3. NWS Weather Alerts (US cities only)
+    # 4. NWS Weather Alerts (US cities only)
     # --------------------------------------------------------------------
     
     if city_config.get('country_code') == 'US':
@@ -2132,7 +2289,7 @@ def sync_city(
             )
     
     # --------------------------------------------------------------------
-    # 4. Open-Meteo Weather Forecast (stored in weather_forecasts table)
+    # 5. Open-Meteo Weather Forecast (stored in weather_forecasts table)
     # --------------------------------------------------------------------
     
     print(f"\nâ›… Checking weather forecast for {city_key}...")
@@ -2469,4 +2626,3 @@ Examples:
 
 if __name__ == "__main__":
     sys.exit(main())
-

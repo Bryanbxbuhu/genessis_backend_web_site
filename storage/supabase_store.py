@@ -217,14 +217,23 @@ class SupabaseStore(DataStore):
             # Upsert sources
             print(f"   📡 Seeding {len(sources)} sources...")
             for source in sources:
+                source_type = source["type"]
+                tags = list(source.get("tags") or [])
+                if source_type == "playwright":
+                    # DB source rows are constrained to rss/json/api. Playwright
+                    # is a sync-time collection strategy, so store this source as
+                    # API-compatible while preserving the marker in tags.
+                    source_type = "api"
+                    if "playwright" not in tags:
+                        tags.append("playwright")
                 source_row = {
                     "source_key": source["source_key"],
                     "name": source.get("name"),
-                    "type": source["type"],
+                    "type": source_type,
                     "url": source["url"],
                     "enabled": source.get("enabled", True),
                     "city_key": source.get("city_key"),
-                    "tags": source.get("tags") or [],
+                    "tags": tags,
                 }
                 self.client.table("sources").upsert(source_row, on_conflict="source_key").execute()
             print(f"   ✓ Sources seeded")
@@ -1921,4 +1930,3 @@ class SupabaseStore(DataStore):
         except Exception as e:
             # Silently fail - table may not exist yet, caller will use fallback
             return None
-
