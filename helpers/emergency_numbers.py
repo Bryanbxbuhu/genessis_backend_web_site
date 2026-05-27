@@ -34,6 +34,16 @@ COUNTRY_DEFAULTS = {
         "fire": "101",
         "other": [{"label": "Gas emergency", "number": "104"}],
     },
+    "GR": {
+        "general": "112",
+        "police": "100",
+        "ambulance": "166",
+        "fire": "199",
+        "other": [
+            {"label": "Tourist Police", "number": "1571"},
+            {"label": "Coast Guard", "number": "108"},
+        ],
+    },
 }
 
 

@@ -356,6 +356,7 @@ class TravelAdvisoryClient:
             "uae": "united-arab-emirates",
             "united kingdom": "united-kingdom",
             "united states": "united-states",
+            "greece": "greece",
         }
 
         COUNTRY_INFO_URL_MAP = {

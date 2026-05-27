@@ -2,7 +2,7 @@ name: Daily data sync and report update
 
 on:
   schedule:
-    # Europe (Lisbon, Prague, Dubrovnik, Paris, Madrid, Barcelona, Sevilla, London, Rome, Berlin, Dubai, Moscow) - 1:00 AM EST = 06:00 UTC
+    # Europe (Lisbon, Prague, Dubrovnik, Paris, Madrid, Barcelona, Sevilla, London, Rome, Berlin, Dubai, Moscow, Athens) - 1:00 AM EST = 06:00 UTC
     - cron: '0 6 * * *'
     # US/Americas (Miami, New York, San Francisco, Los Angeles, Minneapolis, Mexico City) - 7:00 AM EST = 12:00 UTC
     - cron: '0 12 * * *'
@@ -198,6 +198,11 @@ jobs:
         continue-on-error: true
         run: |
           python run_report.py moscow --skip-pdf
+      - name: Generate Athens report
+        id: athens
+        continue-on-error: true
+        run: |
+          python run_report.py athens --skip-pdf
       - name: Check for failures (Europe)
         run: |
           failed=""
@@ -213,6 +218,7 @@ jobs:
           if [ "${{ steps.berlin.outcome }}" = "failure" ]; then failed="$failed berlin"; fi
           if [ "${{ steps.dubai.outcome }}" = "failure" ]; then failed="$failed dubai"; fi
           if [ "${{ steps.moscow.outcome }}" = "failure" ]; then failed="$failed moscow"; fi
+          if [ "${{ steps.athens.outcome }}" = "failure" ]; then failed="$failed athens"; fi
           if [ -n "$failed" ]; then
             echo "::warning::Failed reports:$failed"
             exit 1

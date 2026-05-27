@@ -1,0 +1,108 @@
+{
+  "name": "Athens, Greece",
+  "country": "Greece",
+  "country_code": "GR",
+  "region": "Attica",
+  "timezone": "Europe/Athens",
+  "latitude": 37.9838,
+  "longitude": 23.7275,
+  "population": 3600000,
+  "aliases": [
+    "athens",
+    "athens greece",
+    "athens gr",
+    "athina",
+    "athina greece",
+    "athens attica",
+    "attica",
+    "attiki",
+    "Αθήνα",
+    "αθήνα",
+    "Αττική",
+    "αττική"
+  ],
+  "language": "el",
+  "transit_systems": [
+    {
+      "name": "OASA Transport for Athens",
+      "modes": ["Bus", "Trolleybus", "Metro", "Tram"],
+      "website": "https://www.oasa.gr/en/"
+    },
+    {
+      "name": "STASY Athens Urban Rail Transport",
+      "modes": ["Metro", "Tram", "Urban Rail"],
+      "website": "https://www.stasy.gr/en/"
+    },
+    {
+      "name": "Hellenic Train",
+      "modes": ["Suburban Rail", "Intercity Rail"],
+      "website": "https://www.hellenictrain.gr/en"
+    }
+  ],
+  "emergency_numbers": {
+    "general": "112",
+    "police": "100",
+    "ambulance": "166",
+    "fire": "199",
+    "other": [
+      {
+        "label": "Tourist Police",
+        "number": "1571"
+      },
+      {
+        "label": "Coast Guard",
+        "number": "108"
+      }
+    ]
+  },
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Athens International Airport Eleftherios Venizelos",
+      "iata": "ATH",
+      "website": "https://www.aia.gr/en/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Government",
+      "label": "City of Athens",
+      "url": "https://www.cityofathens.gr/"
+    },
+    {
+      "category": "Tourism",
+      "label": "This is Athens",
+      "url": "https://www.thisisathens.org/"
+    },
+    {
+      "category": "Airport",
+      "label": "Athens International Airport",
+      "url": "https://www.aia.gr/en/"
+    },
+    {
+      "category": "Transit",
+      "label": "OASA Transport for Athens",
+      "url": "https://www.oasa.gr/en/"
+    },
+    {
+      "category": "Transit",
+      "label": "STASY Athens Urban Rail Transport",
+      "url": "https://www.stasy.gr/en/"
+    },
+    {
+      "category": "Transit",
+      "label": "Hellenic Train",
+      "url": "https://www.hellenictrain.gr/en"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Uber Greece",
+      "url": "https://www.uber.com/gr/en/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "FreeNow Greece",
+      "url": "https://www.free-now.com/gr-en/"
+    }
+  ]
+}

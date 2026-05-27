@@ -1,0 +1,85 @@
+[
+  {
+    "source_key": "ekathimerini_greece_feedburner",
+    "name": "eKathimerini Greece News",
+    "type": "rss",
+    "url": "https://feeds.feedburner.com/ekathimerini/sKip",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["language:en", "country:GR"]
+  },
+  {
+    "source_key": "gtp_greece_travel",
+    "name": "GTP Greece Travel News",
+    "type": "rss",
+    "url": "https://news.gtp.gr/feed/",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["language:en", "country:GR", "category:travel"]
+  },
+  {
+    "source_key": "greekreporter_main",
+    "name": "Greek Reporter Main Feed",
+    "type": "rss",
+    "url": "https://greekreporter.com/feed/",
+    "fallback_url": "https://greekreporter.com/newsletter-feed/feed/",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["language:en", "country:GR"]
+  },
+  {
+    "source_key": "greekreporter_newsletter",
+    "name": "Greek Reporter Newsletter Feed",
+    "type": "rss",
+    "url": "https://greekreporter.com/newsletter-feed/feed/",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["language:en", "country:GR"]
+  },
+  {
+    "source_key": "us_embassy_greece_alerts",
+    "name": "U.S. Embassy Greece Alerts",
+    "type": "rss",
+    "url": "https://gr.usembassy.gov/category/alert/feed/",
+    "enabled": false,
+    "city_key": "athens",
+    "tags": ["official_alert", "language:en", "country:GR"]
+  },
+  {
+    "source_key": "athens_meteoalarm_greece",
+    "name": "Meteoalarm Greece Atom Feed",
+    "type": "rss",
+    "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-greece",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["weather", "meteoalarm", "country:GR", "format:atom"]
+  },
+  {
+    "source_key": "athens_bbc_forecast_3day",
+    "name": "BBC Weather Athens 3 Day Forecast",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/264371",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["weather", "country:GR"]
+  },
+  {
+    "source_key": "athens_bbc_observation",
+    "name": "BBC Weather Athens Latest Observation",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/264371",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["weather", "country:GR"]
+  },
+  {
+    "source_key": "bing_news_athens_travel_safety",
+    "name": "Bing News Search Athens Travel and Safety",
+    "type": "rss",
+    "url": "https://www.bing.com/news/search?format=RSS&q=%28%22Athens%22%20OR%20%22Athina%22%20OR%20%22Αθήνα%22%20OR%20%22Attica%22%29%20%28strike%20OR%20απεργία%20OR%20metro%20OR%20μετρό%20OR%20tram%20OR%20airport%20OR%20%22Athens%20International%20Airport%22%20OR%20OASA%20OR%20STASY%20OR%20Piraeus%20OR%20Πειραιάς%20OR%20demonstration%20OR%20protest%20OR%20security%20OR%20fire%20OR%20wildfire%20OR%20earthquake%20OR%20flood%20OR%20heatwave%20OR%20blackout%29&qft=sortbydate%3d%221%22",
+    "fallback_url": "https://www.bing.com/news/search?q=%28%22Athens%22%20OR%20%22Athina%22%20OR%20%22Αθήνα%22%20OR%20%22Attica%22%29%20%28strike%20OR%20απεργία%20OR%20metro%20OR%20μετρό%20OR%20tram%20OR%20airport%20OR%20%22Athens%20International%20Airport%22%20OR%20OASA%20OR%20STASY%20OR%20Piraeus%20OR%20Πειραιάς%20OR%20demonstration%20OR%20protest%20OR%20security%20OR%20fire%20OR%20wildfire%20OR%20earthquake%20OR%20flood%20OR%20heatwave%20OR%20blackout%29&qft=sortbydate%3d%221%22&format=RSS",
+    "enabled": true,
+    "city_key": "athens",
+    "tags": ["bing", "news_search", "language:en", "language:el", "country:GR"]
+  }
+]

@@ -23,6 +23,7 @@ REGION_CITY_KEYS: Dict[str, List[str]] = {
         "london",
         "rome",
         "berlin",
+        "athens",
         "dubai",
         "moscow",
     ],

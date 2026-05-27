@@ -1628,6 +1628,7 @@ def fetch_us_state_dept_advisories(filter_country_name: str | None = None) -> Li
         "mexico": "mexico",
         "united kingdom": "united-kingdom",
         "united states": "united-states",
+        "greece": "greece",
     }
     
     # Use the generic RSS fetch function

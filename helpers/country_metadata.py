@@ -18,6 +18,7 @@ COUNTRY_NAME_EN: Dict[str, str] = {
     "JP": "Japan",
     "RU": "Russia",
     "AE": "United Arab Emirates",
+    "GR": "Greece",
 }
 
 
