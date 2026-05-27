@@ -1342,6 +1342,62 @@
           "website": "https://www.budget.it/"
         }
       ]
+    },
+    "athens": {
+      "pharmacies": [
+        {
+          "name": "Pharmacy of Athens",
+          "website": "https://www.pharmacyofathens.gr/en"
+        },
+        {
+          "name": "O Farmakopoios Mou",
+          "website": "https://www.ofarmakopoiosmou.gr/en"
+        },
+        {
+          "name": "A-Pharmacy24",
+          "website": "https://www.a-pharmacy.gr/?___store=en"
+        },
+        {
+          "name": "Family Pharmacy",
+          "website": "https://www.familypharmacy.gr/en"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Sklavenitis",
+          "website": "https://www.sklavenitis.gr/"
+        },
+        {
+          "name": "AB Vassilopoulos",
+          "website": "https://www.ab.gr/en"
+        },
+        {
+          "name": "My market",
+          "website": "https://www.mymarket.gr/"
+        },
+        {
+          "name": "Lidl Hellas",
+          "website": "https://www.lidl-hellas.gr/"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "OK! Anytime Markets",
+          "website": "https://www.okmarkets.gr/"
+        },
+        {
+          "name": "myKiosk",
+          "website": "https://mykiosk.gr/"
+        },
+        {
+          "name": "YES! STORES",
+          "website": "https://yesstores.gr/"
+        },
+        {
+          "name": "4all Stores",
+          "website": "https://4allstores.gr/"
+        }
+      ]
     }
   }
 }

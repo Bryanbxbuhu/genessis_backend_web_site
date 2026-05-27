@@ -94,6 +94,9 @@ DEFAULT_403_ALLOWLIST = {
         "sixt.com",
         "thrifty.com",
     },
+    "supermarket": {
+        "sklavenitis.gr",
+    },
 }
 
 NAME_STOPWORDS = {

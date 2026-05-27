@@ -67,7 +67,7 @@
     {
       "category": "Government",
       "label": "City of Athens",
-      "url": "https://www.cityofathens.gr/"
+      "url": "https://www.cityofathens.gr/en/"
     },
     {
       "category": "Tourism",
@@ -103,6 +103,11 @@
       "category": "Rideshare",
       "label": "FreeNow Greece",
       "url": "https://www.free-now.com/gr-en/"
+    },
+    {
+      "category": "Pharmacy",
+      "label": "Attica Pharmacy Association On Duty Pharmacies",
+      "url": "https://fsa-efimeries.gr/"
     }
   ]
 }

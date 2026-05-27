@@ -247,6 +247,35 @@ STORE_CHAIN_CANONICAL = {
             "sundrug": "https://www.sundrug.co.jp",
         },
     },
+    "GR": {
+        "supermarket": {
+            "sklavenitis": "https://www.sklavenitis.gr/",
+            "vassilopoulos": "https://www.ab.gr/en",
+            "ab": "https://www.ab.gr/en",
+            "alphabeta": "https://www.ab.gr/en",
+            "mymarket": "https://www.mymarket.gr/",
+            "lidl": "https://www.lidl-hellas.gr/",
+            "masoutis": "https://www.masoutis.gr/",
+            "galaxias": "https://galaxias.shop/",
+        },
+        "convenience": {
+            "ok": "https://www.okmarkets.gr/",
+            "okanytime": "https://www.okmarkets.gr/",
+            "anytime": "https://www.okmarkets.gr/",
+            "okmarkets": "https://www.okmarkets.gr/",
+            "mykiosk": "https://mykiosk.gr/",
+            "yes": "https://yesstores.gr/",
+            "yesstores": "https://yesstores.gr/",
+            "4all": "https://4allstores.gr/",
+            "fourall": "https://4allstores.gr/",
+        },
+        "pharmacy": {
+            "pharmacyofathens": "https://www.pharmacyofathens.gr/en",
+            "ofarmakopoiosmou": "https://www.ofarmakopoiosmou.gr/en",
+            "apharmacy": "https://www.a-pharmacy.gr/?___store=en",
+            "familypharmacy": "https://www.familypharmacy.gr/en",
+        },
+    },
     "RU": {
         "supermarket": {
             "pyaterochka": "https://5ka.ru",
