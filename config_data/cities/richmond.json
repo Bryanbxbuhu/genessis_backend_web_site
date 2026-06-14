@@ -1,0 +1,51 @@
+{
+  "name": "Richmond, Virginia, United States",
+  "country_code": "US",
+  "timezone": "America/New_York",
+  "latitude": 37.5407,
+  "longitude": -77.4360,
+  "population": 226610,
+  "aliases": [
+    "richmond",
+    "richmond va",
+    "richmond virginia",
+    "rva",
+    "river city"
+  ],
+  "transit_systems": [
+    {
+      "name": "GRTC Transit System (Bus & Pulse BRT)",
+      "modes": ["Bus", "Rapid Transit"],
+      "website": "https://www.ridegrtc.com/"
+    }
+  ],
+  "enabled": true,
+  "airports": [
+    {
+      "name": "Richmond International Airport",
+      "iata": "RIC",
+      "website": "https://www.flyrichmond.com/"
+    }
+  ],
+  "important_services": [
+    {
+      "category": "Rideshare",
+      "label": "Uber",
+      "url": "https://www.uber.com/"
+    },
+    {
+      "category": "Rideshare",
+      "label": "Lyft",
+      "url": "https://www.lyft.com/"
+    },
+    {
+      "category": "Government",
+      "label": "City of Richmond",
+      "url": "https://www.rva.gov/"
+    },
+    {
+      "category": "Local transportation apps",
+      "label": "GRTC Transit app"
+    }
+  ]
+}

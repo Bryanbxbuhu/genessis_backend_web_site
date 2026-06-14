@@ -1,0 +1,66 @@
+[
+  {
+    "source_key": "wtvr_richmond_news",
+    "name": "WTVR CBS 6 News (Richmond)",
+    "type": "rss",
+    "url": "https://www.wtvr.com/index.rss",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "wric_richmond_news",
+    "name": "WRIC ABC 8News (Richmond)",
+    "type": "rss",
+    "url": "https://www.wric.com/feed/",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "richmond_times_dispatch",
+    "name": "Richmond Times-Dispatch (Local News)",
+    "type": "rss",
+    "url": "https://richmond.com/search/?f=rss&t=article&c=news/local*&l=50&s=start_time&sd=desc",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "richmond_bizsense",
+    "name": "Richmond BizSense",
+    "type": "rss",
+    "url": "https://richmondbizsense.com/feed/",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "vcu_commonwealth_times",
+    "name": "The Commonwealth Times (VCU)",
+    "type": "rss",
+    "url": "https://commonwealthtimes.org/feed/",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "richmond_nws_point_atom",
+    "name": "NWS Active Alerts – Richmond VA (Point Atom)",
+    "type": "rss",
+    "url": "https://api.weather.gov/alerts/active.atom?point=37.5407,-77.4360",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "richmond_bbc_forecast_3day",
+    "name": "BBC Weather 3-Day Forecast (Richmond)",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/4781708",
+    "enabled": true,
+    "city_key": "richmond"
+  },
+  {
+    "source_key": "richmond_bbc_observation",
+    "name": "BBC Weather Latest Observation (Richmond)",
+    "type": "rss",
+    "url": "https://weather-broker-cdn.api.bbci.co.uk/en/observation/rss/4781708",
+    "enabled": true,
+    "city_key": "richmond"
+  }
+]

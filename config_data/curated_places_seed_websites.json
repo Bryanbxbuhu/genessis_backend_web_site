@@ -1177,6 +1177,98 @@
         }
       ]
     },
+    "richmond": {
+      "hospitals": [
+        {
+          "name": "VCU Medical Center",
+          "website": "https://www.vcuhealth.org/"
+        },
+        {
+          "name": "Bon Secours Richmond",
+          "website": "https://bonsecours.com/richmond"
+        },
+        {
+          "name": "HCA Virginia – Henrico Doctors' Hospital",
+          "website": "https://www.henricodoctors.com/"
+        },
+        {
+          "name": "Children's Hospital of Richmond at VCU",
+          "website": "https://www.chrichmond.org/"
+        }
+      ],
+      "pharmacies": [
+        {
+          "name": "CVS Pharmacy",
+          "website": "https://www.cvs.com"
+        },
+        {
+          "name": "Walgreens",
+          "website": "https://www.walgreens.com"
+        },
+        {
+          "name": "Kroger Pharmacy",
+          "website": "https://www.kroger.com/rx/guest/get-care"
+        },
+        {
+          "name": "Rite Aid",
+          "website": "https://www.riteaid.com"
+        }
+      ],
+      "supermarkets": [
+        {
+          "name": "Kroger",
+          "website": "https://www.kroger.com"
+        },
+        {
+          "name": "Wegmans",
+          "website": "https://www.wegmans.com"
+        },
+        {
+          "name": "Food Lion",
+          "website": "https://www.foodlion.com"
+        },
+        {
+          "name": "Trader Joe's",
+          "website": "https://www.traderjoes.com"
+        }
+      ],
+      "convenience_stores": [
+        {
+          "name": "7-Eleven",
+          "website": "https://www.7-eleven.com"
+        },
+        {
+          "name": "Wawa",
+          "website": "https://www.wawa.com"
+        },
+        {
+          "name": "Circle K",
+          "website": "https://www.circlek.com"
+        },
+        {
+          "name": "Family Dollar",
+          "website": "https://www.familydollar.com"
+        }
+      ],
+      "rental_cars": [
+        {
+          "name": "Enterprise",
+          "website": "https://www.enterprise.com"
+        },
+        {
+          "name": "Hertz",
+          "website": "https://www.hertz.com"
+        },
+        {
+          "name": "Avis",
+          "website": "https://www.avis.com"
+        },
+        {
+          "name": "Budget",
+          "website": "https://www.budget.com"
+        }
+      ]
+    },
     "minneapolis": {
       "hospitals": [
         {
