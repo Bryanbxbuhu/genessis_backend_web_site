@@ -10,6 +10,7 @@ REGION_CITY_KEYS: Dict[str, List[str]] = {
         "san-francisco",
         "los-angeles",
         "minneapolis",
+        "richmond",
         "mexico-city",
     ],
     "europe": [

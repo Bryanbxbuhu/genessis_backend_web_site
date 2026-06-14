@@ -4,7 +4,7 @@ on:
   schedule:
     # Europe (Lisbon, Prague, Dubrovnik, Paris, Madrid, Barcelona, Sevilla, London, Rome, Berlin, Dubai, Moscow, Athens) - 1:00 AM EST = 06:00 UTC
     - cron: '0 6 * * *'
-    # US/Americas (Miami, New York, San Francisco, Los Angeles, Minneapolis, Mexico City) - 7:00 AM EST = 12:00 UTC
+    # US/Americas (Miami, New York, San Francisco, Los Angeles, Minneapolis, Richmond, Mexico City) - 7:00 AM EST = 12:00 UTC
     - cron: '0 12 * * *'
     # Asia (Tokyo, Delhi) - 8:00 AM JST = 23:00 UTC (previous day)
     - cron: '0 23 * * *'
@@ -89,6 +89,11 @@ jobs:
         continue-on-error: true
         run: |
           python run_report.py minneapolis --skip-pdf
+      - name: Generate Richmond report
+        id: richmond
+        continue-on-error: true
+        run: |
+          python run_report.py richmond --skip-pdf
       - name: Generate Mexico City report
         id: mexico-city
         continue-on-error: true
@@ -102,6 +107,7 @@ jobs:
           if [ "${{ steps.san-francisco.outcome }}" = "failure" ]; then failed="$failed san-francisco"; fi
           if [ "${{ steps.los-angeles.outcome }}" = "failure" ]; then failed="$failed los-angeles"; fi
           if [ "${{ steps.minneapolis.outcome }}" = "failure" ]; then failed="$failed minneapolis"; fi
+          if [ "${{ steps.richmond.outcome }}" = "failure" ]; then failed="$failed richmond"; fi
           if [ "${{ steps.mexico-city.outcome }}" = "failure" ]; then failed="$failed mexico-city"; fi
           if [ -n "$failed" ]; then
             echo "::warning::Failed reports:$failed"
