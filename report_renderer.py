@@ -184,6 +184,7 @@ def render_html(template_dir: Path, template_name: str, context: Dict[str, Any])
     env.globals["ESIM_CARDS_TOC_BLURB"] = getattr(_cfg, "ESIM_CARDS_TOC_BLURB", "")
     env.globals["source_link_meta"] = _source_link_meta
     env.globals["getPrimaryServiceUrl"] = getPrimaryServiceUrl
+    env.filters["safe_http_url"] = lambda value: _safe_http_url(value) or ""
     tpl = env.get_template(template_name)
     return tpl.render(**context)
 

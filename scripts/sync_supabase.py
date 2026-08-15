@@ -1151,8 +1151,10 @@ def fetch_rss_feed(
     import feedparser
     import hashlib
     import requests
+    from helpers.tls import system_trust_session
 
     print(f"   Fetching {feed_name}...")
+    request_session = system_trust_session()
 
     def _set_status(**kwargs: Any) -> None:
         if status_out is not None:
@@ -1194,7 +1196,7 @@ def fetch_rss_feed(
                 "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
             }
             try:
-                return requests.get(url, headers=headers, timeout=20)
+                return request_session.get(url, headers=headers, timeout=20)
             except Exception as exc:
                 print(f"   WARN Failed to fetch {feed_name} ({url}): {exc}")
                 return None
@@ -1486,6 +1488,8 @@ def fetch_rss_feed(
         _set_status(status="error", error_message=str(e))
         print(f"   ERROR Failed to fetch {feed_name}: {e}")
         return []
+    finally:
+        request_session.close()
 
 
 def fetch_playwright_page_source(
@@ -1716,13 +1720,17 @@ def fetch_canada_advisories(country_code: str) -> List[FeedItem]:
     print(f"   Fetching {source_name}...")
     
     try:
-        # Create SSL context to handle certificate issues
-        import ssl
-        ssl_context = ssl.create_default_context()
-        ssl_context.check_hostname = False
-        ssl_context.verify_mode = ssl.CERT_NONE
-        
-        with urllib.request.urlopen(url, timeout=15, context=ssl_context) as response:
+        from helpers.tls import verified_ssl_context
+
+        # Use the platform trust store and enforce hostname/certificate validation.
+        # Falling back to an unverified TLS connection would allow advisory data
+        # to be modified in transit.
+        # The URL above is a literal HTTPS endpoint, not caller-controlled.
+        with urllib.request.urlopen(
+            url,
+            timeout=15,
+            context=verified_ssl_context(),
+        ) as response:  # nosec B310
             data = json.loads(response.read().decode('utf-8'))
         
         # API returns dict with country codes as keys, not a list

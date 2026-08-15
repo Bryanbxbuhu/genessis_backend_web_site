@@ -57,7 +57,7 @@
             <strong>{{ rental.name }}</strong>
             {% if rental.website %}
               {% set domain = rental.website.split('/')[2] if '/' in rental.website else rental.website %}
-              -> <a href="{{ rental.website }}" style="color: #2563eb; font-size: 8px; word-break: break-all;">{{ domain }}</a>
+              -> <a href="{{ rental.website | safe_http_url }}" rel="noopener noreferrer" style="color: #2563eb; font-size: 8px; word-break: break-all;">{{ domain }}</a>
             {% endif %}
           </li>
         {% endfor %}

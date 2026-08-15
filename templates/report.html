@@ -288,7 +288,7 @@
           {% for airport in airports_list[:5] %}
             <li style="margin-bottom: 8px;">
               {% if airport.website %}
-                <a href="{{ airport.website }}" target="_blank" style="color: #111827; text-decoration: none;">
+                <a href="{{ airport.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">
                   <strong>{{ airport.name }}</strong>
                 </a>
               {% else %}
@@ -298,7 +298,7 @@
                 <br><span class="small muted">IATA: {{ airport.iata }}</span>
               {% endif %}
               {% if airport.website %}
-                <br><span class="small muted">Website: <a href="{{ airport.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ airport.website }}</a></span>
+                <br><span class="small muted">Website: <a href="{{ airport.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">{{ airport.website }}</a></span>
               {% endif %}
             </li>
           {% endfor %}
@@ -319,11 +319,11 @@
                 {% if h.website or h.google_maps_url %}
                   <br><span class="small muted">
                     {% if h.website %}
-                      🌐 <a href="{{ h.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">Website</a>
+                      🌐 <a href="{{ h.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Website</a>
                     {% endif %}
                     {% if h.website and h.google_maps_url %} · {% endif %}
                     {% if h.google_maps_url %}
-                      📍 <a href="{{ h.google_maps_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
+                      📍 <a href="{{ h.google_maps_url | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">Map</a>
                     {% endif %}
                   </span>
                 {% endif %}
@@ -351,7 +351,7 @@
                   <br><span class="small muted">Services: {{ t.modes|join(", ") }}</span>
                 {% endif %}
                 {% if t.website %}
-                  <br><span class="small muted">Website: <a href="{{ t.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ t.website }}</a></span>
+                  <br><span class="small muted">Website: <a href="{{ t.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">{{ t.website }}</a></span>
                 {% endif %}
                 {% if t.taxis %}
                   <br><span class="small">🚕 Taxis: {{ t.taxis }}</span>

@@ -18,6 +18,7 @@ sys.path.insert(0, str(project_root))
 
 from storage.base import FeedItem
 from news_relevance import compute_travel_relevance, parse_published_at
+from helpers.tls import verified_ssl_context
 
 
 # Severity mapping for magnitude calculation
@@ -69,7 +70,12 @@ def fetch_nws_alerts(
         
         req = urllib.request.Request(url, headers=headers)
         
-        with urllib.request.urlopen(req, timeout=20) as response:
+        # The request uses the fixed NWS HTTPS endpoint above.
+        with urllib.request.urlopen(
+            req,
+            timeout=20,
+            context=verified_ssl_context(),
+        ) as response:  # nosec B310
             data = json.loads(response.read().decode('utf-8'))
         
         features = data.get("features", [])
@@ -108,7 +114,8 @@ def fetch_nws_alerts(
             
             # Use alert ID or fallback to deterministic hash
             guid = alert_id if alert_id else hashlib.md5(
-                f"nws:{city_key}:{headline}:{sent_str}".encode()
+                f"nws:{city_key}:{headline}:{sent_str}".encode(),
+                usedforsecurity=False,
             ).hexdigest()
             
             relevance = compute_travel_relevance(
@@ -119,7 +126,10 @@ def fetch_nws_alerts(
             )
 
             # Create deterministic ID
-            id_hash = hashlib.md5(f"nws_alerts:{city_key}:{guid}".encode()).hexdigest()[:16]
+            id_hash = hashlib.md5(
+                f"nws_alerts:{city_key}:{guid}".encode(),
+                usedforsecurity=False,
+            ).hexdigest()[:16]
             
             # Calculate magnitude from severity
             magnitude = SEVERITY_MAGNITUDE.get(severity, 2.0)

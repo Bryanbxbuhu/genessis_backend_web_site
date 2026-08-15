@@ -24,6 +24,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeou
 import requests
 from ddgs import DDGS
 from openai import OpenAI
+from helpers.tls import verified_httpx_client
 import config
 
 from helpers.store_chain_canonical import canonicalize_store_website, is_store_chain_name
@@ -47,7 +48,14 @@ class CityContextTool:
         self._wikidata_entity_cache: Dict[str, Dict] = {}
         self._wikidata_website_cache: Dict[str, Optional[str]] = {}
         self._wikidata_search_cache: Dict[Tuple[str, float, float], Optional[str]] = {}
-        self.openai_client = OpenAI(api_key=openai_api_key) if openai_api_key else None
+        self.openai_client = (
+            OpenAI(
+                api_key=openai_api_key,
+                http_client=verified_httpx_client(timeout=120.0),
+            )
+            if openai_api_key
+            else None
+        )
         self.cache_refresh_days = 30  # Refresh city context monthly
         
         # Use provided datastore or get default

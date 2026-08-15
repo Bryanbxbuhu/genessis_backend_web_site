@@ -46,7 +46,14 @@ pip install -r requirements.txt
 
 Install the Chromium browser binary used by Playwright-backed sync scrapers:
 ```bash
-playwright install chromium
+playwright install --with-deps chromium
+```
+
+The default keyword relevance mode does not require the ML stack. Only install
+the optional semantic dependencies when using
+`TRAVEL_RELEVANCE_MODE=semantic_multilingual`:
+```bash
+pip install -r requirements-semantic.txt
 ```
 
 2. Create local secrets file from template:
@@ -163,6 +170,23 @@ Run these before committing if you want extra confidence:
 python scripts/check_staged_secrets.py
 python scripts/scan_repo_secret_history.py
 ```
+
+For an existing Supabase deployment, apply `db/security_hardening.sql` once as
+an owner/admin. It enables RLS, limits browser clients to read-only public
+reports, and prevents anonymous access to destructive reset RPCs.
+
+### Scheduled-update freshness
+
+The daily workflow validates each region's report and weather timestamps after
+generation. You can run the same check manually:
+```bash
+python scripts/check_data_freshness.py --max-age-hours 6 --cities miami new-york
+```
+
+GitHub disables schedules in public repositories after 60 days without
+repository activity. The monthly `scheduler-keepalive.yml` heartbeat prevents
+that silent shutdown; it has only `contents: write` permission and receives no
+application secrets.
 
 ## Recommended Daily Workflow
 1. Pull latest changes.

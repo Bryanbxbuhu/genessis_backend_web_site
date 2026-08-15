@@ -2,279 +2,186 @@ name: Daily data sync and report update
 
 on:
   schedule:
-    # Europe (Lisbon, Prague, Dubrovnik, Paris, Madrid, Barcelona, Sevilla, London, Rome, Berlin, Dubai, Moscow, Athens) - 1:00 AM EST = 06:00 UTC
-    - cron: '0 6 * * *'
-    # US/Americas (Miami, New York, San Francisco, Los Angeles, Minneapolis, Richmond, Mexico City) - 7:00 AM EST = 12:00 UTC
-    - cron: '0 12 * * *'
-    # Asia (Tokyo, Delhi) - 8:00 AM JST = 23:00 UTC (previous day)
-    - cron: '0 23 * * *'
+    # Stagger away from the top of the hour to reduce delayed/dropped runs.
+    # Europe
+    - cron: "17 6 * * *"
+    # US/Americas
+    - cron: "27 12 * * *"
+    # Asia
+    - cron: "37 23 * * *"
   workflow_dispatch:
     inputs:
       region:
-        description: 'Region to process (us, europe, asia, or all)'
+        description: "Region to process (us, europe, asia, or all)"
         required: false
-        default: 'all'
+        default: "all"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-data-sync
+  cancel-in-progress: false
 
 jobs:
   regression-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
       - name: Run regression tests
-        run: |
-          if [ -d tests ]; then
-            python -m unittest discover -s tests
-          else
-            echo "No tests/ directory found; skipping regression tests."
-          fi
+        run: python -m unittest discover -s tests
 
   us-reports:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     needs: regression-tests
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'us' || github.event.inputs.region == 'all') || (github.event_name == 'schedule' && github.event.schedule == '0 12 * * *')
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
-      RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
-      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
-      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
-      LOS_ANGELES_WIKIMEDIA_ENRICHMENT_ENABLED: true
-      MEXICO_CITY_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'us' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '27 12 * * *') }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install
+          python -m playwright install --with-deps chromium
       - name: Reset and sync scoped runtime data (Americas)
-        run: |
-          python scripts/reset_and_sync.py --region americas
-      - name: Generate Miami report
-        id: miami
-        continue-on-error: true
-        run: |
-          python run_report.py miami --skip-pdf
-      - name: Generate New York report
-        id: new-york
-        continue-on-error: true
-        run: |
-          python run_report.py new-york --skip-pdf
-      - name: Generate San Francisco report
-        id: san-francisco
-        continue-on-error: true
-        run: |
-          python run_report.py san-francisco --skip-pdf
-      - name: Generate Los Angeles report
-        id: los-angeles
-        continue-on-error: true
-        run: |
-          python run_report.py los-angeles --skip-pdf
-      - name: Generate Minneapolis report
-        id: minneapolis
-        continue-on-error: true
-        run: |
-          python run_report.py minneapolis --skip-pdf
-      - name: Generate Richmond report
-        id: richmond
-        continue-on-error: true
-        run: |
-          python run_report.py richmond --skip-pdf
-      - name: Generate Mexico City report
-        id: mexico-city
-        continue-on-error: true
-        run: |
-          python run_report.py mexico-city --skip-pdf
-      - name: Check for failures (Americas)
+        run: python scripts/reset_and_sync.py --region americas
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - name: Generate Americas reports
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
+          WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+          WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+          LOS_ANGELES_WIKIMEDIA_ENRICHMENT_ENABLED: "true"
+          MEXICO_CITY_WIKIMEDIA_ENRICHMENT_ENABLED: "true"
         run: |
           failed=""
-          if [ "${{ steps.miami.outcome }}" = "failure" ]; then failed="$failed miami"; fi
-          if [ "${{ steps.new-york.outcome }}" = "failure" ]; then failed="$failed new-york"; fi
-          if [ "${{ steps.san-francisco.outcome }}" = "failure" ]; then failed="$failed san-francisco"; fi
-          if [ "${{ steps.los-angeles.outcome }}" = "failure" ]; then failed="$failed los-angeles"; fi
-          if [ "${{ steps.minneapolis.outcome }}" = "failure" ]; then failed="$failed minneapolis"; fi
-          if [ "${{ steps.richmond.outcome }}" = "failure" ]; then failed="$failed richmond"; fi
-          if [ "${{ steps.mexico-city.outcome }}" = "failure" ]; then failed="$failed mexico-city"; fi
+          for city in miami new-york san-francisco los-angeles minneapolis richmond mexico-city; do
+            if ! python run_report.py "$city" --skip-pdf; then
+              failed="$failed $city"
+            fi
+          done
           if [ -n "$failed" ]; then
-            echo "::warning::Failed reports:$failed"
+            echo "::error::Failed reports:$failed"
             exit 1
           fi
-          echo "All Americas reports generated successfully."
+      - name: Verify fresh Americas data
+        run: >-
+          python scripts/check_data_freshness.py --max-age-hours 6 --cities
+          miami new-york san-francisco los-angeles minneapolis richmond mexico-city
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
   europe-reports:
     runs-on: ubuntu-latest
+    timeout-minutes: 75
     needs: regression-tests
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'europe' || github.event.inputs.region == 'all') || (github.event_name == 'schedule' && github.event.schedule == '0 6 * * *')
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
-      RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
-      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
-      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
-      BERLIN_WIKIMEDIA_ENRICHMENT_ENABLED: true
-      DUBAI_WIKIMEDIA_ENRICHMENT_ENABLED: true
-      DUBROVNIK_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'europe' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '17 6 * * *') }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install
+          python -m playwright install --with-deps chromium
       - name: Reset and sync scoped runtime data (Europe)
-        run: |
-          python scripts/reset_and_sync.py --region europe
-      - name: Generate Lisbon report
-        id: lisbon
-        continue-on-error: true
-        run: |
-          python run_report.py lisbon --skip-pdf
-      - name: Generate Prague report
-        id: prague
-        continue-on-error: true
-        run: |
-          python run_report.py prague --skip-pdf
-      - name: Generate Dubrovnik report
-        id: dubrovnik
-        continue-on-error: true
-        run: |
-          python run_report.py dubrovnik --skip-pdf
-      - name: Generate Paris report
-        id: paris
-        continue-on-error: true
-        run: |
-          python run_report.py paris --skip-pdf
-      - name: Generate Madrid report
-        id: madrid
-        continue-on-error: true
-        run: |
-          python run_report.py madrid --skip-pdf
-      - name: Generate Barcelona report
-        id: barcelona
-        continue-on-error: true
-        run: |
-          python run_report.py barcelona --skip-pdf
-      - name: Generate Sevilla report
-        id: sevilla
-        continue-on-error: true
-        run: |
-          python run_report.py sevilla --skip-pdf
-      - name: Generate London report
-        id: london
-        continue-on-error: true
-        run: |
-          python run_report.py london --skip-pdf
-      - name: Generate Rome report
-        id: rome
-        continue-on-error: true
-        run: |
-          python run_report.py rome --skip-pdf
-      - name: Generate Berlin report
-        id: berlin
-        continue-on-error: true
-        run: |
-          python run_report.py berlin --skip-pdf
-      - name: Generate Dubai report
-        id: dubai
-        continue-on-error: true
-        run: |
-          python run_report.py dubai --skip-pdf
-      - name: Generate Moscow report
-        id: moscow
-        continue-on-error: true
-        run: |
-          python run_report.py moscow --skip-pdf
-      - name: Generate Athens report
-        id: athens
-        continue-on-error: true
-        run: |
-          python run_report.py athens --skip-pdf
-      - name: Check for failures (Europe)
+        run: python scripts/reset_and_sync.py --region europe
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - name: Generate Europe reports
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
+          WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+          WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
+          BERLIN_WIKIMEDIA_ENRICHMENT_ENABLED: "true"
+          DUBAI_WIKIMEDIA_ENRICHMENT_ENABLED: "true"
+          DUBROVNIK_WIKIMEDIA_ENRICHMENT_ENABLED: "true"
         run: |
           failed=""
-          if [ "${{ steps.lisbon.outcome }}" = "failure" ]; then failed="$failed lisbon"; fi
-          if [ "${{ steps.prague.outcome }}" = "failure" ]; then failed="$failed prague"; fi
-          if [ "${{ steps.dubrovnik.outcome }}" = "failure" ]; then failed="$failed dubrovnik"; fi
-          if [ "${{ steps.paris.outcome }}" = "failure" ]; then failed="$failed paris"; fi
-          if [ "${{ steps.madrid.outcome }}" = "failure" ]; then failed="$failed madrid"; fi
-          if [ "${{ steps.barcelona.outcome }}" = "failure" ]; then failed="$failed barcelona"; fi
-          if [ "${{ steps.sevilla.outcome }}" = "failure" ]; then failed="$failed sevilla"; fi
-          if [ "${{ steps.london.outcome }}" = "failure" ]; then failed="$failed london"; fi
-          if [ "${{ steps.rome.outcome }}" = "failure" ]; then failed="$failed rome"; fi
-          if [ "${{ steps.berlin.outcome }}" = "failure" ]; then failed="$failed berlin"; fi
-          if [ "${{ steps.dubai.outcome }}" = "failure" ]; then failed="$failed dubai"; fi
-          if [ "${{ steps.moscow.outcome }}" = "failure" ]; then failed="$failed moscow"; fi
-          if [ "${{ steps.athens.outcome }}" = "failure" ]; then failed="$failed athens"; fi
+          for city in lisbon prague dubrovnik paris madrid barcelona sevilla london rome berlin dubai moscow athens; do
+            if ! python run_report.py "$city" --skip-pdf; then
+              failed="$failed $city"
+            fi
+          done
           if [ -n "$failed" ]; then
-            echo "::warning::Failed reports:$failed"
+            echo "::error::Failed reports:$failed"
             exit 1
           fi
-          echo "All Europe reports generated successfully."
+      - name: Verify fresh Europe data
+        run: >-
+          python scripts/check_data_freshness.py --max-age-hours 6 --cities
+          lisbon prague dubrovnik paris madrid barcelona sevilla london rome berlin dubai moscow athens
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
 
   asia-reports:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     needs: regression-tests
-    if: github.event_name == 'workflow_dispatch' && (github.event.inputs.region == 'asia' || github.event.inputs.region == 'all') || (github.event_name == 'schedule' && github.event.schedule == '0 23 * * *')
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
-      RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
-      WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
-      WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
-      BARCELONA_WIKIMEDIA_ENRICHMENT_ENABLED: true
+    if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'asia' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '37 23 * * *') }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: '3.11'
+          python-version: "3.11"
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install
+          python -m playwright install --with-deps chromium
       - name: Reset and sync scoped runtime data (Asia)
-        run: |
-          python scripts/reset_and_sync.py --region asia
-      - name: Generate Tokyo report
-        id: tokyo
-        continue-on-error: true
-        run: |
-          python run_report.py tokyo --skip-pdf
-      - name: Generate Delhi report
-        id: delhi
-        continue-on-error: true
-        run: |
-          python run_report.py delhi --skip-pdf
-      - name: Check for failures (Asia)
+        run: python scripts/reset_and_sync.py --region asia
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - name: Generate Asia reports
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
+          WIKIMEDIA_CLIENT_ID: ${{ secrets.WIKIMEDIA_CLIENT_ID }}
+          WIKIMEDIA_CLIENT_SECRET: ${{ secrets.WIKIMEDIA_CLIENT_SECRET }}
         run: |
           failed=""
-          if [ "${{ steps.tokyo.outcome }}" = "failure" ]; then failed="$failed tokyo"; fi
-          if [ "${{ steps.delhi.outcome }}" = "failure" ]; then failed="$failed delhi"; fi
+          for city in tokyo delhi; do
+            if ! python run_report.py "$city" --skip-pdf; then
+              failed="$failed $city"
+            fi
+          done
           if [ -n "$failed" ]; then
-            echo "::warning::Failed reports:$failed"
+            echo "::error::Failed reports:$failed"
             exit 1
           fi
-          echo "All Asia reports generated successfully."
+      - name: Verify fresh Asia data
+        run: python scripts/check_data_freshness.py --max-age-hours 6 --cities tokyo delhi
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

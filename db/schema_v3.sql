@@ -289,6 +289,53 @@ BEFORE UPDATE ON public.city_reports
 FOR EACH ROW EXECUTE FUNCTION public.set_updated_at();
 
 -- ---------------------------------------------------------------------------
+-- Row-level security and public read surface
+-- ---------------------------------------------------------------------------
+
+ALTER TABLE public.cities ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.sources ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.feed_items ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.feed_item_cities ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.weather_forecasts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.city_context_snapshots ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.transit_snapshots ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.curated_places ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.city_reports ENABLE ROW LEVEL SECURITY;
+
+REVOKE ALL PRIVILEGES ON TABLE
+  public.cities,
+  public.sources,
+  public.feed_items,
+  public.feed_item_cities,
+  public.weather_forecasts,
+  public.city_context_snapshots,
+  public.transit_snapshots,
+  public.curated_places,
+  public.city_reports
+FROM PUBLIC, anon, authenticated;
+
+GRANT SELECT ON TABLE public.cities, public.city_reports TO anon, authenticated;
+
+CREATE POLICY public_read_enabled_cities
+ON public.cities
+FOR SELECT
+TO anon, authenticated
+USING (enabled = TRUE);
+
+CREATE POLICY public_read_enabled_city_reports
+ON public.city_reports
+FOR SELECT
+TO anon, authenticated
+USING (
+  EXISTS (
+    SELECT 1
+    FROM public.cities
+    WHERE cities.city_key = city_reports.city_key
+      AND cities.enabled = TRUE
+  )
+);
+
+-- ---------------------------------------------------------------------------
 -- Reset helpers
 -- ---------------------------------------------------------------------------
 
@@ -353,6 +400,15 @@ $$;
 
 COMMENT ON FUNCTION public.reload_api_schema_cache() IS
 'Reload PostgREST schema cache via pg_notify';
+
+-- SECURITY DEFINER functions otherwise inherit EXECUTE for PUBLIC. Only the
+-- backend service role may reset data or reload the API schema cache.
+REVOKE EXECUTE ON FUNCTION public.reset_osint_runtime_data() FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.reset_osint_all() FROM PUBLIC, anon, authenticated;
+REVOKE EXECUTE ON FUNCTION public.reload_api_schema_cache() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.reset_osint_runtime_data() TO service_role;
+GRANT EXECUTE ON FUNCTION public.reset_osint_all() TO service_role;
+GRANT EXECUTE ON FUNCTION public.reload_api_schema_cache() TO service_role;
 
 COMMIT;
 

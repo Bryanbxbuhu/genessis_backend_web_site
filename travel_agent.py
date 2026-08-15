@@ -32,6 +32,7 @@ from report_loader import ReportDataLoader
 from coverage import CoverageStatus
 from helpers.country_metadata import get_country_name_en
 from helpers.rental_car_links import dedupe_rental_car_entries, resolve_rental_car_links_unvalidated
+from helpers.tls import verified_httpx_client
 from report_data_contract import normalize_advisory_risk
 
 
@@ -1314,7 +1315,12 @@ class TravelIntelAgent:
     def __init__(self, api_key: str, datastore=None) -> None:
         self.api_key = api_key
         # Increase timeout to 5 minutes to handle network issues
-        self.client = OpenAI(api_key=api_key, timeout=300.0, max_retries=3)
+        self.client = OpenAI(
+            api_key=api_key,
+            timeout=300.0,
+            max_retries=3,
+            http_client=verified_httpx_client(timeout=300.0),
+        )
         self.datastore = datastore or get_datastore()
         self.local10_client = Local10NewsClient(datastore=self.datastore)
         self.travel_advisory = TravelAdvisoryClient(datastore=self.datastore)

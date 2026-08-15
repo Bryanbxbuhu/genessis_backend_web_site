@@ -1,0 +1,9 @@
+# Optional multilingual semantic-relevance mode. The default keyword mode does
+# not need this large ML stack, so keep it out of production CI unless enabled.
+-r requirements.txt
+
+beautifulsoup4>=4.14.3,<5
+sentence-transformers>=5.3.0,<6
+soupsieve>=2.8.4,<3
+torch>=2.13.0,<3
+transformers>=5.5.0,<6

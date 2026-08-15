@@ -1158,16 +1158,15 @@ class ReportDataLoader:
             cleaned = re.sub(r"\s+", " ", cleaned)
             if not cleaned:
                 cleaned = "unknown"
-            digest = hashlib.sha1(cleaned.encode("utf8")).hexdigest()[:12]
+            digest = hashlib.sha256(cleaned.encode("utf8")).hexdigest()[:12]
             return ("u", digest)
 
         def _domain_contains_tokens(url: str, tokens: list[str]) -> bool:
-            from storage.normalize import normalize_domain
-            import tldextract
+            from storage.normalize import extract_domain_parts, normalize_domain
             normalized = normalize_domain(url)
             if not normalized:
                 return False
-            ext = tldextract.extract(normalized)
+            ext = extract_domain_parts(normalized)
             base = ext.domain or ""
             if not base:
                 return False
@@ -1175,12 +1174,11 @@ class ReportDataLoader:
             return all(t.replace("-", "") in base for t in tokens)
 
         def _is_global_tld(url: str) -> bool:
-            from storage.normalize import normalize_domain
-            import tldextract
+            from storage.normalize import extract_domain_parts, normalize_domain
             normalized = normalize_domain(url)
             if not normalized:
                 return False
-            ext = tldextract.extract(normalized)
+            ext = extract_domain_parts(normalized)
             suffix = (ext.suffix or "").lower()
             return suffix in {"com", "org", "net"}
 

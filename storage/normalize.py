@@ -7,6 +7,13 @@ from urllib.parse import urlparse
 
 import tldextract
 
+_TLD_EXTRACT = tldextract.TLDExtract(suffix_list_urls=())
+
+
+def extract_domain_parts(hostname: str):
+    """Extract domain parts using the packaged PSL snapshot (no network fetch)."""
+    return _TLD_EXTRACT(hostname)
+
 
 def normalize_domain(url: str) -> str:
     """
@@ -43,7 +50,7 @@ def normalize_domain(url: str) -> str:
         if not has_scheme:
             scheme = "https"
 
-        extracted = tldextract.extract(hostname)
+        extracted = extract_domain_parts(hostname)
         if extracted.domain and extracted.suffix:
             base = f"{extracted.domain}.{extracted.suffix}"
             keep_www = hostname.startswith("www.")

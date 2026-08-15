@@ -13,7 +13,7 @@
       {% for airport in airports_list[:5] %}
         <li style="margin-bottom: 8px;">
           {% if airport.website %}
-            <a href="{{ airport.website }}" target="_blank" style="color: #111827; text-decoration: none;">
+            <a href="{{ airport.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #111827; text-decoration: none;">
               <strong>{{ airport.name }}</strong>
             </a>
           {% else %}
@@ -30,7 +30,7 @@
             {% set display_host = display_host.split('/')[0].split('?')[0] %}
             <br><span class="small muted">
               <svg class="icon-xs"><use href="#icon-globe"/></svg>
-              <a href="{{ airport.website }}" target="_blank" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
+              <a href="{{ airport.website | safe_http_url }}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6; text-decoration: none;">{{ display_host }}</a>
             </span>
           {% endif %}
         </li>

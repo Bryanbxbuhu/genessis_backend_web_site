@@ -68,12 +68,25 @@ def reset_runtime_news(city_keys: Optional[List[str]] = None) -> bool:
         else:
             print("\nClearing runtime data (preserves city context & config)...")
 
-            # Delete all records (CASCADE should handle feed_item_cities)
-            datastore.client.table("feed_items").delete().neq(
-                "id",
-                "00000000-0000-0000-0000-000000000000",
-            ).execute()
-            print("   OK feed_items cleared")
+            # Clear the join table first. Relying on a cascading delete for a
+            # large feed can exceed Supabase's statement timeout.
+            datastore.client.table("feed_item_cities").delete().neq("city_key", "").execute()
+            print("   OK feed_item_cities links cleared")
+
+            # Delete all feed records after their city links are gone. A large
+            # historical table can still exceed the managed DB statement
+            # timeout; retaining those now-unlinked rows is safe because report
+            # queries require a feed_item_cities link.
+            try:
+                datastore.client.table("feed_items").delete().neq(
+                    "id",
+                    "00000000-0000-0000-0000-000000000000",
+                ).execute()
+                print("   OK feed_items cleared")
+            except Exception as delete_exc:
+                if "statement timeout" not in str(delete_exc).lower():
+                    raise
+                print("   WARN feed_items cleanup timed out; unlinked rows retained")
 
             datastore.client.table("weather_forecasts").delete().neq(
                 "id",

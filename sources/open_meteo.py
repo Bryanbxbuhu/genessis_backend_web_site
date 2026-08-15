@@ -24,6 +24,7 @@ sys.path.insert(0, str(project_root))
 
 from storage.base import FeedItem
 from news_relevance import parse_published_at
+from helpers.tls import verified_ssl_context
 
 
 def fetch_open_meteo_forecast(
@@ -75,7 +76,12 @@ def fetch_open_meteo_forecast(
     print(f"   Fetching weather forecast for {city_name}")
     
     try:
-        with urllib.request.urlopen(url, timeout=15) as response:
+        # The URL is constructed from the fixed HTTPS base above.
+        with urllib.request.urlopen(
+            url,
+            timeout=15,
+            context=verified_ssl_context(),
+        ) as response:  # nosec B310
             data = json.loads(response.read().decode('utf-8'))
         
         # Parse current conditions
@@ -126,7 +132,11 @@ def fetch_open_meteo_forecast(
         
         # Create unique ID
         now = datetime.now(timezone.utc)
-        id_hash = hashlib.md5(f"open_meteo:{city_key}:{current_time}".encode()).hexdigest()[:16]
+        # Stable record identifier, not a security-sensitive digest.
+        id_hash = hashlib.md5(
+            f"open_meteo:{city_key}:{current_time}".encode(),
+            usedforsecurity=False,
+        ).hexdigest()[:16]
         
         # Store full forecast data in raw field for report generation
         published_at = parse_published_at({"published": current_time}, now, preferred_fields=("published",))

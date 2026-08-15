@@ -17,6 +17,14 @@ import os
 import sys
 from pathlib import Path
 
+# Windows shells commonly default to cp1252, while progress output uses Unicode
+# separators and city names. Configure UTF-8 before printing any CLI output.
+if sys.platform == "win32":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 import config
 
 

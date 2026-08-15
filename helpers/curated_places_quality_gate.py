@@ -13,7 +13,6 @@ import re
 import unicodedata
 
 import requests
-import tldextract
 
 import config
 from storage.normalize import is_aggregator_domain
@@ -261,7 +260,9 @@ def _extract_domain(url: Optional[str]) -> Optional[str]:
     host = (parsed.hostname or "").strip().lower()
     if not host:
         return None
-    ext = tldextract.extract(host)
+    from storage.normalize import extract_domain_parts
+
+    ext = extract_domain_parts(host)
     if ext.domain and ext.suffix:
         return f"{ext.domain}.{ext.suffix}".lower()
     return host

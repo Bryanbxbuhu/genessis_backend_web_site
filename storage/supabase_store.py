@@ -12,16 +12,20 @@ Uses Supabase Postgres backend for all data storage.
 
 import os
 import re
+import ssl
 import unicodedata
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from typing import Dict, List, Optional, Any, Tuple
 
 try:
-    from supabase import create_client, Client
+    import httpx
+    import truststore
+    from supabase import create_client, Client, ClientOptions
 except ImportError:
     create_client = None
     Client = None
+    ClientOptions = None
 
 from .base import DataStore, FeedItem, CityContext, TransitSnapshot
 from .normalize import normalize_domain
@@ -62,7 +66,13 @@ class SupabaseStore(DataStore):
                 "Missing Supabase credentials. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables."
             )
         
-        self.client: Client = create_client(supabase_url, supabase_key)
+        # Use the operating system trust store. This preserves full TLS
+        # verification while supporting managed/corporate root certificates
+        # that are not bundled in certifi.
+        tls_context = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        http_client = httpx.Client(verify=tls_context, timeout=120.0)
+        options = ClientOptions(httpx_client=http_client)
+        self.client: Client = create_client(supabase_url, supabase_key, options=options)
         self._feed_item_optional_columns: Optional[bool] = None
         self._curated_place_optional_columns: Optional[bool] = None
     

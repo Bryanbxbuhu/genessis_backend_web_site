@@ -19,6 +19,7 @@ sys.path.insert(0, str(project_root))
 
 from storage.base import FeedItem
 from news_relevance import compute_travel_relevance, parse_published_at
+from helpers.tls import verified_ssl_context
 
 
 def fetch_gdelt_geo(
@@ -110,13 +111,15 @@ def fetch_gdelt_geo(
     print(f"   Timespan: {timespan}, max: {max_records} articles")
     
     try:
-        # Create SSL context that doesn't verify certificates (GDELT cert issues)
-        import ssl
-        ssl_context = ssl.create_default_context()
-        ssl_context.check_hostname = False
-        ssl_context.verify_mode = ssl.CERT_NONE
-        
-        with urllib.request.urlopen(url, timeout=30, context=ssl_context) as response:
+        # Enforce normal TLS certificate and hostname verification. If the
+        # upstream certificate is invalid, fail closed instead of ingesting
+        # data from an unauthenticated connection.
+        # The URL is constructed from the fixed HTTPS base above.
+        with urllib.request.urlopen(
+            url,
+            timeout=30,
+            context=verified_ssl_context(),
+        ) as response:  # nosec B310
             raw_data = response.read().decode('utf-8')
             if not raw_data.strip():
                 print("   [X] GDELT API returned empty response")
@@ -226,7 +229,11 @@ def fetch_gdelt_geo(
             )
             
             # Create deterministic ID from URL + source + city
-            id_hash = hashlib.md5(f"gdelt_geo:{city_key}:{url_str}".encode()).hexdigest()[:16]
+            # Stable record identifier, not a security-sensitive digest.
+            id_hash = hashlib.md5(
+                f"gdelt_geo:{city_key}:{url_str}".encode(),
+                usedforsecurity=False,
+            ).hexdigest()[:16]
             
             item = FeedItem(
                 id=f"gdelt_{id_hash}",

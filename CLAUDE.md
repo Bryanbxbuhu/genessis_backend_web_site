@@ -44,9 +44,10 @@ python scripts/scan_repo_secret_history.py               # Scan git history for 
 
 ### Testing
 ```bash
-python -m unittest discover -s tests                      # Runs if tests/ directory exists
+python -m unittest discover -s tests
 ```
-There is no formal test suite — the CI regression step passes vacuously if `tests/` is absent. Use validation scripts for integration checks.
+Freshness and renderer security regression tests live in `tests/`. Use the
+validation scripts for integration checks.
 
 ## Architecture
 
