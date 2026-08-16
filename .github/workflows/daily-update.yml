@@ -28,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -45,8 +45,8 @@ jobs:
     needs: regression-tests
     if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'us' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '27 12 * * *') }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -59,6 +59,9 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
       - name: Generate Americas reports
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -95,8 +98,8 @@ jobs:
     needs: regression-tests
     if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'europe' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '17 6 * * *') }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -109,6 +112,9 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
       - name: Generate Europe reports
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -146,8 +152,8 @@ jobs:
     needs: regression-tests
     if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.region == 'asia' || inputs.region == 'all')) || (github.event_name == 'schedule' && github.event.schedule == '37 23 * * *') }}
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -160,6 +166,9 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY || secrets.RAPID_API_KEY }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY || secrets.RAPIDAPI_KEY }}
       - name: Generate Asia reports
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
