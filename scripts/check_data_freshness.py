@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -87,6 +88,38 @@ def evaluate_city_rows(
     return problems
 
 
+def build_supabase_client() -> Any:
+    """Create a read-only Supabase client without importing the app config.
+
+    This check is a pure database read, so it deliberately avoids
+    ``storage.supabase_store`` (and therefore ``config``), whose import-time
+    CI guard demands unrelated secrets such as OPENAI_API_KEY and RAPIDAPI_KEY.
+    """
+    # Import order matters: helpers.tls pulls in truststore, which snapshots
+    # ssl.SSLContext at import time. Importing supabase first leaves truststore
+    # snapshotting an already-patched class and recursing on context setup.
+    from helpers.tls import verified_httpx_client
+
+    from dotenv import load_dotenv
+    from supabase import ClientOptions, create_client
+
+    # Match config.py: local secrets come from .env.local only, never .env.
+    env_local_file = PROJECT_ROOT / ".env.local"
+    if env_local_file.exists():
+        load_dotenv(env_local_file, override=False)
+
+    supabase_url = (os.getenv("SUPABASE_URL") or "").strip()
+    supabase_key = (os.getenv("SUPABASE_SERVICE_ROLE_KEY") or "").strip()
+    if not supabase_url or not supabase_key:
+        raise RuntimeError(
+            "Missing Supabase credentials. Set SUPABASE_URL and "
+            "SUPABASE_SERVICE_ROLE_KEY environment variables."
+        )
+
+    options = ClientOptions(httpx_client=verified_httpx_client())
+    return create_client(supabase_url, supabase_key, options=options)
+
+
 def fetch_rows(client: Any, table: str, fields: str, city_keys: Sequence[str]) -> list[dict[str, Any]]:
     response = client.table(table).select(fields).in_("city_key", list(city_keys)).execute()
     rows = response.data or []
@@ -112,11 +145,9 @@ def main() -> int:
     if args.max_age_hours <= 0:
         parser.error("--max-age-hours must be positive")
 
-    from storage.supabase_store import SupabaseStore
-
-    store = SupabaseStore()
-    report_rows = fetch_rows(store.client, "city_reports", "city_key,generated_at", city_keys)
-    weather_rows = fetch_rows(store.client, "weather_forecasts", "city_key,fetched_at", city_keys)
+    client = build_supabase_client()
+    report_rows = fetch_rows(client, "city_reports", "city_key,generated_at", city_keys)
+    weather_rows = fetch_rows(client, "weather_forecasts", "city_key,fetched_at", city_keys)
 
     problems = evaluate_city_rows(
         resource="city_reports",
