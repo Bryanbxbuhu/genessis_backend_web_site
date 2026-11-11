@@ -559,8 +559,8 @@ class ReportDataLoader:
         advisory_city_config.setdefault("name", city_name)
         if not advisory_city_config.get("country_code"):
             advisory_city_config["country_code"] = (
-                (bundle.get("city_row") or {}).get("country_code")
-                if isinstance(bundle.get("city_row"), dict)
+                city_row.get("country_code")
+                if isinstance(city_row, dict)
                 else None
             )
         advisory_data = self._load_travel_advisory(advisory_city_config)

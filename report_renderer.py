@@ -19,7 +19,7 @@ from pypdf import PdfReader, PdfWriter
 
 # Optional PyMuPDF import for TOC links and bookmarks
 try:
-    import fitz  # PyMuPDF
+    import pymupdf as fitz
     HAS_PYMUPDF = True
 except ImportError:
     HAS_PYMUPDF = False
@@ -451,20 +451,19 @@ def find_section_pages(pdf_path: Path) -> Dict[str, int]:
     doc = fitz.open(pdf_path)
     
     for page_num, page in enumerate(doc):
-        text = page.get_text("text")
-        # Check first 500 characters of page for section headings
-        text_start = text[:500] if len(text) > 500 else text
-        
-        for heading in section_headings:
-            if heading in text_start:
-                # Map to canonical section name
-                if heading == "Incident Analysis":
-                    sections["Current Incidents"] = page_num
-                elif heading == "Intelligence Sources":
-                    sections["Contacts & Sources"] = page_num
-                else:
-                    sections[heading] = page_num
-                break  # One section per page
+        # TOC labels use smaller text than section titles. Match actual heading
+        # spans and allow several sections to start on a compact report page.
+        for block in page.get_text("dict")["blocks"]:
+            for line in block.get("lines", []):
+                for span in line.get("spans", []):
+                    heading = span["text"].strip()
+                    if span["size"] < 11 or heading not in section_headings:
+                        continue
+                    if heading == "Incident Analysis":
+                        heading = "Current Incidents"
+                    elif heading == "Intelligence Sources":
+                        heading = "Contacts & Sources"
+                    sections.setdefault(heading, page_num)
     
     doc.close()
     return sections
@@ -589,7 +588,7 @@ def add_toc_links_and_outline(pdf_path: Path):
         doc.save(pdf_path, incremental=True, encryption=fitz.PDF_ENCRYPT_KEEP)
         doc.close()
         
-        print(f"✓ TOC: Populated {added_links} page numbers, added {added_links} clickable links and {len(toc_outline)} PDF bookmarks")
+        print(f"TOC: Populated {added_links} page numbers, added {added_links} clickable links and {len(toc_outline)} PDF bookmarks")
         
     except Exception as e:
         print(f"Warning: Failed to add TOC links/bookmarks: {e}")

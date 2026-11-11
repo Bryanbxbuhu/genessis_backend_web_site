@@ -33,6 +33,7 @@ from coverage import CoverageStatus
 from helpers.country_metadata import get_country_name_en
 from helpers.rental_car_links import dedupe_rental_car_entries, resolve_rental_car_links_unvalidated
 from helpers.tls import verified_httpx_client
+from helpers.llm import parse_json_completion
 from report_data_contract import normalize_advisory_risk
 
 
@@ -1313,6 +1314,8 @@ def ensure_city_news_ready(
 
 class TravelIntelAgent:
     def __init__(self, api_key: str, datastore=None) -> None:
+        if not api_key or not api_key.strip():
+            raise RuntimeError("Missing OPENAI_API_KEY for report generation.")
         self.api_key = api_key
         # Increase timeout to 5 minutes to handle network issues
         self.client = OpenAI(
@@ -1767,7 +1770,7 @@ class TravelIntelAgent:
             }
         
         # Get appropriate travel advisory based on destination country
-        city_config = get_city_config(city_key)
+        city_config = get_city_config(city_key, datastore=self.datastore)
         country_code = city_config.get("country_code", "US")
         country_name = location.split(",")[-1].strip() if "," in location else None
         
@@ -1929,7 +1932,7 @@ class TravelIntelAgent:
             {"role": "user", "content": user_prompt},
         ]
 
-        model_name = getattr(config, "OPENAI_MODEL", "gpt-5-mini")
+        model_name = config.OPENAI_MODEL
         print(f"\n=== Using OpenAI model: {model_name} ===")
         
         # Make API call without tools
@@ -1939,13 +1942,10 @@ class TravelIntelAgent:
             response_format={"type": "json_object"}  # Force JSON output
         )
         
-        response_message = response.choices[0].message
-        json_text = response_message.content.strip()
+        parsed_data = parse_json_completion(response)
         
         # Parse and return JSON
         try:
-            parsed_data = json.loads(json_text)
-            
             # GUARDRAILS: Remove any DB-owned fields from LLM output
             DB_OWNED_FIELDS = [
                 "hospitals",
@@ -2873,7 +2873,7 @@ class TravelIntelAgent:
             try:
                 
                 # Use the EXACT same merged context_dict for DB storage (already enriched with google_maps_url)
-                model_name = getattr(config, "OPENAI_MODEL", "gpt-5-mini")
+                model_name = config.OPENAI_MODEL
                 
                 # Hash should match the one we computed before PDF render
                 stored_json_str = json.dumps(context_dict, ensure_ascii=False, sort_keys=True)
@@ -3086,7 +3086,7 @@ class TravelIntelAgent:
 
                 _log_missing_google_maps_urls_fallback(fallback_context_dict)
 
-                model_name = getattr(config, "OPENAI_MODEL", "gpt-5-mini")
+                model_name = config.OPENAI_MODEL
                 success = self.datastore.upsert_city_report(
                     city_key=city_key,
                     report_data=fallback_context_dict,
@@ -3284,15 +3284,16 @@ class TravelIntelAgent:
         )
 
 
-def get_city_config(city_key: str) -> Dict:
+def get_city_config(city_key: str, datastore=None) -> Dict:
     """Get city configuration DB-first.
 
     In production, cities are DB-owned. config.CITIES remains an optional bootstrap fallback.
     """
 
     # 1) DB-first: cities table
+    row = None
     try:
-        datastore = get_datastore()
+        datastore = datastore or get_datastore()
         client = getattr(datastore, "client", None)
         if client is not None:
             resp = (
@@ -3304,19 +3305,21 @@ def get_city_config(city_key: str) -> Dict:
             )
             if resp.data:
                 row = resp.data[0]
-                if row.get("enabled") is False:
-                    raise ValueError(f"City '{city_key}' is disabled")
-                return {
-                    "name": row.get("display_name") or city_key,
-                    "country_code": row.get("country_code"),
-                    "timezone": row.get("timezone"),
-                    "latitude": row.get("latitude"),
-                    "longitude": row.get("longitude"),
-                    "aliases": row.get("aliases") or [],
-                    "enabled": True,
-                }
     except Exception:
         pass
+
+    if row is not None:
+        if row.get("enabled") is False:
+            raise ValueError(f"City '{city_key}' is disabled")
+        return {
+            "name": row.get("display_name") or city_key,
+            "country_code": row.get("country_code"),
+            "timezone": row.get("timezone"),
+            "latitude": row.get("latitude"),
+            "longitude": row.get("longitude"),
+            "aliases": row.get("aliases") or [],
+            "enabled": True,
+        }
 
     # 2) Fallback: config
     cities = getattr(config, "CITIES", {})

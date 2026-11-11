@@ -11,18 +11,10 @@ env_local_file = Path(__file__).parent / ".env.local"
 if env_local_file.exists():
     load_dotenv(env_local_file, override=False)
 
-# API keys and secrets (environment only; no hardcoded fallbacks)
-_IN_CI = os.getenv("GITHUB_ACTIONS") == "true" or os.getenv("CI") == "true"
-
-
+# Load credentials without requiring unrelated services during imports or tests.
+# Each service validates its own credentials when a client is constructed.
 def _load_secret(name: str) -> str:
-    value = (os.getenv(name) or "").strip()
-    if _IN_CI and not value:
-        raise RuntimeError(
-            f"Missing required secret '{name}' in CI environment. "
-            f"Set {name} in repository/workflow secrets."
-        )
-    return value
+    return (os.getenv(name) or "").strip()
 
 
 def _load_secret_any(*names: str) -> str:
@@ -30,19 +22,13 @@ def _load_secret_any(*names: str) -> str:
         value = (os.getenv(name) or "").strip()
         if value:
             return value
-    if _IN_CI:
-        joined = " or ".join(f"'{name}'" for name in names)
-        raise RuntimeError(
-            f"Missing required secret {joined} in CI environment. "
-            f"Set one of these secrets in repository/workflow settings."
-        )
     return ""
 
 
 OPENAI_API_KEY = _load_secret("OPENAI_API_KEY")
 
 # OpenAI Model Configuration
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini")
+OPENAI_MODEL = (os.getenv("OPENAI_MODEL") or "").strip() or "gpt-6-luna"
 
 # Supabase Configuration (primary storage backend)
 # These should be set as environment variables for security

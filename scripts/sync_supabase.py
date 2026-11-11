@@ -22,7 +22,7 @@ import argparse
 import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 # Fix Windows console encoding issues
 if sys.platform == 'win32' and hasattr(sys.stdout, 'buffer'):

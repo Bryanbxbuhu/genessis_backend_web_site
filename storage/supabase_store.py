@@ -1929,9 +1929,13 @@ class SupabaseStore(DataStore):
             The partner URL if found and enabled, else None
         """
         try:
-            response = self.client.table("partner_links").select("url").where(
-                f"partner_key=eq.{partner_key},country_code=eq.{country_code},enabled=eq.true"
-            ).execute()
+            response = (
+                self.client.table("partner_links").select("url")
+                .eq("partner_key", partner_key)
+                .eq("country_code", country_code)
+                .eq("enabled", True)
+                .execute()
+            )
             
             if response.data and len(response.data) > 0:
                 return response.data[0].get("url")

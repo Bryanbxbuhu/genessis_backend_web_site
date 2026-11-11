@@ -53,7 +53,7 @@ jobs:
         run: |
           python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install --with-deps chromium
+          python scripts/install_playwright.py --with-deps
       - name: Reset and sync scoped runtime data (Americas)
         run: python scripts/reset_and_sync.py --region americas
         env:
@@ -106,7 +106,7 @@ jobs:
         run: |
           python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install --with-deps chromium
+          python scripts/install_playwright.py --with-deps
       - name: Reset and sync scoped runtime data (Europe)
         run: python scripts/reset_and_sync.py --region europe
         env:
@@ -160,7 +160,7 @@ jobs:
         run: |
           python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install --with-deps chromium
+          python scripts/install_playwright.py --with-deps
       - name: Reset and sync scoped runtime data (Asia)
         run: python scripts/reset_and_sync.py --region asia
         env:

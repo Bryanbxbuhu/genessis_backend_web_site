@@ -57,7 +57,7 @@ validation scripts for integration checks.
 Sources (RSS/JSON/API/Playwright) → sync_supabase.py → Supabase
                                                            ↓
 run_report.py → travel_agent.py → Load city context + feed items from Supabase
-                                → OpenAI gpt-4o-mini: reason over structured data
+                                → OpenAI gpt-6-luna: reason over structured data
                                 → report_renderer.py: HTML/PDF output
                                 → Upsert JSON into city_reports table
 ```
@@ -131,7 +131,7 @@ Workflows: `check-forbidden-files.yml`, `validate-important-services.yml`, `dail
 4. Run `python scripts/sync_supabase.py --city <city_key> --reset` to initialize
 
 ### LLM Integration
-- Model: `gpt-4o-mini` (referenced in code as `gpt-5-mini` in some comments — use actual OpenAI model IDs).
+- Model: `gpt-6-luna` by default; `OPENAI_MODEL` can override it. Report generation and optional website disambiguation share this setting.
 - LLM is called in `travel_agent.py` with structured `report_data` context to generate risk badges, travel cues, opsec notes, and top recommended actions.
 - `city_context.py` grounds the LLM with real OSM data to prevent hallucinations about hospitals, transit, etc.
 

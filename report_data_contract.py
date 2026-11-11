@@ -612,6 +612,7 @@ def make_empty_report_data(
         "opsec_section": None,
         "driving_pack": None,
         "data_coverage": "",
+        "sources": [],
         "parking": None,  # SpotHero parking affiliate link for US cities
         "travel_advisory": None,
         "advisory_level": None,

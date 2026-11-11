@@ -19,7 +19,7 @@ jobs:
         run: |
           python -m pip install --upgrade "pip>=26.1.2" "setuptools>=83.0.0"
           python -m pip install --no-cache-dir -r requirements.txt
-          python -m playwright install --with-deps chromium
+          python scripts/install_playwright.py --with-deps
       - name: Reset and sync data (skip context)
         run: |
           python scripts/reset_and_sync.py

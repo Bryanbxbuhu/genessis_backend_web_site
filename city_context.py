@@ -31,6 +31,7 @@ from helpers.store_chain_canonical import canonicalize_store_website, is_store_c
 
 from storage import get_datastore
 from storage.base import CityContext
+from helpers.llm import parse_json_completion
 from storage.normalize import normalize_domain, is_aggregator_domain
 from emergency_numbers import get_emergency_contacts
 
@@ -841,57 +842,57 @@ class CityContextTool:
                     if not results:
                         break
                         
-                        # Filter out aggregators and pick best candidate
-                        candidates = []
-                        for r in results:
-                            url = r.get("href", "")
-                            if url and not self._is_aggregator(url):
-                                candidates.append({
-                                    "url": url,
-                                    "title": r.get("title", ""),
-                                    "description": r.get("body", "")
-                                })
-                        
-                        if not candidates:
-                            break
-                        
-                        # Rank candidates using deterministic heuristics
-                        ranked_candidates = self._rank_website_candidates(candidates, facility['name'])
-                        
-                        # Use AI only if top candidates are tied or uncertain
-                        if self.openai_client and len(ranked_candidates) > 1:
-                            # Check if top 2 candidates have similar scores
-                            # For now, just use AI to validate the top candidate
-                            prompt = f"""Given these search results for "{facility['name']}", identify the official {facility_type} website URL.
+                    # Filter out aggregators and pick best candidate
+                    candidates = []
+                    for r in results:
+                        url = r.get("href", "")
+                        if url and not self._is_aggregator(url):
+                            candidates.append({
+                                "url": url,
+                                "title": r.get("title", ""),
+                                "description": r.get("body", "")
+                            })
+
+                    if not candidates:
+                        break
+
+                    # Rank candidates using deterministic heuristics
+                    ranked_candidates = self._rank_website_candidates(candidates, facility['name'])
+
+                    # Use AI only if top candidates are tied or uncertain
+                    if self.openai_client and len(ranked_candidates) > 1:
+                        # Check if top 2 candidates have similar scores
+                        # For now, just use AI to validate the top candidate
+                        prompt = f"""Given these search results for "{facility['name']}", identify the official {facility_type} website URL.
 
 Search results (ranked by relevance):
 {json.dumps(ranked_candidates[:3], indent=2)}
 
 Return JSON: {{"website": "https://..."}} with the OFFICIAL {facility_type} site, or {{"website": null}} if uncertain."""
-                            
-                            response = self.openai_client.chat.completions.create(
-                                model=getattr(config, "OPENAI_MODEL", "gpt-5-mini"),
-                                messages=[{"role": "user", "content": prompt}],
-                                response_format={"type": "json_object"}
-                            )
-                            
-                            result = json.loads(response.choices[0].message.content)
-                            website = result.get("website")
-                        else:
-                            # Just take first ranked candidate
-                            website = ranked_candidates[0]["url"] if ranked_candidates else None
-                        
-                        if website:
-                            normalized = self._normalize_facility_website(website, facility_type, tags)
-                            if normalized and not self._is_aggregator(normalized):
-                                website_container["website"] = normalized
-                                website = normalized
-                    
+
+                        response = self.openai_client.chat.completions.create(
+                            model=config.OPENAI_MODEL,
+                            messages=[{"role": "user", "content": prompt}],
+                            response_format={"type": "json_object"}
+                        )
+
+                        result = parse_json_completion(response)
+                        website = result.get("website")
+                    else:
+                        # Just take first ranked candidate
+                        website = ranked_candidates[0]["url"] if ranked_candidates else None
+
+                    if website:
+                        normalized = self._normalize_facility_website(website, facility_type, tags)
+                        if normalized and not self._is_aggregator(normalized):
+                            website_container["website"] = normalized
+                            website = normalized
+
                     time.sleep(1.5)  # Rate limit
                     break
                     
                 except Exception as e:
-                    if "202" in str(e) or "Ratelimit" in str(e).lower():
+                    if "202" in str(e) or "ratelimit" in str(e).lower() or "rate limit" in str(e).lower():
                         delay = (attempt + 1) * 2
                         if attempt < 2:
                             print(f"    WARN Rate limit, waiting {delay}s...")

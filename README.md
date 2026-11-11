@@ -64,6 +64,7 @@ Copy-Item .env.example .env.local
 
 3. Fill values in `.env.local` (local only, never commit):
 - OPENAI_API_KEY
+- OPENAI_MODEL=gpt-6-luna (default; optional override)
 - SUPABASE_URL
 - SUPABASE_SERVICE_ROLE_KEY
 - STORAGE_BACKEND=supabase
@@ -74,6 +75,12 @@ Copy-Item .env.example .env.local
 python -m pre_commit install
 python -m pre_commit install --hook-type pre-push
 ```
+
+The report generator and optional facility website disambiguation share
+`OPENAI_MODEL`. The default is `gpt-6-luna`, using Chat Completions JSON mode
+without tools. Existing deployments with an explicit model setting must update
+that setting to switch models. Incomplete, refused, or invalid model completions
+fail generation before a report can be stored.
 
 ## Most Important Commands
 
@@ -133,6 +140,25 @@ If successful, you should see:
 - Report generated successfully.
 
 ## DevSecOps and Secret Safety
+
+### Regression checks
+
+Run the offline regression suite before committing:
+```bash
+python -m unittest discover -s tests -v
+python -m pip check
+python scripts/validate_important_services_links.py --strict --no-network
+```
+
+Tests mock external services and do not require API credentials. The regression
+workflow also runs on pull requests and pushes to `main`; scheduled report jobs
+run the same tests before syncing. Credentials are validated when constructing
+the service that needs them, so database-only operations do not require an
+OpenAI or RapidAPI key.
+
+Scheduled browser installation retries up to three times to recover from
+temporary package-mirror or browser-download failures. A persistent installation
+failure still fails the job before runtime data is reset.
 
 ### What Is Enforced
 - `.env.local` is ignored by git.
